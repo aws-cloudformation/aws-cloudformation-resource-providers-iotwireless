@@ -1,0 +1,15 @@
+{
+  "Type": "LoRaWAN",
+  "Name": "OtaaV1_0_x Wireless Device",
+  "Description": "Test_Description",
+  "DestinationName": "DestinationName",
+  "LoRaWANDevice": {
+    "DevEui": "01091101101400b7",
+    "DeviceProfileId": "{{CanaryDeviceProfile}}",
+    "ServiceProfileId": "{{CanaryServiceProfile}}",
+    "OtaaV10X": {
+      "AppKey": "27aecfcc061e11a490cd4db949fb555b",
+      "AppEui": "27aecfcc061e11a4"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "Name": "Moiratestingdestination3",
+  "ExpressionType": "RuleName",
+  "Expression": "rules/AlphaGaTest0Rule/iot/alphagatest0ruletopic",
+  "RoleArn": "arn:aws:iam::{{ContractTestExecutionAccountId}}:role/AlphaGaTest0role"
+}

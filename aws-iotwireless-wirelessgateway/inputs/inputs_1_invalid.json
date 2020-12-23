@@ -1,0 +1,7 @@
+{
+  "Id":"41498503-b651-352b-9090-66519fa04c67",
+  "LoRaWANGateway": {
+    "GatewayEui": "01101101101422e2",
+    "RfRegion": "US915"
+  }
+}

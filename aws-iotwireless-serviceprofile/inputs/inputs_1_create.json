@@ -1,0 +1,7 @@
+{
+  "Name": "CONTRACT Testing Service profile4",
+  "LoRaWANServiceProfile" : {
+    "AddGwMetadata": true
+  },
+  "Tags": [{"Key": "test 1","Value": "test 1"}]
+}

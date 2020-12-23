@@ -1,0 +1,16 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  MyTemplate:
+    Type: AWS::IoTWireless::WirelessGateway
+    Properties:
+      Name: "CanaryWirelessGateway"
+      Description: "description"
+      Tags:
+        - Key: "wgatewaytag_key1"
+          Value: "wgatewaytag_value1"
+        - Key: "wgatewaytag_key2"
+          Value: "wgatewaytag_value2"
+      LoRaWANGateway:
+        GatewayEui:
+          Fn::Sub: "${AWS::AccountId}2222"
+        RfRegion: "US915"

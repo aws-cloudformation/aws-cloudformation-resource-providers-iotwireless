@@ -1,0 +1,11 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  ServiceProfileCanary:
+    Type: AWS::IoTWireless::ServiceProfile
+    Properties:
+      Name: "CanaryServiceProfile1"
+      LoRaWANServiceProfile:
+        AddGwMetadata: true
+      Tags:
+        - Key: "serviceprofiletag_key1"
+          Value: "serviceprofiletag_value1"

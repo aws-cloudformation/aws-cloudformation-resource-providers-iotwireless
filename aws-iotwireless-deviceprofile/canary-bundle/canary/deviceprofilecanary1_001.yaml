@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  MyTemplate:
+    Type: AWS::IoTWireless::DeviceProfile
+    Properties:
+      Name: "CanaryDeviceProfile1"
+      LoRaWANDeviceProfile:
+        SupportsClassB: false
+        SupportsClassC: false
+        MacVersion: "1.0.3"
+        RegParamsRevision: "LoRaWAN v1.0.1"
+        MaxEirp: 10
+        MaxDutyCycle: 10
+        SupportsJoin: true
+        RfRegion: "US915"
+        Supports32BitFCnt: true
+      Tags:
+        - Key: "deviceprofiletag_key1"
+          Value: "deviceprofiletag_value1"
