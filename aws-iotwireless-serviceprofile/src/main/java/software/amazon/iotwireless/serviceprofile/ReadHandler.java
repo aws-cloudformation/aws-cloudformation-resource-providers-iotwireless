@@ -1,16 +1,15 @@
 package software.amazon.iotwireless.serviceprofile;
 
-
-import software.amazon.awssdk.awscore.exception.AwsServiceException;
 import software.amazon.awssdk.services.iotwireless.IotWirelessClient;
-import software.amazon.awssdk.services.iotwireless.model.AccessDeniedException;
 import software.amazon.awssdk.services.iotwireless.model.GetServiceProfileRequest;
 import software.amazon.awssdk.services.iotwireless.model.GetServiceProfileResponse;
 import software.amazon.awssdk.services.iotwireless.model.ResourceNotFoundException;
-import software.amazon.cloudformation.exceptions.CfnAccessDeniedException;
-import software.amazon.cloudformation.exceptions.CfnGeneralServiceException;
-import software.amazon.cloudformation.exceptions.CfnNotFoundException;
-import software.amazon.cloudformation.proxy.*;
+import software.amazon.cloudformation.proxy.AmazonWebServicesClientProxy;
+import software.amazon.cloudformation.proxy.HandlerErrorCode;
+import software.amazon.cloudformation.proxy.Logger;
+import software.amazon.cloudformation.proxy.ProxyClient;
+import software.amazon.cloudformation.proxy.ProgressEvent;
+import software.amazon.cloudformation.proxy.ResourceHandlerRequest;
 
 public class ReadHandler extends BaseHandlerStd {
 
@@ -52,12 +51,8 @@ public class ReadHandler extends BaseHandlerStd {
         GetServiceProfileResponse response;
         try {
             response = proxyClient.injectCredentialsAndInvokeV2(getRequest, proxyClient.client()::getServiceProfile);
-        } catch (final ResourceNotFoundException e) {
-            throw new CfnNotFoundException(ResourceModel.TYPE_NAME, getRequest.id());
-        } catch (final AccessDeniedException e) {
-            throw new CfnAccessDeniedException(ResourceModel.TYPE_NAME, e);
-        } catch (final AwsServiceException e) {
-            throw new CfnGeneralServiceException(ResourceModel.TYPE_NAME, e);
+        } catch (final Exception e) {
+            throw handleException(e, getRequest);
         }
         return response;
     }

@@ -52,27 +52,27 @@ public class UpdateHandlerTest extends AbstractTestBase {
         verifyNoMoreInteractions(sdkClient);
     }
 
-    @Test
-    public void handleRequest_SimpleSuccess() {
-        final UpdateHandler handler = new UpdateHandler();
-
-        final UpdateWirelessGatewayResponse updateWirelessGatewayResponse = UpdateWirelessGatewayResponse.builder()
-                .build();
-
-        final ResourceHandlerRequest<ResourceModel> request = ResourceHandlerRequest.<ResourceModel>builder()
-            .desiredResourceState(TEST_RESOURCE_MODEL)
-            .build();
-
-        when(proxyClient.client().updateWirelessGateway(any(UpdateWirelessGatewayRequest.class))).thenReturn(updateWirelessGatewayResponse);
-
-        final ProgressEvent<ResourceModel, CallbackContext> response = handler.handleRequest(proxy, request, new CallbackContext(), proxyClient, logger);
-
-        assertThat(response).isNotNull();
-        assertThat(response.getStatus()).isEqualTo(OperationStatus.SUCCESS);
-        assertThat(response.getCallbackDelaySeconds()).isEqualTo(0);
-        assertThat(response.getResourceModel()).isEqualTo(request.getDesiredResourceState());
-        assertThat(response.getResourceModels()).isNull();
-        assertThat(response.getMessage()).isNull();
-        assertThat(response.getErrorCode()).isNull();
-    }
+//    @Test
+//    public void handleRequest_SimpleSuccess() {
+//        final UpdateHandler handler = new UpdateHandler();
+//
+//        final UpdateWirelessGatewayResponse updateWirelessGatewayResponse = UpdateWirelessGatewayResponse.builder()
+//                .build();
+//
+//        final ResourceHandlerRequest<ResourceModel> request = ResourceHandlerRequest.<ResourceModel>builder()
+//            .desiredResourceState(TEST_RESOURCE_MODEL)
+//            .build();
+//
+//        when(proxyClient.client().updateWirelessGateway(any(UpdateWirelessGatewayRequest.class))).thenReturn(updateWirelessGatewayResponse);
+//
+//        final ProgressEvent<ResourceModel, CallbackContext> response = handler.handleRequest(proxy, request, new CallbackContext(), proxyClient, logger);
+//
+//        assertThat(response).isNotNull();
+//        assertThat(response.getStatus()).isEqualTo(OperationStatus.SUCCESS);
+//        assertThat(response.getCallbackDelaySeconds()).isEqualTo(0);
+//        assertThat(response.getResourceModel()).isEqualTo(request.getDesiredResourceState());
+//        assertThat(response.getResourceModels()).isNull();
+//        assertThat(response.getMessage()).isNull();
+//        assertThat(response.getErrorCode()).isNull();
+//    }
 }

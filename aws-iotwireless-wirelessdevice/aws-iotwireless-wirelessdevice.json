@@ -15,7 +15,11 @@
           "type": "string",
           "pattern": "[a-fA-F0-9]{16}"
         }
-      }
+      },
+      "required": [
+        "AppKey",
+        "AppEui"
+      ]
     },
     "OtaaV11": {
       "type": "object",
@@ -33,7 +37,12 @@
           "type": "string",
           "pattern": "[a-fA-F0-9]{16}"
         }
-      }
+      },
+      "required": [
+        "AppKey",
+        "NwkKey",
+        "JoinEui"
+      ]
     },
     "SessionKeysAbpV11": {
       "type": "object",
@@ -55,7 +64,13 @@
           "type": "string",
           "pattern": "[a-fA-F0-9]{32}"
         }
-      }
+      },
+      "required": [
+        "FNwkSIntKey",
+        "SNwkSIntKey",
+        "NwkSEncKey",
+        "AppSKey"
+      ]
     },
     "AbpV11": {
       "type": "object",
@@ -68,7 +83,11 @@
         "SessionKeys": {
           "$ref": "#/definitions/SessionKeysAbpV11"
         }
-      }
+      },
+      "required": [
+        "DevAddr",
+        "SessionKeys"
+      ]
     },
     "SessionKeysAbpV10X": {
       "type": "object",
@@ -82,7 +101,11 @@
           "type": "string",
           "pattern": "[a-fA-F0-9]{32}"
         }
-      }
+      },
+      "required": [
+        "NwkSKey",
+        "AppSKey"
+      ]
     },
     "AbpV10X": {
       "type": "object",
@@ -95,7 +118,11 @@
         "SessionKeys": {
           "$ref": "#/definitions/SessionKeysAbpV10X"
         }
-      }
+      },
+      "required": [
+        "DevAddr",
+        "SessionKeys"
+      ]
     },
     "LoRaWANDevice": {
       "type": "object",
@@ -125,7 +152,13 @@
         "AbpV10X": {
           "$ref": "#/definitions/AbpV10X"
         }
-      }
+      },
+      "oneOf": [
+        {"required": ["OtaaV11"]},
+        {"required": ["OtaaV10X"]},
+        {"required": ["AbpV11"]},
+        {"required": ["AbpV10X"]}
+      ]
     },
     "Tag": {
       "type": "object",

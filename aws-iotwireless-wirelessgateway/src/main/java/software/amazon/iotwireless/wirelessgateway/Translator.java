@@ -1,29 +1,15 @@
 package software.amazon.iotwireless.wirelessgateway;
 
-import software.amazon.awssdk.services.iotwireless.model.*;
-import jdk.jfr.internal.Logger;
-import software.amazon.awssdk.awscore.AwsResponse;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.MapType;
-import com.fasterxml.jackson.databind.type.TypeFactory;
-import software.amazon.cloudformation.exceptions.CfnGeneralServiceException;
-
-
-import java.io.IOException;
-import java.util.*;
-
-
-import javax.annotation.Resource;
+import software.amazon.awssdk.services.iotwireless.model.CreateWirelessGatewayRequest;
+import software.amazon.awssdk.services.iotwireless.model.DeleteWirelessGatewayRequest;
+import software.amazon.awssdk.services.iotwireless.model.DisassociateWirelessGatewayFromThingRequest;
+import software.amazon.awssdk.services.iotwireless.model.GetWirelessGatewayRequest;
+import software.amazon.awssdk.services.iotwireless.model.AssociateWirelessGatewayWithThingRequest;
+import software.amazon.awssdk.services.iotwireless.model.ListWirelessGatewaysRequest;
+import software.amazon.awssdk.services.iotwireless.model.UpdateWirelessGatewayRequest;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-/**
- * This class is a centralized placeholder for
- * - api request construction
- * - object translation to/from aws sdk
- * - resource model construction for read/list handlers
- */
 
 public class Translator {
 
@@ -52,7 +38,7 @@ public class Translator {
 
     //Translate from ResourceModel Tag to SDK Tag
     static Collection<software.amazon.awssdk.services.iotwireless.model.Tag>
-    translateTag(final Collection<Tag> tags) {
+    translateTag(final Collection<software.amazon.iotwireless.wirelessgateway.Tag> tags) {
         Collection<software.amazon.awssdk.services.iotwireless.model.Tag> newTagCollection =
                 new HashSet<software.amazon.awssdk.services.iotwireless.model.Tag>();
         if (tags == null) {
@@ -71,7 +57,7 @@ public class Translator {
     }
 
     static CreateWirelessGatewayRequest translateToCreateRequest(final ResourceModel model, String clientRequestToken) {
-        Collection<Tag> tags = null;
+        Collection<software.amazon.iotwireless.wirelessgateway.Tag> tags = null;
         if (model.getTags() != null) {
             tags = model.getTags().stream()
                     .collect(Collectors.toSet());

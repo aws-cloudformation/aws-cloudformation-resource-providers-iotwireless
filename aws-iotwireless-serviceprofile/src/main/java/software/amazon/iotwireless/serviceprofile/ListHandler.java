@@ -1,14 +1,16 @@
 package software.amazon.iotwireless.serviceprofile;
 
 import software.amazon.awssdk.awscore.exception.AwsServiceException;
-import software.amazon.awssdk.services.iotwireless.model.AccessDeniedException;
 import software.amazon.awssdk.services.iotwireless.model.ListServiceProfilesRequest;
 import software.amazon.awssdk.services.iotwireless.model.ListServiceProfilesResponse;
-import software.amazon.awssdk.services.iotwireless.model.ResourceNotFoundException;
+import software.amazon.awssdk.services.iotwireless.model.AccessDeniedException;
 import software.amazon.cloudformation.exceptions.CfnAccessDeniedException;
 import software.amazon.cloudformation.exceptions.CfnGeneralServiceException;
-import software.amazon.cloudformation.exceptions.CfnNotFoundException;
-import software.amazon.cloudformation.proxy.*;
+import software.amazon.cloudformation.proxy.AmazonWebServicesClientProxy;
+import software.amazon.cloudformation.proxy.Logger;
+import software.amazon.cloudformation.proxy.OperationStatus;
+import software.amazon.cloudformation.proxy.ProgressEvent;
+import software.amazon.cloudformation.proxy.ResourceHandlerRequest;
 
 import java.util.List;
 import java.util.stream.Collectors;

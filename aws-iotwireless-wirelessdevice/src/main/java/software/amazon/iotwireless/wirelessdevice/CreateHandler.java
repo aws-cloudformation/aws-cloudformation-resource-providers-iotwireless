@@ -1,14 +1,14 @@
 package software.amazon.iotwireless.wirelessdevice;
 
-import software.amazon.awssdk.awscore.exception.AwsServiceException;
 import software.amazon.awssdk.services.iotwireless.IotWirelessClient;
-import software.amazon.awssdk.services.iotwireless.model.AccessDeniedException;
 import software.amazon.awssdk.services.iotwireless.model.CreateWirelessDeviceRequest;
 import software.amazon.awssdk.services.iotwireless.model.CreateWirelessDeviceResponse;
-import software.amazon.cloudformation.exceptions.CfnAccessDeniedException;
-import software.amazon.cloudformation.exceptions.CfnGeneralServiceException;
 import software.amazon.cloudformation.exceptions.CfnInvalidRequestException;
-import software.amazon.cloudformation.proxy.*;
+import software.amazon.cloudformation.proxy.AmazonWebServicesClientProxy;
+import software.amazon.cloudformation.proxy.Logger;
+import software.amazon.cloudformation.proxy.ProxyClient;
+import software.amazon.cloudformation.proxy.ProgressEvent;
+import software.amazon.cloudformation.proxy.ResourceHandlerRequest;
 
 public class CreateHandler extends BaseHandlerStd {
 
@@ -49,10 +49,8 @@ public class CreateHandler extends BaseHandlerStd {
         CreateWirelessDeviceResponse response;
         try {
             response = proxyClient.injectCredentialsAndInvokeV2(createRequest, proxyClient.client()::createWirelessDevice);
-        } catch (final AccessDeniedException e) {
-            throw new CfnAccessDeniedException(ResourceModel.TYPE_NAME, e);
-        } catch (final AwsServiceException e) {
-            throw new CfnGeneralServiceException(ResourceModel.TYPE_NAME, e);
+        } catch (final Exception e) {
+            throw handleException(e, createRequest);
         }
         return response;
     }

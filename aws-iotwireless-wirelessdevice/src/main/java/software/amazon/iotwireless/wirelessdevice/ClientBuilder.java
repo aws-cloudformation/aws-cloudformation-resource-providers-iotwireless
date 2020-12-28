@@ -1,11 +1,7 @@
 package software.amazon.iotwireless.wirelessdevice;
 
-import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.iotwireless.IotWirelessClient;
 import software.amazon.cloudformation.LambdaWrapper;
-import com.amazonaws.regions.Regions;
-
-import java.net.URI;
 
 public class ClientBuilder {
 

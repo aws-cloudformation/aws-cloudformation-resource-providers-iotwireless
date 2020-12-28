@@ -1,12 +1,17 @@
 package software.amazon.iotwireless.wirelessgateway;
 
-import software.amazon.awssdk.awscore.exception.AwsServiceException;
 import software.amazon.awssdk.services.iotwireless.IotWirelessClient;
-import software.amazon.awssdk.services.iotwireless.model.*;
-import software.amazon.cloudformation.exceptions.CfnAccessDeniedException;
-import software.amazon.cloudformation.exceptions.CfnGeneralServiceException;
-import software.amazon.cloudformation.exceptions.CfnNotFoundException;
-import software.amazon.cloudformation.proxy.*;
+import software.amazon.awssdk.services.iotwireless.model.DeleteWirelessGatewayRequest;
+import software.amazon.awssdk.services.iotwireless.model.DeleteWirelessGatewayResponse;
+import software.amazon.awssdk.services.iotwireless.model.DisassociateWirelessGatewayFromThingRequest;
+import software.amazon.awssdk.services.iotwireless.model.DisassociateWirelessGatewayFromThingResponse;
+import software.amazon.awssdk.services.iotwireless.model.ResourceNotFoundException;
+import software.amazon.cloudformation.proxy.AmazonWebServicesClientProxy;
+import software.amazon.cloudformation.proxy.HandlerErrorCode;
+import software.amazon.cloudformation.proxy.Logger;
+import software.amazon.cloudformation.proxy.ProxyClient;
+import software.amazon.cloudformation.proxy.ResourceHandlerRequest;
+import software.amazon.cloudformation.proxy.ProgressEvent;
 
 public class DeleteHandler extends BaseHandlerStd {
     protected ProgressEvent<ResourceModel, CallbackContext> handleRequest(final AmazonWebServicesClientProxy proxy,
@@ -44,15 +49,11 @@ public class DeleteHandler extends BaseHandlerStd {
     private DeleteWirelessGatewayResponse deleteResource(
             final DeleteWirelessGatewayRequest deleteRequest,
             final ProxyClient<IotWirelessClient> proxyClient) {
-        DeleteWirelessGatewayResponse response;
+        DeleteWirelessGatewayResponse response = null;
         try {
             response = proxyClient.injectCredentialsAndInvokeV2(deleteRequest, proxyClient.client()::deleteWirelessGateway);
-        } catch (final ResourceNotFoundException e) {
-            throw new CfnNotFoundException(ResourceModel.TYPE_NAME, deleteRequest.id());
-        } catch (final AccessDeniedException e) {
-            throw new CfnAccessDeniedException(ResourceModel.TYPE_NAME, e);
-        } catch (final AwsServiceException e) {
-            throw new CfnGeneralServiceException(ResourceModel.TYPE_NAME, e);
+        } catch (final Exception e) {
+            throw handleException(e, deleteRequest);
         }
         return response;
     }
@@ -60,15 +61,11 @@ public class DeleteHandler extends BaseHandlerStd {
     private DisassociateWirelessGatewayFromThingResponse disassociateThing(
             final DisassociateWirelessGatewayFromThingRequest deleteRequest,
             final ProxyClient<IotWirelessClient> proxyClient) {
-        DisassociateWirelessGatewayFromThingResponse response;
+        DisassociateWirelessGatewayFromThingResponse response = null;
         try {
             response = proxyClient.injectCredentialsAndInvokeV2(deleteRequest, proxyClient.client()::disassociateWirelessGatewayFromThing);
-        } catch (final ResourceNotFoundException e) {
-            throw new CfnNotFoundException(ResourceModel.TYPE_NAME, deleteRequest.id());
-        } catch (final AccessDeniedException e) {
-            throw new CfnAccessDeniedException(ResourceModel.TYPE_NAME, e);
-        } catch (final AwsServiceException e) {
-            throw new CfnGeneralServiceException(ResourceModel.TYPE_NAME, e);
+        } catch (final Exception e) {
+            throw handleException(e, deleteRequest);
         }
         return response;
     }

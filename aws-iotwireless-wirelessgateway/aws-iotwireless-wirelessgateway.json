@@ -15,7 +15,11 @@
                     "type": "string",
                     "maxLength": 64
                 }
-            }
+            },
+            "required": [
+                "GatewayEui",
+                "RfRegion"
+            ]
         },
         "Tag": {
             "type": "object",

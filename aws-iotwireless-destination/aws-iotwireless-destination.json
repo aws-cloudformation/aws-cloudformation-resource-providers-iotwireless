@@ -64,7 +64,7 @@
         "ExpressionType": {
             "description": "Must be RuleName",
             "type": "string",
-            "enum": ["RuleName"]
+            "enum": ["RuleName", "ExpressionType"]
         },
         "Description": {
             "description":"Destination description",

@@ -1,12 +1,17 @@
 package software.amazon.iotwireless.wirelessdevice;
 
-import software.amazon.awssdk.awscore.exception.AwsServiceException;
 import software.amazon.awssdk.services.iotwireless.IotWirelessClient;
-import software.amazon.awssdk.services.iotwireless.model.*;
-import software.amazon.cloudformation.exceptions.CfnAccessDeniedException;
-import software.amazon.cloudformation.exceptions.CfnGeneralServiceException;
-import software.amazon.cloudformation.exceptions.CfnNotFoundException;
-import software.amazon.cloudformation.proxy.*;
+import software.amazon.awssdk.services.iotwireless.model.DeleteWirelessDeviceRequest;
+import software.amazon.awssdk.services.iotwireless.model.DeleteWirelessDeviceResponse;
+import software.amazon.awssdk.services.iotwireless.model.DisassociateWirelessDeviceFromThingRequest;
+import software.amazon.awssdk.services.iotwireless.model.DisassociateWirelessDeviceFromThingResponse;
+import software.amazon.awssdk.services.iotwireless.model.ResourceNotFoundException;
+import software.amazon.cloudformation.proxy.AmazonWebServicesClientProxy;
+import software.amazon.cloudformation.proxy.HandlerErrorCode;
+import software.amazon.cloudformation.proxy.Logger;
+import software.amazon.cloudformation.proxy.ProxyClient;
+import software.amazon.cloudformation.proxy.ProgressEvent;
+import software.amazon.cloudformation.proxy.ResourceHandlerRequest;
 
 public class DeleteHandler extends BaseHandlerStd {
 
@@ -42,12 +47,8 @@ public class DeleteHandler extends BaseHandlerStd {
         DeleteWirelessDeviceResponse response;
         try {
             response = proxyClient.injectCredentialsAndInvokeV2(deleteRequest, proxyClient.client()::deleteWirelessDevice);
-        } catch (final ResourceNotFoundException e) {
-            throw new CfnNotFoundException(ResourceModel.TYPE_NAME, deleteRequest.id());
-        } catch (final AccessDeniedException e) {
-            throw new CfnAccessDeniedException(ResourceModel.TYPE_NAME, e);
-        } catch (final AwsServiceException e) {
-            throw new CfnGeneralServiceException(ResourceModel.TYPE_NAME, e);
+        } catch (final Exception e) {
+            throw handleException(e, deleteRequest);
         }
         return response;
     }
@@ -58,12 +59,8 @@ public class DeleteHandler extends BaseHandlerStd {
         DisassociateWirelessDeviceFromThingResponse response;
         try {
             response = proxyClient.injectCredentialsAndInvokeV2(deleteRequest, proxyClient.client()::disassociateWirelessDeviceFromThing);
-        } catch (final ResourceNotFoundException e) {
-            throw new CfnNotFoundException(ResourceModel.TYPE_NAME, deleteRequest.id());
-        }  catch (final AccessDeniedException e) {
-            throw new CfnAccessDeniedException(ResourceModel.TYPE_NAME, e);
-        } catch (final AwsServiceException e) {
-            throw new CfnGeneralServiceException(ResourceModel.TYPE_NAME, e);
+        } catch (final Exception e) {
+            throw handleException(e, deleteRequest);
         }
         return response;
     }

@@ -1,16 +1,15 @@
 package software.amazon.iotwireless.destination;
 
-import software.amazon.awssdk.awscore.exception.AwsServiceException;
 import software.amazon.awssdk.services.iotwireless.IotWirelessClient;
-import software.amazon.awssdk.services.iotwireless.model.AccessDeniedException;
-import software.amazon.awssdk.services.iotwireless.model.ResourceNotFoundException;
 import software.amazon.awssdk.services.iotwireless.model.UpdateDestinationRequest;
 import software.amazon.awssdk.services.iotwireless.model.UpdateDestinationResponse;
-import software.amazon.cloudformation.exceptions.CfnAccessDeniedException;
-import software.amazon.cloudformation.exceptions.CfnGeneralServiceException;
-import software.amazon.cloudformation.exceptions.CfnNotFoundException;
-import software.amazon.cloudformation.proxy.*;
-
+import software.amazon.awssdk.services.iotwireless.model.ResourceNotFoundException;
+import software.amazon.cloudformation.proxy.AmazonWebServicesClientProxy;
+import software.amazon.cloudformation.proxy.HandlerErrorCode;
+import software.amazon.cloudformation.proxy.Logger;
+import software.amazon.cloudformation.proxy.ProxyClient;
+import software.amazon.cloudformation.proxy.ProgressEvent;
+import software.amazon.cloudformation.proxy.ResourceHandlerRequest;
 
 public class UpdateHandler extends BaseHandlerStd {
 
@@ -44,12 +43,8 @@ public class UpdateHandler extends BaseHandlerStd {
         UpdateDestinationResponse response;
         try {
             response = proxyClient.injectCredentialsAndInvokeV2(updateRequest, proxyClient.client()::updateDestination);
-        } catch (final ResourceNotFoundException e) {
-            throw new CfnNotFoundException(ResourceModel.TYPE_NAME, updateRequest.name());
-        }  catch (final AccessDeniedException e) {
-            throw new CfnAccessDeniedException(ResourceModel.TYPE_NAME, e);
-        } catch (final AwsServiceException e) {
-            throw new CfnGeneralServiceException(ResourceModel.TYPE_NAME, e);
+        } catch (final Exception e) {
+            throw handleException(e, updateRequest);
         }
         return response;
 

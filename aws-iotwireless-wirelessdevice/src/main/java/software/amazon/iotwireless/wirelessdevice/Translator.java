@@ -1,12 +1,12 @@
 package software.amazon.iotwireless.wirelessdevice;
 
-import software.amazon.awssdk.services.iotwireless.model.*;
-
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import software.amazon.awssdk.services.iotwireless.model.CreateWirelessDeviceRequest;
+import software.amazon.awssdk.services.iotwireless.model.DeleteWirelessDeviceRequest;
+import software.amazon.awssdk.services.iotwireless.model.DisassociateWirelessDeviceFromThingRequest;
+import software.amazon.awssdk.services.iotwireless.model.GetWirelessDeviceRequest;
+import software.amazon.awssdk.services.iotwireless.model.AssociateWirelessDeviceWithThingRequest;
+import software.amazon.awssdk.services.iotwireless.model.ListWirelessDevicesRequest;
+import software.amazon.awssdk.services.iotwireless.model.UpdateWirelessDeviceRequest;
 
 /**
  * This class is a centralized placeholder for

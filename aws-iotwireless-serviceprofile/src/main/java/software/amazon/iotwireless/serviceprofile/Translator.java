@@ -1,11 +1,12 @@
 package software.amazon.iotwireless.serviceprofile;
 
-import software.amazon.awssdk.services.iotwireless.model.*;
-
-
-import java.util.*;
+import software.amazon.awssdk.services.iotwireless.model.CreateServiceProfileRequest;
+import software.amazon.awssdk.services.iotwireless.model.DeleteServiceProfileRequest;
+import software.amazon.awssdk.services.iotwireless.model.GetServiceProfileRequest;
+import software.amazon.awssdk.services.iotwireless.model.ListServiceProfilesRequest;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * This class is a centralized placeholder for
@@ -18,7 +19,7 @@ public class Translator {
 
     //Translate from ResourceModel Tag to SDK Tag
     static Collection<software.amazon.awssdk.services.iotwireless.model.Tag>
-    translateTag(final Collection<Tag> tags) {
+    translateTag(final Collection<software.amazon.iotwireless.serviceprofile.Tag> tags) {
         Collection<software.amazon.awssdk.services.iotwireless.model.Tag> newTagCollection =
                 new HashSet<software.amazon.awssdk.services.iotwireless.model.Tag>();
         if (tags == null) {
@@ -69,13 +70,13 @@ public class Translator {
         }
         software.amazon.iotwireless.serviceprofile.LoRaWANServiceProfile gateway =
                 model.getLoRaWANServiceProfile();
-       return software.amazon.awssdk.services.iotwireless.model.LoRaWANServiceProfile.builder()
-        .addGwMetadata(gateway.getAddGwMetadata())
-        .build();
+        return software.amazon.awssdk.services.iotwireless.model.LoRaWANServiceProfile.builder()
+                .addGwMetadata(gateway.getAddGwMetadata())
+                .build();
     }
 
     static CreateServiceProfileRequest translateToCreateRequest(final ResourceModel model, String clientRequestToken) {
-        Collection<Tag> tags = null;
+        Collection<software.amazon.iotwireless.serviceprofile.Tag> tags = null;
         if (model.getTags() != null) {
             tags = model.getTags().stream()
                     .collect(Collectors.toSet());

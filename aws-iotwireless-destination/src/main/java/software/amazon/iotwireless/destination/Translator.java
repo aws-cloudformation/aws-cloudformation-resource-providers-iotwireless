@@ -1,18 +1,18 @@
 package software.amazon.iotwireless.destination;
 
-import software.amazon.awssdk.services.iotwireless.model.*;
-
+import software.amazon.awssdk.services.iotwireless.model.CreateDestinationRequest;
+import software.amazon.awssdk.services.iotwireless.model.DeleteDestinationRequest;
+import software.amazon.awssdk.services.iotwireless.model.GetDestinationRequest;
+import software.amazon.awssdk.services.iotwireless.model.ListDestinationsRequest;
+import software.amazon.awssdk.services.iotwireless.model.UpdateDestinationRequest;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Translator {
     //Translate from Resource Model Tags to SDK Tags
     static Collection<software.amazon.awssdk.services.iotwireless.model.Tag>
-    translateTag(final Collection<Tag> tags) {
+    translateTag(final Collection<software.amazon.iotwireless.destination.Tag> tags) {
         Collection<software.amazon.awssdk.services.iotwireless.model.Tag> newTagCollection =
                 new HashSet<software.amazon.awssdk.services.iotwireless.model.Tag>();
         if (tags == null) {
@@ -29,7 +29,7 @@ public class Translator {
     }
 
     static CreateDestinationRequest translateToCreateRequest(final ResourceModel model, String clientRequestToken) {
-        Collection<Tag> tags = null;
+        Collection<software.amazon.iotwireless.destination.Tag> tags = null;
         if (model.getTags() != null) {
             tags = model.getTags().stream()
                     .collect(Collectors.toSet());

@@ -1,20 +1,18 @@
 package software.amazon.iotwireless.deviceprofile;
 
-import software.amazon.awssdk.services.iotwireless.model.*;
-
+import software.amazon.awssdk.services.iotwireless.model.CreateDeviceProfileRequest;
+import software.amazon.awssdk.services.iotwireless.model.DeleteDeviceProfileRequest;
+import software.amazon.awssdk.services.iotwireless.model.GetDeviceProfileRequest;
+import software.amazon.awssdk.services.iotwireless.model.ListDeviceProfilesRequest;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 
 public class Translator {
 
     //Translate from ResourceModel Tag to SDK Tag
     static Collection<software.amazon.awssdk.services.iotwireless.model.Tag>
-    translateTag(final Collection<Tag> tags) {
+    translateTag(final Collection<software.amazon.iotwireless.deviceprofile.Tag> tags) {
         Collection<software.amazon.awssdk.services.iotwireless.model.Tag> newTagCollection =
                 new HashSet<software.amazon.awssdk.services.iotwireless.model.Tag>();
         if (tags == null) {
@@ -77,7 +75,7 @@ public class Translator {
     }
 
     static CreateDeviceProfileRequest translateToCreateRequest(final ResourceModel model, String clientRequestToken) {
-        Collection<Tag> tags = null;
+        Collection<software.amazon.iotwireless.deviceprofile.Tag> tags = null;
         if (model.getTags() != null) {
             tags = model.getTags().stream()
                     .collect(Collectors.toSet());

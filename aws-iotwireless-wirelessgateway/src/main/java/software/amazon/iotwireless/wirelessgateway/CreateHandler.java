@@ -1,13 +1,14 @@
 package software.amazon.iotwireless.wirelessgateway;
 
-import software.amazon.awssdk.awscore.exception.AwsServiceException;
 import software.amazon.awssdk.services.iotwireless.IotWirelessClient;
-import software.amazon.awssdk.services.iotwireless.model.*;
-import software.amazon.cloudformation.exceptions.CfnAccessDeniedException;
-import software.amazon.cloudformation.exceptions.CfnGeneralServiceException;
+import software.amazon.awssdk.services.iotwireless.model.CreateWirelessGatewayRequest;
+import software.amazon.awssdk.services.iotwireless.model.CreateWirelessGatewayResponse;
 import software.amazon.cloudformation.exceptions.CfnInvalidRequestException;
-import software.amazon.cloudformation.exceptions.CfnNotFoundException;
-import software.amazon.cloudformation.proxy.*;
+import software.amazon.cloudformation.proxy.AmazonWebServicesClientProxy;
+import software.amazon.cloudformation.proxy.Logger;
+import software.amazon.cloudformation.proxy.ProxyClient;
+import software.amazon.cloudformation.proxy.ProgressEvent;
+import software.amazon.cloudformation.proxy.ResourceHandlerRequest;
 
 public class CreateHandler extends BaseHandlerStd {
 
@@ -40,15 +41,11 @@ public class CreateHandler extends BaseHandlerStd {
     private CreateWirelessGatewayResponse createResource(
             CreateWirelessGatewayRequest createRequest,
             final ProxyClient<IotWirelessClient> proxyClient) {
-        CreateWirelessGatewayResponse response;
+        CreateWirelessGatewayResponse response = null;
         try {
             response = proxyClient.injectCredentialsAndInvokeV2(createRequest, proxyClient.client()::createWirelessGateway);
-        } catch (final ValidationException e) {
-            throw new CfnInvalidRequestException(ResourceModel.TYPE_NAME, e);
-        } catch (final AccessDeniedException e) {
-            throw new CfnAccessDeniedException(ResourceModel.TYPE_NAME, e);
-        } catch (final AwsServiceException e) {
-            throw new CfnGeneralServiceException(ResourceModel.TYPE_NAME, e);
+        } catch (final Exception e) {
+            throw handleException(e, createRequest);
         }
         return response;
     }
