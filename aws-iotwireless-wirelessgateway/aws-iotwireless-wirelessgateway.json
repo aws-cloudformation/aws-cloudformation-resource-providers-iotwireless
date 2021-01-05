@@ -71,11 +71,6 @@
             "type": "string",
             "maxLength": 256
         },
-        "NextToken": {
-            "description": "Next available token, returned if there is a next set of results.",
-            "type": "string",
-            "maxLength": 4096
-        },
         "ThingArn": {
             "description": "Thing Arn. Passed into Update to associate a Thing with the Wireless Gateway.",
             "type": "string"
