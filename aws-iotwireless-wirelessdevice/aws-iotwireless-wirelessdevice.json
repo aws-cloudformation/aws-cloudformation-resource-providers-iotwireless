@@ -230,11 +230,6 @@
     "ThingName": {
       "description": "Thing Arn. If there is a Thing created, this can be returned with a Get call.",
       "type": "string"
-    },
-    "NextToken": {
-      "description": "Next available token, returned if there is a next set of results.",
-      "type": "string",
-      "maxLength": 4096
     }
   },
   "additionalProperties": false,
