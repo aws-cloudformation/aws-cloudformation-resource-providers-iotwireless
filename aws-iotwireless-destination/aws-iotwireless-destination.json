@@ -89,11 +89,6 @@
         "Arn": {
             "description": "Destination arn. Returned after successful create.",
             "type": "string"
-        },
-        "NextToken": {
-            "description": "Next available token, returned if there is a next set of results.",
-            "type": "string",
-            "maxLength": 4096
         }
     },
     "additionalProperties": false,
