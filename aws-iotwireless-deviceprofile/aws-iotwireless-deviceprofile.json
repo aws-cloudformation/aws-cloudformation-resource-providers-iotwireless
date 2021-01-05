@@ -112,11 +112,6 @@
             "description": "Service profile Id. Returned after successful create.",
             "type": "string",
             "maxLength": 256
-        },
-        "NextToken": {
-            "description": "Next available token, returned if there is a next set of results.",
-            "type": "string",
-            "minLength": 4096
         }
     },
     "additionalProperties": false,
