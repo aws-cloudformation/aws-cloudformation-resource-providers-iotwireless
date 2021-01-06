@@ -1,0 +1,6 @@
+{
+  "Name": "ContractTest",
+  "ExpressionType": "RuleName",
+  "Expression": "rules/ExistingRoleArn/iot/ExistingRoleArnTopic",
+  "RoleArn": "arn:aws:iam::{{ContractTestExecutionAccountId}}:role/ExistingRoleArn"
+}

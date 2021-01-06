@@ -1,0 +1,6 @@
+{
+  "LoRaWANGateway": {
+    "GatewayEui": "Use unique GatewayEui",
+    "RfRegion": "US915"
+  }
+}

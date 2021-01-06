@@ -1,0 +1,17 @@
+{
+    "typeName": "AWS::IoTWireless::WirelessDevice",
+    "language": "java",
+    "runtime": "java8",
+    "entrypoint": "software.amazon.iotwireless.wirelessdevice.HandlerWrapper::handleRequest",
+    "testEntrypoint": "software.amazon.iotwireless.wirelessdevice.HandlerWrapper::handleRequest",
+    "settings": {
+        "namespace": [
+            "software",
+            "amazon",
+            "iotwireless",
+            "wirelessdevice"
+        ],
+        "codegen_template_path": "guided_aws",
+        "protocolVersion": "2.0.0"
+    }
+}

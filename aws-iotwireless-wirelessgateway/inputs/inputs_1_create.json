@@ -1,0 +1,18 @@
+{
+  "Name": "Wireless Gateway Contract Test",
+  "Description": "Description",
+  "Tags": [
+    {
+      "Key": "tag_key1",
+      "Value": "tag_value1"
+    },
+    {
+      "Key": "tag_key2",
+      "Value": "tag_value2"
+    }
+  ],
+  "LoRaWANGateway": {
+    "GatewayEui": "Use unique GatewayEui",
+    "RfRegion": "US915"
+  }
+}

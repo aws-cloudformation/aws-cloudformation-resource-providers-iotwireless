@@ -1,0 +1,24 @@
+{
+  "Name": "Test Device Profile",
+  "LoRaWANDeviceProfile": {
+    "SupportsClassB": true,
+    "ClassBTimeout": 10,
+    "PingSlotPeriod": 256,
+    "PingSlotDr": 0,
+    "PingSlotFreq": 8000000,
+    "SupportsClassC": true,
+    "MacVersion": "1.0.3",
+    "RegParamsRevision": "LoRaWAN v1.0.1",
+    "MaxEirp": 0,
+    "MaxDutyCycle": 0,
+    "SupportsJoin": true,
+    "RfRegion": "US915",
+    "Supports32BitFCnt": true
+  },
+  "Tags": [
+    {
+      "Key": "deviceprofiletag_key1",
+      "Value": "deviceprofiletag_value1"
+    }
+  ]
+}

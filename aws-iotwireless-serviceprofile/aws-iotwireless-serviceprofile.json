@@ -1,0 +1,166 @@
+{
+    "typeName": "AWS::IoTWireless::ServiceProfile",
+    "description": "An example resource schema demonstrating some basic constructs and validation rules.",
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "definitions": {
+        "LoRaWANGetServiceProfileInfo": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "UlRate" : {
+                    "type": "integer"
+                },
+                "UlBucketSize" : {
+                    "type" : "integer"
+                },
+                "UlRatePolicy" : {
+                    "type" : "string"
+                },
+                "DlRate" : {
+                    "type" : "integer"
+                },
+                "DlBucketSize" : {
+                    "type" : "integer"
+                },
+                "DlRatePolicy" : {
+                    "type" : "string"
+                },
+                "AddGwMetadata" : {
+                    "type" : "boolean"
+                },
+                "DevStatusReqFreq" : {
+                    "type" : "integer"
+                },
+                "ReportDevStatusBattery" : {
+                    "type" : "boolean"
+                },
+                "ReportDevStatusMargin" : {
+                    "type" : "boolean"
+                },
+                "DrMin" : {
+                    "type" : "integer"
+                },
+                "DrMax" : {
+                    "type" : "integer"
+                },
+                "ChannelMask" : {
+                    "type" : "string"
+                },
+                "PrAllowed" : {
+                    "type": "boolean"
+                },
+                "HrAllowed" : {
+                    "type": "boolean"
+                },
+                "RaAllowed": {
+                    "type": "boolean"
+                },
+                "NwkGeoLoc" : {
+                    "type": "boolean"
+                },
+                "TargetPer" : {
+                    "type": "integer"
+                },
+                "MinGwDiversity" : {
+                    "type": "integer"
+                }
+            }
+        },
+        "LoRaWANServiceProfile": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "AddGwMetadata" : {
+                    "type" : "boolean"
+                }
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128
+                },
+                "Value": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    "properties": {
+        "Name": {
+            "description": "Name of service profile",
+            "type": "string",
+            "maxLength": 256
+        },
+        "LoRaWANServiceProfile": {
+            "description": "LoRaServiceProfile supports all LoRa specific attributes for service profile for CreateServiceProfile operation",
+            "$ref": "#/definitions/LoRaWANServiceProfile"
+        },
+        "LoRaWANGetServiceProfileInfo": {
+            "description": "Service Profile returned on Get call, not needed for create",
+            "$ref": "#/definitions/LoRaWANGetServiceProfileInfo"
+        },
+        "Tags" : {
+            "description": "A list of key-value pairs that contain metadata for the service profile.",
+            "type" : "array",
+            "uniqueItems" : true,
+            "maxItems": 50,
+            "items" : {
+                "$ref" : "#/definitions/Tag"
+            }
+        },
+        "Arn": {
+            "description": "Service profile Arn. Returned after successful create.",
+            "type": "string"
+        },
+        "Id": {
+            "description": "Service profile Id. Returned after successful create.",
+            "type": "string",
+            "maxLength": 256
+        },
+        "NextToken": {
+            "description": "Next available token, returned if there is a next set of results.",
+            "type": "string",
+            "maxLength": 4096
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+    ],
+    "readOnlyProperties": [
+        "/properties/Id",
+        "/properties/Arn"
+    ],
+    "primaryIdentifier": [
+        "/properties/Id"
+    ],
+    "handlers": {
+        "create": {
+            "permissions": [
+                "iotwireless:CreateServiceProfile",
+                "iotwireless:GetServiceProfile"
+            ]
+        },
+        "read": {
+            "permissions": [
+                "iotwireless:GetServiceProfile"
+            ]
+        },
+        "delete": {
+            "permissions": [
+                "iotwireless:DeleteServiceProfile"
+            ]
+        },
+        "list": {
+            "permissions": [
+                "iotwireless:ListServiceProfiles"
+            ]
+        }
+    }
+}

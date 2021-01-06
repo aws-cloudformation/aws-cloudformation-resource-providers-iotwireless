@@ -1,0 +1,54 @@
+package.AWSCloudFormationResourceProvidersIoTWireless = {
+    interfaces = (1.0);
+
+    deploy = {
+        generic = true;
+    };
+
+    build-environment = {
+        chroot = basic;
+        network-access = blocked;
+    };
+
+    build-system = copy-and-brazil-gradle;
+    build-tools = {
+        1.0 = {
+            UluruBuild = 1.0;
+            BrazilGradle = 4.x;
+            JDK8 = 1.0;
+            AWSCloudFormationRPDK = 2.0;
+            AWSCloudFormationRPDKJavaPluginTool = 2.0;
+            BrazilPath = 1.1;
+            BrazilGradleQualityDefaults = 4.x;
+            GradleShadow = 4.x;
+            BrazilGradleAndroidBuildTool = 1.0;
+        };
+    };
+
+    dependencies = {
+        1.0 = {
+            AWSCloudFormationRPDKJavaPlugin = 2.0;
+            AwsJavaSdk-IotWireless = 2.0;
+        };
+    };
+    remove-dependencies = {
+        1.0 = {
+            Python-attrs = 20.x;
+        };
+    };
+    test-dependencies = {
+        1.0 = {
+            AssertJ = 3.2.x;
+            JUnit5 = 5.x;
+            junit = 4.12;
+            Mockito = 2.22.x;
+            Mockito-junit-jupiter = 2.22.x;
+        };
+    };
+
+    runtime-dependencies = {
+        1.0 = {
+            IoTSailboatAPISharedServiceClientConfig = 1.0;
+        };
+    };
+};

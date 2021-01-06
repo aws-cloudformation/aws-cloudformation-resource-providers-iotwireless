@@ -1,0 +1,39 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  CanaryDeviceProfile2:
+    Type: AWS::IoTWireless::DeviceProfile
+    Properties:
+      Name: "CanaryDeviceProfile2"
+      LoRaWANDeviceProfile:
+        SupportsClassB: false
+        SupportsClassC: false
+        MacVersion: "1.0.3"
+        RegParamsRevision: "LoRaWAN v1.0.1"
+        MaxEirp: 10
+        MaxDutyCycle: 10
+        SupportsJoin: true
+        RfRegion: "US915"
+        Supports32BitFCnt: true
+      Tags:
+        - Key: "deviceprofile2tag_key1"
+          Value: "deviceprofile2tag_value1"
+  CanaryServiceProfile2:
+    Type: AWS::IoTWireless::ServiceProfile
+    Properties:
+      Name: "CanaryServiceProfile2"
+      LoRaWANServiceProfile:
+        AddGwMetadata: true
+      Tags:
+        - Key: "serviceprofile2tag_key1"
+          Value: "serviceprofile2tag_value1"
+Outputs:
+  CanaryDeviceProfile2:
+    Description: "Deviceprofilecanary"
+    Value: !GetAtt CanaryDeviceProfile2.Id
+    Export:
+      Name: CanaryDeviceProfile2
+  CanaryServiceProfile2:
+    Description: "Serviceprofile2canary"
+    Value: !GetAtt CanaryServiceProfile2.Id
+    Export:
+      Name: CanaryServiceProfile2

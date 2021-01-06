@@ -1,0 +1,15 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Wireless Gateway",
+  "Resources": {
+      "WirelessGateway": {
+        "Type": "AWS::IoTWireless::WirelessGateway",
+        "Properties": {
+          "LoRaWAN": {
+            "GatewayEui": "01101101101422a8",
+            "RfRegion": "US915"
+          }
+        }
+      }
+  }
+}
