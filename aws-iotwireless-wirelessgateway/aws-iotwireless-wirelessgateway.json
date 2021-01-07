@@ -1,122 +1,122 @@
 {
-    "typeName": "AWS::IoTWireless::WirelessGateway",
-    "description": "Create and manage wireless gateways, including LoRa gateways.",
-    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
-    "definitions": {
-        "LoRaWANGateway": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "GatewayEui": {
-                    "type": "string",
-                    "pattern": "^(([0-9a-f]{2}-){7}|([0-9a-f]{2}:){7}|([0-9a-f]{2}\\s){7}|([0-9a-f]{2}){7})([0-9a-f]{2})$"
-                },
-                "RfRegion": {
-                    "type": "string",
-                    "maxLength": 64
-                }
-            },
-            "required": [
-                "GatewayEui",
-                "RfRegion"
-            ]
+  "typeName": "AWS::IoTWireless::WirelessGateway",
+  "description": "Create and manage wireless gateways, including LoRa gateways.",
+  "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+  "definitions": {
+    "LoRaWANGateway": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "GatewayEui": {
+          "type": "string",
+          "pattern": "^(([0-9a-f]{2}-){7}|([0-9a-f]{2}:){7}|([0-9a-f]{2}\\s){7}|([0-9a-f]{2}){7})([0-9a-f]{2})$"
         },
-        "Tag": {
-            "type": "object",
-            "properties": {
-                "Key": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 128
-                },
-                "Value": {
-                    "type": "string",
-                    "minLength": 0,
-                    "maxLength": 256
-                }
-            },
-            "additionalProperties": false
+        "RfRegion": {
+          "type": "string",
+          "maxLength": 64
         }
+      },
+      "required": [
+        "GatewayEui",
+        "RfRegion"
+      ]
     },
-    "properties": {
-        "Name": {
-            "description": "Name of Wireless Gateway.",
-            "type": "string",
-            "maxLength": 256
+    "Tag": {
+      "type": "object",
+      "properties": {
+        "Key": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
         },
-        "Description": {
-            "description": "Description of Wireless Gateway.",
-            "type": "string",
-            "maxLength": 2048
-        },
-        "Tags" : {
-            "description": "A list of key-value pairs that contain metadata for the gateway.",
-            "type" : "array",
-            "uniqueItems" : true,
-            "maxItems": 50,
-            "items" : {
-                "$ref" : "#/definitions/Tag"
-            }
-        },
-        "LoRaWANGateway": {
-            "description": "The combination of Package, Station and Model which represents the version of the LoRaWAN Wireless Gateway.",
-            "$ref": "#/definitions/LoRaWANGateway"
-        },
-        "Arn": {
-            "description": "Arn for Wireless Gateway. Returned upon successful create.",
-            "type": "string"
-        },
-        "Id": {
-            "description": "Id for Wireless Gateway. Returned upon successful create.",
-            "type": "string",
-            "maxLength": 256
-        },
-        "ThingArn": {
-            "description": "Thing Arn. Passed into Update to associate a Thing with the Wireless Gateway.",
-            "type": "string"
-        },
-        "ThingName": {
-            "description": "Thing Arn. If there is a Thing created, this can be returned with a Get call.",
-            "type": "string"
+        "Value": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 256
         }
-    },
-    "additionalProperties": false,
-    "required": [
-        "LoRaWANGateway"
-    ],
-    "readOnlyProperties": [
-        "/properties/ThingArn",
-        "/properties/Id",
-        "/properties/Arn"
-    ],
-    "primaryIdentifier": [
-        "/properties/Id"
-    ],
-    "handlers": {
-        "create": {
-            "permissions": [
-                "iotwireless:CreateWirelessGateway"
-            ]
-        },
-        "read": {
-            "permissions": [
-                "iotwireless:GetWirelessGateway"
-            ]
-        },
-        "update": {
-            "permissions": [
-                "iotwireless:UpdateWirelessGateway"
-            ]
-        },
-        "delete": {
-            "permissions": [
-                "iotwireless:DeleteWirelessGateway"
-            ]
-        },
-        "list": {
-            "permissions": [
-                "iotwireless:ListWirelessGateways"
-            ]
-        }
+      },
+      "additionalProperties": false
     }
+  },
+  "properties": {
+    "Name": {
+      "description": "Name of Wireless Gateway.",
+      "type": "string",
+      "maxLength": 256
+    },
+    "Description": {
+      "description": "Description of Wireless Gateway.",
+      "type": "string",
+      "maxLength": 2048
+    },
+    "Tags": {
+      "description": "A list of key-value pairs that contain metadata for the gateway.",
+      "type": "array",
+      "uniqueItems": true,
+      "maxItems": 50,
+      "items": {
+        "$ref": "#/definitions/Tag"
+      }
+    },
+    "LoRaWANGateway": {
+      "description": "The combination of Package, Station and Model which represents the version of the LoRaWAN Wireless Gateway.",
+      "$ref": "#/definitions/LoRaWANGateway"
+    },
+    "Arn": {
+      "description": "Arn for Wireless Gateway. Returned upon successful create.",
+      "type": "string"
+    },
+    "Id": {
+      "description": "Id for Wireless Gateway. Returned upon successful create.",
+      "type": "string",
+      "maxLength": 256
+    },
+    "ThingArn": {
+      "description": "Thing Arn. Passed into Update to associate a Thing with the Wireless Gateway.",
+      "type": "string"
+    },
+    "ThingName": {
+      "description": "Thing Arn. If there is a Thing created, this can be returned with a Get call.",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "LoRaWANGateway"
+  ],
+  "readOnlyProperties": [
+    "/properties/ThingArn",
+    "/properties/Id",
+    "/properties/Arn"
+  ],
+  "primaryIdentifier": [
+    "/properties/Id"
+  ],
+  "handlers": {
+    "create": {
+      "permissions": [
+        "iotwireless:CreateWirelessGateway"
+      ]
+    },
+    "read": {
+      "permissions": [
+        "iotwireless:GetWirelessGateway"
+      ]
+    },
+    "update": {
+      "permissions": [
+        "iotwireless:UpdateWirelessGateway"
+      ]
+    },
+    "delete": {
+      "permissions": [
+        "iotwireless:DeleteWirelessGateway"
+      ]
+    },
+    "list": {
+      "permissions": [
+        "iotwireless:ListWirelessGateways"
+      ]
+    }
+  }
 }

@@ -1,149 +1,148 @@
 {
-    "typeName": "AWS::IoTWireless::DeviceProfile",
-    "description": "Device Profile's resource schema demonstrating some basic constructs and validation rules.",
-    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
-    "definitions": {
-        "LoRaWANDeviceProfile": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "SupportsClassB" : {
-                    "type": "boolean"
-                },
-                "ClassBTimeout" : {
-                    "type" : "integer",
-                    "minLength": 0,
-                    "maxLength": 1000
-                },
-                "PingSlotPeriod" : {
-                    "type" : "integer",
-                    "minLength": 128,
-                    "maxLength": 4096
-                },
-                "PingSlotDr" : {
-                    "type" : "integer",
-                    "minLength": 0,
-                    "maxLength": 15
-                },
-                "PingSlotFreq" : {
-                    "type" : "integer",
-                    "minLength": 1000000,
-                    "maxLength": 16700000
-                },
-                "SupportsClassC" : {
-                    "type" : "boolean"
-                },
-                "ClassCTimeout" : {
-                    "type" : "integer",
-                    "minLength": 0,
-                    "maxLength": 1000
-                },
-                "MacVersion" : {
-                    "type" : "string",
-                    "maxLength": 64
-                },
-                "RegParamsRevision" : {
-                    "type" : "string",
-                    "maxLength": 64
-                },
-                "MaxEirp" : {
-                    "type": "integer",
-                    "minLength": 0,
-                    "maxLength": 15
-                },
-                "MaxDutyCycle" : {
-                    "type": "integer",
-                    "minLength": 0,
-                    "maxLength": 100
-                },
-                "SupportsJoin": {
-                    "type": "boolean"
-                },
-                "RfRegion" : {
-                    "type": "string",
-                    "maxLength": 64
-                },
-                "Supports32BitFCnt" : {
-                    "type": "boolean"
-                }
-            }
+  "typeName": "AWS::IoTWireless::DeviceProfile",
+  "description": "Device Profile's resource schema demonstrating some basic constructs and validation rules.",
+  "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+  "definitions": {
+    "LoRaWANDeviceProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "SupportsClassB": {
+          "type": "boolean"
         },
-        "Tag": {
-            "type": "object",
-            "properties": {
-                "Key": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 128
-                },
-                "Value": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 256
-                }
-            },
-            "additionalProperties": false
+        "ClassBTimeout": {
+          "type": "integer",
+          "minLength": 0,
+          "maxLength": 1000
+        },
+        "PingSlotPeriod": {
+          "type": "integer",
+          "minLength": 128,
+          "maxLength": 4096
+        },
+        "PingSlotDr": {
+          "type": "integer",
+          "minLength": 0,
+          "maxLength": 15
+        },
+        "PingSlotFreq": {
+          "type": "integer",
+          "minLength": 1000000,
+          "maxLength": 16700000
+        },
+        "SupportsClassC": {
+          "type": "boolean"
+        },
+        "ClassCTimeout": {
+          "type": "integer",
+          "minLength": 0,
+          "maxLength": 1000
+        },
+        "MacVersion": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "RegParamsRevision": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "MaxEirp": {
+          "type": "integer",
+          "minLength": 0,
+          "maxLength": 15
+        },
+        "MaxDutyCycle": {
+          "type": "integer",
+          "minLength": 0,
+          "maxLength": 100
+        },
+        "SupportsJoin": {
+          "type": "boolean"
+        },
+        "RfRegion": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "Supports32BitFCnt": {
+          "type": "boolean"
         }
+      }
     },
-    "properties": {
-        "Name": {
-            "description": "Name of service profile",
-            "type": "string",
-            "maxLength": 256
+    "Tag": {
+      "type": "object",
+      "properties": {
+        "Key": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
         },
-        "LoRaWANDeviceProfile": {
-            "description": "LoRaWANDeviceProfile supports all LoRa specific attributes for service profile for CreateServiceProfile operation",
-            "$ref": "#/definitions/LoRaWANDeviceProfile"
-        },
-        "Tags" : {
-            "description": "A list of key-value pairs that contain metadata for the device profile.",
-            "type" : "array",
-            "uniqueItems" : true,
-            "maxItems": 50,
-            "items" : {
-                "$ref" : "#/definitions/Tag"
-            }
-        },
-        "Arn": {
-            "description": "Service profile Arn. Returned after successful create.",
-            "type": "string"
-        },
-        "Id": {
-            "description": "Service profile Id. Returned after successful create.",
-            "type": "string",
-            "maxLength": 256
+        "Value": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
         }
-    },
-    "additionalProperties": false,
-    "required": [
-    ],
-    "readOnlyProperties": [
-        "/properties/Arn",
-        "/properties/Id"
-    ],
-    "primaryIdentifier": [
-        "/properties/Id"
-    ],
-    "handlers": {
-        "create": {
-            "permissions": [
-                "iotwireless:CreateDeviceProfile"
-            ]
-        },
-        "read": {
-            "permissions": [
-                "iotwireless:GetDeviceProfile"
-            ]
-        },
-        "delete": {
-            "permissions": [
-                "iotwireless:DeleteDeviceProfile"
-            ]
-        },
-        "list": {
-            "permissions": [
-                "iotwireless:ListDeviceProfiles"
-            ]
-        }
+      },
+      "additionalProperties": false
     }
+  },
+  "properties": {
+    "Name": {
+      "description": "Name of service profile",
+      "type": "string",
+      "maxLength": 256
+    },
+    "LoRaWANDeviceProfile": {
+      "description": "LoRaWANDeviceProfile supports all LoRa specific attributes for service profile for CreateServiceProfile operation",
+      "$ref": "#/definitions/LoRaWANDeviceProfile"
+    },
+    "Tags": {
+      "description": "A list of key-value pairs that contain metadata for the device profile.",
+      "type": "array",
+      "uniqueItems": true,
+      "maxItems": 50,
+      "items": {
+        "$ref": "#/definitions/Tag"
+      }
+    },
+    "Arn": {
+      "description": "Service profile Arn. Returned after successful create.",
+      "type": "string"
+    },
+    "Id": {
+      "description": "Service profile Id. Returned after successful create.",
+      "type": "string",
+      "maxLength": 256
+    }
+  },
+  "additionalProperties": false,
+  "required": [],
+  "readOnlyProperties": [
+    "/properties/Arn",
+    "/properties/Id"
+  ],
+  "primaryIdentifier": [
+    "/properties/Id"
+  ],
+  "handlers": {
+    "create": {
+      "permissions": [
+        "iotwireless:CreateDeviceProfile"
+      ]
+    },
+    "read": {
+      "permissions": [
+        "iotwireless:GetDeviceProfile"
+      ]
+    },
+    "delete": {
+      "permissions": [
+        "iotwireless:DeleteDeviceProfile"
+      ]
+    },
+    "list": {
+      "permissions": [
+        "iotwireless:ListDeviceProfiles"
+      ]
+    }
+  }
 }

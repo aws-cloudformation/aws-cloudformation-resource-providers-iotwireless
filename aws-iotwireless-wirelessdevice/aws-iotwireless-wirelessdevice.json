@@ -154,10 +154,26 @@
         }
       },
       "oneOf": [
-        {"required": ["OtaaV11"]},
-        {"required": ["OtaaV10X"]},
-        {"required": ["AbpV11"]},
-        {"required": ["AbpV10X"]}
+        {
+          "required": [
+            "OtaaV11"
+          ]
+        },
+        {
+          "required": [
+            "OtaaV10X"
+          ]
+        },
+        {
+          "required": [
+            "AbpV11"
+          ]
+        },
+        {
+          "required": [
+            "AbpV10X"
+          ]
+        }
       ]
     },
     "Tag": {
