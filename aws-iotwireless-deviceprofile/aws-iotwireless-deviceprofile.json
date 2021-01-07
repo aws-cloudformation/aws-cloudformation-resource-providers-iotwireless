@@ -12,31 +12,31 @@
         },
         "ClassBTimeout": {
           "type": "integer",
-          "minLength": 0,
-          "maxLength": 1000
+          "minimum": 0,
+          "maximum": 1000
         },
         "PingSlotPeriod": {
           "type": "integer",
-          "minLength": 128,
-          "maxLength": 4096
+          "minimum": 128,
+          "maximum": 4096
         },
         "PingSlotDr": {
           "type": "integer",
-          "minLength": 0,
-          "maxLength": 15
+          "minimum": 0,
+          "maximum": 15
         },
         "PingSlotFreq": {
           "type": "integer",
-          "minLength": 1000000,
-          "maxLength": 16700000
+          "minimum": 1000000,
+          "maximum": 16700000
         },
         "SupportsClassC": {
           "type": "boolean"
         },
         "ClassCTimeout": {
           "type": "integer",
-          "minLength": 0,
-          "maxLength": 1000
+          "minimum": 0,
+          "maximum": 1000
         },
         "MacVersion": {
           "type": "string",
@@ -48,13 +48,13 @@
         },
         "MaxEirp": {
           "type": "integer",
-          "minLength": 0,
-          "maxLength": 15
+          "minimum": 0,
+          "maximum": 15
         },
         "MaxDutyCycle": {
           "type": "integer",
-          "minLength": 0,
-          "maxLength": 100
+          "minimum": 0,
+          "maximum": 100
         },
         "SupportsJoin": {
           "type": "boolean"
