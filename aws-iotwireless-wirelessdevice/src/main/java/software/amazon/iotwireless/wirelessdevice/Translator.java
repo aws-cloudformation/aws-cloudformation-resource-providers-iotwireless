@@ -286,9 +286,9 @@ public class Translator {
                 .build();
     }
 
-    static ListWirelessDevicesRequest translateToListRequest(final ResourceModel model) {
+    static ListWirelessDevicesRequest translateToListRequest(final ResourceModel model, final String nextToken) {
         return ListWirelessDevicesRequest.builder()
-                .nextToken(model.getNextToken())
+                .nextToken(nextToken)
                 .build();
     }
 

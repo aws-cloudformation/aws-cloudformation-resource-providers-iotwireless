@@ -1,10 +1,10 @@
 {
   "Type": "LoRaWAN",
   "Name": "OtaaV1_0_x Wireless Device",
-  "Description": "Test_Description",
+  "Description": "TestDescription",
   "DestinationName": "DestinationName",
   "LoRaWANDevice": {
-    "DevEui": "Use a unique DevEui",
+    "DevEui": "Unique DevEui",
     "DeviceProfileId": "{{ContractTestDeviceProfile}}",
     "ServiceProfileId": "{{ContractTestServiceProfile}}",
     "OtaaV10X": {

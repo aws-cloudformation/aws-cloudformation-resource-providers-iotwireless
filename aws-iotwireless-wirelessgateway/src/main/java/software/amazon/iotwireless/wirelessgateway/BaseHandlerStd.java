@@ -45,6 +45,28 @@ public abstract class BaseHandlerStd extends BaseHandler<CallbackContext> {
         );
     }
 
+    protected abstract ProgressEvent<ResourceModel, CallbackContext> handleRequest(
+            final AmazonWebServicesClientProxy proxy,
+            final ResourceHandlerRequest<ResourceModel> request,
+            final CallbackContext callbackContext,
+            final ProxyClient<IotWirelessClient> proxyClient,
+            final Logger logger);
+
+    private String extractResourceIdFromRequests(final Object request) {
+        if (request instanceof DeleteWirelessGatewayRequest) {
+            final DeleteWirelessGatewayRequest deleteWirelessGatewayRequest = (DeleteWirelessGatewayRequest) request;
+            return deleteWirelessGatewayRequest.id();
+        } if (request instanceof GetWirelessGatewayRequest) {
+            final GetWirelessGatewayRequest getWirelessGatewayRequest = (GetWirelessGatewayRequest) request;
+            return getWirelessGatewayRequest.identifier();
+        } if (request instanceof UpdateWirelessGatewayRequest) {
+            final UpdateWirelessGatewayRequest updateWirelessGatewayRequest = (UpdateWirelessGatewayRequest) request;
+            return updateWirelessGatewayRequest.id();
+        } else {
+            return "";
+        }
+    }
+
     public RuntimeException handleException(final Exception error, final IotWirelessRequest request) {
         if (error instanceof ResourceNotFoundException) {
             return new CfnNotFoundException(ResourceModel.TYPE_NAME, extractResourceIdFromRequests(request));

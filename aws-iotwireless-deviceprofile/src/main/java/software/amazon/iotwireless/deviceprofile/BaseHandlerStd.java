@@ -46,6 +46,18 @@ public abstract class BaseHandlerStd extends BaseHandler<CallbackContext> {
             final ProxyClient<IotWirelessClient> proxyClient,
             final Logger logger);
 
+    private String extractResourceIdFromRequests(final Object request) {
+        if (request instanceof DeleteDeviceProfileRequest) {
+            final DeleteDeviceProfileRequest deleteDeviceProfileRequest = (DeleteDeviceProfileRequest) request;
+            return deleteDeviceProfileRequest.id();
+        } if (request instanceof GetDeviceProfileRequest) {
+            final GetDeviceProfileRequest getDeviceProfileRequest = (GetDeviceProfileRequest) request;
+            return getDeviceProfileRequest.id();
+        } else {
+            return "";
+        }
+    }
+
     public RuntimeException handleException(final Exception error, final IotWirelessRequest request) {
         if (error instanceof ResourceNotFoundException) {
             return new CfnNotFoundException(ResourceModel.TYPE_NAME, extractResourceIdFromRequests(request));

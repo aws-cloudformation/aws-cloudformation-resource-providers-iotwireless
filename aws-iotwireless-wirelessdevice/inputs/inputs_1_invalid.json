@@ -2,6 +2,6 @@
   "Arn": "Contract Test Wireless Device",
   "Name": "OtaaV1_0_x Wireless Device",
   "Type": "LoRaWAN",
-  "Id": "0a705227-90fc-45a3-844c-c97cd45aa912",
+  "Id": "Existing Wireless Device ID",
   "DestinationName": "DestinationName"
 }

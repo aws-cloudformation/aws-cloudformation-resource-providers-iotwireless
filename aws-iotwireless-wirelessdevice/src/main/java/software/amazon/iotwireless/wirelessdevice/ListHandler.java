@@ -28,7 +28,7 @@ public class ListHandler extends BaseHandlerStd {
             final Logger logger) {
         ResourceModel model = request.getDesiredResourceState();
 
-        final ListWirelessDevicesRequest listWirelessDevicesRequest = Translator.translateToListRequest(model);
+        final ListWirelessDevicesRequest listWirelessDevicesRequest = Translator.translateToListRequest(model, request.getNextToken());
 
         try {
             ListWirelessDevicesResponse listWirelessDevicesResponse = proxy.injectCredentialsAndInvokeV2(listWirelessDevicesRequest, proxyClient.client()::listWirelessDevices);

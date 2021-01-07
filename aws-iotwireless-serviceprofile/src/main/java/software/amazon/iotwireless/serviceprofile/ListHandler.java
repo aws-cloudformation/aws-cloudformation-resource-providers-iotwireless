@@ -25,7 +25,7 @@ public class ListHandler extends BaseHandler<CallbackContext> {
             final Logger logger) {
         ResourceModel model = request.getDesiredResourceState();
 
-        final ListServiceProfilesRequest listServiceProfilesRequest = Translator.translateToListRequest(model);
+        final ListServiceProfilesRequest listServiceProfilesRequest = Translator.translateToListRequest(model, request.getNextToken());
 
         try {
             ListServiceProfilesResponse listServiceProfilesResponse = proxy.injectCredentialsAndInvokeV2(listServiceProfilesRequest, ClientBuilder.getClient()::listServiceProfiles);

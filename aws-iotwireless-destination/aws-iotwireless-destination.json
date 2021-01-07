@@ -1,6 +1,6 @@
 {
     "typeName": "AWS::IoTWireless::Destination",
-    "description": "An example resource schema demonstrating some basic constructs and validation rules.",
+    "description": "Destination's resource schema demonstrating some basic constructs and validation rules.",
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
     "definitions": {
         "Tag": {
@@ -15,36 +15,6 @@
                     "type": "string",
                     "minLength": 1,
                     "maxLength": 255
-                }
-            },
-            "additionalProperties": false
-        },
-        "Destination": {
-            "type": "object",
-            "properties": {
-                "Arn": {
-                    "type": "string"
-                },
-                "Name": {
-                    "type": "string",
-                    "maxLength": 128
-                },
-                "ExpressionType": {
-                    "type": "string",
-                    "enum": ["RuleName"]
-                },
-                "Expression": {
-                    "type": "string",
-                    "maxLength": 2048
-                },
-                "Description": {
-                    "type": "string",
-                    "maxLength": 2048
-                },
-                "RoleArn": {
-                    "type": "string",
-                    "minLength": 20,
-                    "maxLength": 2048
                 }
             },
             "additionalProperties": false
@@ -89,11 +59,6 @@
         "Arn": {
             "description": "Destination arn. Returned after successful create.",
             "type": "string"
-        },
-        "NextToken": {
-            "description": "Next available token, returned if there is a next set of results.",
-            "type": "string",
-            "maxLength": 4096
         }
     },
     "additionalProperties": false,
@@ -112,9 +77,7 @@
     "handlers": {
         "create": {
             "permissions": [
-                "iotwireless:CreateDestination",
-                "iotwireless:UpdateDestination",
-                "iotwireless:GetDestination"
+                "iotwireless:CreateDestination"
             ]
         },
         "read": {
@@ -124,14 +87,12 @@
         },
         "update": {
             "permissions": [
-                "iotwireless:UpdateDestination",
-                "iotwireless:GetDestination"
+                "iotwireless:UpdateDestination"
             ]
         },
         "delete": {
             "permissions": [
-                "iotwireless:DeleteDestination",
-                "iotwireless:UpdateDestination"
+                "iotwireless:DeleteDestination"
             ]
         },
         "list": {

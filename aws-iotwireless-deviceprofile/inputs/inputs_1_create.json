@@ -17,8 +17,8 @@
   },
   "Tags": [
     {
-      "Key": "deviceprofiletag_key1",
-      "Value": "deviceprofiletag_value1"
+      "Key": "key_1",
+      "Value": "value_1"
     }
   ]
 }

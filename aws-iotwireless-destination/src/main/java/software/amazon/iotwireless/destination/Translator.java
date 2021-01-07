@@ -68,15 +68,16 @@ public class Translator {
                 .build();
     }
 
-    static ListDestinationsRequest translateToListRequest(ResourceModel model) {
+    static ListDestinationsRequest translateToListRequest(ResourceModel model, final String nextToken) {
         return ListDestinationsRequest.builder()
-                .nextToken(model.getNextToken())
+                .nextToken(nextToken)
                 .build();
     }
 
     //Returned at the end of Create, Read, Update handlers to make sure they all return the same thing
     static ResourceModel unsetWriteOnly(final ResourceModel model) {
         return ResourceModel.builder()
+                .arn(model.getArn())
                 .name(model.getName())
                 .expressionType(model.getExpressionType())
                 .expression(model.getExpression())

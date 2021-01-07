@@ -29,7 +29,7 @@ public class ListHandler extends BaseHandlerStd {
 
         ResourceModel model = request.getDesiredResourceState();
 
-        final ListDestinationsRequest listDestinationsRequest = Translator.translateToListRequest(model);
+        final ListDestinationsRequest listDestinationsRequest = Translator.translateToListRequest(model, request.getNextToken());
 
         try {
             ListDestinationsResponse listDestinationsResponse = proxy.injectCredentialsAndInvokeV2(listDestinationsRequest, proxyClient.client()::listDestinations);

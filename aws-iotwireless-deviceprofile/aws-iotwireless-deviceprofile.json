@@ -1,6 +1,6 @@
 {
     "typeName": "AWS::IoTWireless::DeviceProfile",
-    "description": "An example resource schema demonstrating some basic constructs and validation rules.",
+    "description": "Device Profile's resource schema demonstrating some basic constructs and validation rules.",
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
     "definitions": {
         "LoRaWANDeviceProfile": {
@@ -112,11 +112,6 @@
             "description": "Service profile Id. Returned after successful create.",
             "type": "string",
             "maxLength": 256
-        },
-        "NextToken": {
-            "description": "Next available token, returned if there is a next set of results.",
-            "type": "string",
-            "minLength": 4096
         }
     },
     "additionalProperties": false,
@@ -132,8 +127,7 @@
     "handlers": {
         "create": {
             "permissions": [
-                "iotwireless:CreateDeviceProfile",
-                "iotwireless:GetDeviceProfile"
+                "iotwireless:CreateDeviceProfile"
             ]
         },
         "read": {

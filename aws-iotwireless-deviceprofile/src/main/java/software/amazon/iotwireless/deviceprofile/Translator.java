@@ -100,9 +100,9 @@ public class Translator {
                 .build();
     }
 
-    static ListDeviceProfilesRequest translateToListRequest(final ResourceModel model) {
+    static ListDeviceProfilesRequest translateToListRequest(final ResourceModel model, final String nextToken) {
         return ListDeviceProfilesRequest.builder()
-                .nextToken(model.getNextToken())
+                .nextToken(nextToken)
                 .build();
     }
 

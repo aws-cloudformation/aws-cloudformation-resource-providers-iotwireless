@@ -29,7 +29,7 @@ public class ListHandler extends BaseHandlerStd {
 
         final ResourceModel model = request.getDesiredResourceState();
 
-        final ListDeviceProfilesRequest listDeviceProfilesRequest = Translator.translateToListRequest(model);
+        final ListDeviceProfilesRequest listDeviceProfilesRequest = Translator.translateToListRequest(model, request.getNextToken());
 
         try {
             ListDeviceProfilesResponse listDeviceProfilesResponse = proxy.injectCredentialsAndInvokeV2(listDeviceProfilesRequest, proxyClient.client()::listDeviceProfiles);

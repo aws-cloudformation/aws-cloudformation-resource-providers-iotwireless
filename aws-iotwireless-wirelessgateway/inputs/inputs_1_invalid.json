@@ -1,7 +1,7 @@
 {
-  "Id":"Use actual ID of wireless gateway",
+  "Id":"Existing Wireless Gateway ID",
   "LoRaWANGateway": {
-    "GatewayEui": "Use a unique GatewayEui",
+    "GatewayEui": "Unique GatewayEui",
     "RfRegion": "US915"
   }
 }
