@@ -66,6 +66,13 @@
             <artifactId>aws-java-sdk-iotwireless</artifactId>
             <version>1.11.933</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/software.amazon.awssdk/iotwireless -->
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>iotwireless</artifactId>
+            <version>2.15.60</version>
+        </dependency>
+
     </dependencies>
 
     <build>
