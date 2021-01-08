@@ -77,7 +77,7 @@
   "createOnlyProperties": [
     "/properties/Name"
   ],
-   "primaryIdentifier": [
+  "primaryIdentifier": [
     "/properties/Name"
   ],
   "handlers": {
