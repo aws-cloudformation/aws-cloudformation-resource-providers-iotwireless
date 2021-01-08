@@ -74,7 +74,10 @@
   "readOnlyProperties": [
     "/properties/Arn"
   ],
-  "primaryIdentifier": [
+  "createOnlyProperties": [
+    "/properties/Name"
+  ],
+   "primaryIdentifier": [
     "/properties/Name"
   ],
   "handlers": {
