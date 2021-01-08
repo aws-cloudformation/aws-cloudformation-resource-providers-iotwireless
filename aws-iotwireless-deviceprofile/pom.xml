@@ -61,6 +61,12 @@
             <version>2.26.0</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-iotwireless</artifactId>
+            <version>1.11.933</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
