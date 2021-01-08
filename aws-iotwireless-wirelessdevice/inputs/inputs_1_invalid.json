@@ -1,0 +1,7 @@
+{
+  "Arn": "Contract Test Wireless Device",
+  "Name": "OtaaV1_0_x Wireless Device",
+  "Type": "LoRaWAN",
+  "Id": "Existing Wireless Device ID",
+  "DestinationName": "DestinationName"
+}
