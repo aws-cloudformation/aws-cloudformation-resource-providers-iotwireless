@@ -1,11 +1,6 @@
-## My Project
+## IoT Wireless
 
-TODO: Fill this README out!
-
-Be sure to:
-
-* Change the title in this README
-* Edit your repository description on GitHub
+Cloudformation Resources for IoT Wireless
 
 ## Security
 
