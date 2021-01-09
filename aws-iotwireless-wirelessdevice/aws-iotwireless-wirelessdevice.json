@@ -265,17 +265,22 @@
   "handlers": {
     "create": {
       "permissions": [
-        "iotwireless:CreateWirelessDevice"
+        "iotwireless:CreateWirelessDevice",
+        "iotwireless:TagResource",
+        "iotwireless:ListTagsForResource"
       ]
     },
     "read": {
       "permissions": [
-        "iotwireless:GetWirelessDevice"
+        "iotwireless:GetWirelessDevice",
+        "iotwireless:ListTagsForResource"
       ]
     },
     "update": {
       "permissions": [
-        "iotwireless:UpdateWirelessDevice"
+        "iotwireless:UpdateWirelessDevice",
+        "iotwireless:UntagResource",
+        "iotwireless:ListTagsForResource"
       ]
     },
     "delete": {
@@ -285,7 +290,8 @@
     },
     "list": {
       "permissions": [
-        "iotwireless:ListWirelessDevices"
+        "iotwireless:ListWirelessDevices",
+        "iotwireless:ListTagsForResource"
       ]
     }
   }

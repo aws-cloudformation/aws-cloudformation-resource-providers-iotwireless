@@ -23,7 +23,11 @@ Resources:
             Statement:
               - Effect: Allow
                 Action:
-                - "iotwireless:*"
+                - "iotwireless:CreateWirelessGateway"
+                - "iotwireless:DeleteWirelessGateway"
+                - "iotwireless:GetWirelessGateway"
+                - "iotwireless:ListWirelessGateways"
+                - "iotwireless:UpdateWirelessGateway"
                 Resource: "*"
 Outputs:
   ExecutionRoleArn:

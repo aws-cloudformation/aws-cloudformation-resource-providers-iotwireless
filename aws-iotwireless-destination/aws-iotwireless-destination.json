@@ -83,17 +83,22 @@
   "handlers": {
     "create": {
       "permissions": [
-        "iotwireless:CreateDestination"
+        "iotwireless:CreateDestination",
+        "iotwireless:TagResource",
+        "iotwireless:ListTagsForResource"
       ]
     },
     "read": {
       "permissions": [
-        "iotwireless:GetDestination"
+        "iotwireless:GetDestination",
+        "iotwireless:ListTagsForResource"
       ]
     },
     "update": {
       "permissions": [
-        "iotwireless:UpdateDestination"
+        "iotwireless:UpdateDestination",
+        "iotwireless:UntagResource",
+        "iotwireless:ListTagsForResource"
       ]
     },
     "delete": {
@@ -103,7 +108,8 @@
     },
     "list": {
       "permissions": [
-        "iotwireless:ListDestinations"
+        "iotwireless:ListDestinations",
+        "iotwireless:ListTagsForResource"
       ]
     }
   }

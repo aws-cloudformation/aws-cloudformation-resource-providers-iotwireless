@@ -95,17 +95,22 @@
   "handlers": {
     "create": {
       "permissions": [
-        "iotwireless:CreateWirelessGateway"
+        "iotwireless:CreateWirelessGateway",
+        "iotwireless:TagResource",
+        "iotwireless:ListTagsForResource"
       ]
     },
     "read": {
       "permissions": [
-        "iotwireless:GetWirelessGateway"
+        "iotwireless:GetWirelessGateway",
+        "iotwireless:ListTagsForResource"
       ]
     },
     "update": {
       "permissions": [
-        "iotwireless:UpdateWirelessGateway"
+        "iotwireless:UpdateWirelessGateway",
+        "iotwireless:UntagResource",
+        "iotwireless:ListTagsForResource"
       ]
     },
     "delete": {
@@ -115,7 +120,8 @@
     },
     "list": {
       "permissions": [
-        "iotwireless:ListWirelessGateways"
+        "iotwireless:ListWirelessGateways",
+        "iotwireless:ListTagsForResource"
       ]
     }
   }

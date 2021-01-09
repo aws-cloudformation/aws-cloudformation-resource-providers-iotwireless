@@ -126,12 +126,15 @@
   "handlers": {
     "create": {
       "permissions": [
-        "iotwireless:CreateDeviceProfile"
+        "iotwireless:CreateDeviceProfile",
+        "iotwireless:TagResource",
+        "iotwireless:ListTagsForResource"
       ]
     },
     "read": {
       "permissions": [
-        "iotwireless:GetDeviceProfile"
+        "iotwireless:GetDeviceProfile",
+        "iotwireless:ListTagsForResource"
       ]
     },
     "delete": {
@@ -141,7 +144,8 @@
     },
     "list": {
       "permissions": [
-        "iotwireless:ListDeviceProfiles"
+        "iotwireless:ListDeviceProfiles",
+        "iotwireless:ListTagsForResource"
       ]
     }
   }

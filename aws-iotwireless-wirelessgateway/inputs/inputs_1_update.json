@@ -1,6 +1,6 @@
 {
   "LoRaWAN": {
-    "GatewayEui": "Unique GatewayEui",
+    "GatewayEui": "1111111122222222",
     "RfRegion": "US915"
   }
 }

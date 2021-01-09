@@ -137,12 +137,15 @@
   "handlers": {
     "create": {
       "permissions": [
-        "iotwireless:CreateServiceProfile"
+        "iotwireless:CreateServiceProfile",
+        "iotwireless:TagResource",
+        "iotwireless:ListTagsForResource"
       ]
     },
     "read": {
       "permissions": [
-        "iotwireless:GetServiceProfile"
+        "iotwireless:GetServiceProfile",
+        "iotwireless:ListTagsForResource"
       ]
     },
     "delete": {
@@ -152,7 +155,8 @@
     },
     "list": {
       "permissions": [
-        "iotwireless:ListServiceProfiles"
+        "iotwireless:ListServiceProfiles",
+        "iotwireless:ListTagsForResource"
       ]
     }
   }
