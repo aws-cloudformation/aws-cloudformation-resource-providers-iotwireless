@@ -1,6 +1,6 @@
 {
   "Name": "Test Device Profile",
-  "LoRaWANDeviceProfile": {
+  "LoRaWAN": {
     "SupportsClassB": true,
     "ClassBTimeout": 10,
     "PingSlotPeriod": 256,

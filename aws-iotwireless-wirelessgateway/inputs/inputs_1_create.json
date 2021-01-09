@@ -11,7 +11,7 @@
       "Value": "value_2"
     }
   ],
-  "LoRaWANGateway": {
+  "LoRaWAN": {
     "GatewayEui": "Unique GatewayEui",
     "RfRegion": "US915"
   }

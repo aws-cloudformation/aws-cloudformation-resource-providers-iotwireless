@@ -1,5 +1,5 @@
 {
-  "LoRaWANGateway": {
+  "LoRaWAN": {
     "GatewayEui": "Unique GatewayEui",
     "RfRegion": "US915"
   }

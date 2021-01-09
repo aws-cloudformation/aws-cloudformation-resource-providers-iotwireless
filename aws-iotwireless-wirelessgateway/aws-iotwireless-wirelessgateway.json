@@ -82,7 +82,7 @@
   },
   "additionalProperties": false,
   "required": [
-    "LoRaWANGateway"
+    "LoRaWAN"
   ],
   "readOnlyProperties": [
     "/properties/ThingArn",
