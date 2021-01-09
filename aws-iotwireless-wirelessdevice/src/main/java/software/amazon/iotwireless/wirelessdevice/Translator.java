@@ -107,17 +107,10 @@ public class Translator {
     //Translate from ResourceModel LoRaDevice to SDK LoRaWANDevice
     static software.amazon.awssdk.services.iotwireless.model.LoRaWANDevice
     translateToLoRaDevice(final ResourceModel model) {
-<<<<<<< HEAD
         if (model.getLoRaWAN() == null) {
             return null;
         }
         software.amazon.iotwireless.wirelessdevice.LoRaWANDevice device = model.getLoRaWAN();
-=======
-        if (model.getLoRaWANDevice() == null) {
-            return null;
-        }
-        software.amazon.iotwireless.wirelessdevice.LoRaWANDevice device = model.getLoRaWANDevice();
->>>>>>> upstream/main
         if (device.getOtaaV10X() != null) {
             return software.amazon.awssdk.services.iotwireless.model.LoRaWANDevice.builder()
                     .devEui(device.getDevEui())

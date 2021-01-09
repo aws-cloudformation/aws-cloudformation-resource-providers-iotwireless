@@ -53,17 +53,10 @@ public class Translator {
     //Translate from Resource Model LoRaWANDeviceProfile to SDK LoRaWANDeviceProfile
     static software.amazon.awssdk.services.iotwireless.model.LoRaWANDeviceProfile
     translateToLoRa(final ResourceModel model) {
-<<<<<<< HEAD
         if (model.getLoRaWAN() == null) {
             return null;
         }
         software.amazon.iotwireless.deviceprofile.LoRaWANDeviceProfile gateway = model.getLoRaWAN();
-=======
-        if (model.getLoRaWANDeviceProfile() == null) {
-            return null;
-        }
-        software.amazon.iotwireless.deviceprofile.LoRaWANDeviceProfile gateway = model.getLoRaWANDeviceProfile();
->>>>>>> upstream/main
         return software.amazon.awssdk.services.iotwireless.model.LoRaWANDeviceProfile.builder()
                 .supportsClassB(gateway.getSupportsClassB())
                 .classBTimeout(gateway.getClassBTimeout())
@@ -119,11 +112,7 @@ public class Translator {
                 .arn(model.getArn())
                 .id(model.getId())
                 .name(model.getName())
-<<<<<<< HEAD
                 .loRaWAN(model.getLoRaWAN())
-=======
-                .loRaWANDeviceProfile(model.getLoRaWANDeviceProfile())
->>>>>>> upstream/main
                 .tags(model.getTags())
                 .build();
     }

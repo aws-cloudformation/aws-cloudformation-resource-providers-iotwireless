@@ -98,19 +98,11 @@
       "type": "string",
       "maxLength": 256
     },
-<<<<<<< HEAD
     "LoRaWAN": {
       "description": "LoRaServiceProfile supports all LoRa specific attributes for service profile for CreateServiceProfile operation",
       "$ref": "#/definitions/LoRaWANServiceProfile"
     },
     "LoRaWANResponse": {
-=======
-    "LoRaWANServiceProfile": {
-      "description": "LoRaServiceProfile supports all LoRa specific attributes for service profile for CreateServiceProfile operation",
-      "$ref": "#/definitions/LoRaWANServiceProfile"
-    },
-    "LoRaWANGetServiceProfileInfo": {
->>>>>>> upstream/main
       "description": "Service Profile returned on Get call, not needed for create",
       "$ref": "#/definitions/LoRaWANGetServiceProfileInfo"
     },

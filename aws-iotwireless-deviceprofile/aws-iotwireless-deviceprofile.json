@@ -91,11 +91,7 @@
       "type": "string",
       "maxLength": 256
     },
-<<<<<<< HEAD
     "LoRaWAN": {
-=======
-    "LoRaWANDeviceProfile": {
->>>>>>> upstream/main
       "description": "LoRaWANDeviceProfile supports all LoRa specific attributes for service profile for CreateServiceProfile operation",
       "$ref": "#/definitions/LoRaWANDeviceProfile"
     },
