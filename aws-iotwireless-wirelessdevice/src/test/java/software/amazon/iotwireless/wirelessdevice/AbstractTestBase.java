@@ -30,7 +30,7 @@ public class AbstractTestBase {
   protected static final String TEST_APP_KEY;
   protected static final String TEST_APP_EUI;
   protected static final software.amazon.iotwireless.wirelessdevice.OtaaV10x TEST_OTAA;
-  protected static final software.amazon.awssdk.services.iotwireless.model.OtaaV1_0_X TEST_OTAA_1_0_X;
+  protected static final software.amazon.awssdk.services.iotwireless.model.OtaaV1_0_x TEST_OTAA_1_0_X;
   protected static final ResourceModel TEST_CREATE_RESOURCE_MODEL;
   protected static final ResourceModel TEST_RESOURCE_MODEL;
   protected static final String TEST_NAME;
