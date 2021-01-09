@@ -65,11 +65,11 @@ public class Translator {
     //Translate from ResourceModel LoRaWANServiceProfile to SDK LoRaWANServiceProfile
     static software.amazon.awssdk.services.iotwireless.model.LoRaWANServiceProfile
     translateFromLoRa(final ResourceModel model) {
-        if ( model.getLoRaWANServiceProfile() == null ) {
+        if ( model.getLoRaWAN() == null ) {
             return null;
         }
         software.amazon.iotwireless.serviceprofile.LoRaWANServiceProfile gateway =
-                model.getLoRaWANServiceProfile();
+                model.getLoRaWAN();
         return software.amazon.awssdk.services.iotwireless.model.LoRaWANServiceProfile.builder()
                 .addGwMetadata(gateway.getAddGwMetadata())
                 .build();
@@ -113,7 +113,7 @@ public class Translator {
                 .arn(model.getArn())
                 .id(model.getId())
                 .name(model.getName())
-                .loRaWANServiceProfile(model.getLoRaWANServiceProfile())
+                .loRaWANServiceProfile(model.getLoRaWAN())
                 .tags(model.getTags())
                 .build();
     }

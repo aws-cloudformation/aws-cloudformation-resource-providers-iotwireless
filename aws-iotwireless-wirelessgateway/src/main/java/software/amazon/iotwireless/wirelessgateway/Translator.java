@@ -16,10 +16,10 @@ public class Translator {
     //Translate from ResourceModel LoRaWANGateway to SDK LoRaWANGateway
     static software.amazon.awssdk.services.iotwireless.model.LoRaWANGateway
     translateToLoRaWANGateway(final ResourceModel model) {
-        if (model.getLoRaWANGateway() == null) {
+        if (model.getLoRaWAN() == null) {
             return null;
         }
-        software.amazon.iotwireless.wirelessgateway.LoRaWANGateway gateway = model.getLoRaWANGateway();
+        software.amazon.iotwireless.wirelessgateway.LoRaWANGateway gateway = model.getLoRaWAN();
         return software.amazon.awssdk.services.iotwireless.model.LoRaWANGateway.builder()
                 .rfRegion(gateway.getRfRegion())
                 .gatewayEui(gateway.getGatewayEui())
@@ -118,7 +118,7 @@ public class Translator {
                 .name(model.getName())
                 .id(model.getId())
                 .description(model.getDescription())
-                .loRaWANGateway(model.getLoRaWANGateway())
+                .loRaWAN(model.getLoRaWAN())
                 .arn(model.getArn())
                 .thingArn(model.getThingArn())
                 .tags(model.getTags())

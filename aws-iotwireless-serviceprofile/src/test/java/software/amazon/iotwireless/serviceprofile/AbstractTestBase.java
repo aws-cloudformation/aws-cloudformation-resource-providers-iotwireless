@@ -82,7 +82,7 @@ public class AbstractTestBase {
 
     TEST_CREATE_RESOURCE_MODEL = ResourceModel.builder()
             .name(TEST_NAME)
-            .loRaWANServiceProfile(TEST_LORA_CREATE)
+            .loRaWAN(TEST_LORA_CREATE)
             .tags(TEST_TAGS)
             .build();
 

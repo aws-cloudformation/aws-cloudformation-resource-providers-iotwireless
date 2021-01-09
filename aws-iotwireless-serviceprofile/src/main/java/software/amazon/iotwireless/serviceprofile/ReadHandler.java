@@ -36,7 +36,7 @@ public class ReadHandler extends BaseHandlerStd {
                             model.setId(getResponse.id());
                             model.setArn(getResponse.arn());
                             model.setName(getResponse.name());
-                            model.setLoRaWANGetServiceProfileInfo(Translator.translateFromLoRaSDK(getResponse.loRaWAN()));
+                            model.setLoRaWAN(Translator.translateFromLoRaSDK(getResponse.loRaWAN()));
                             return ProgressEvent.progress(model, callbackContext);
                         })
                 )

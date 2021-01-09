@@ -217,7 +217,7 @@
       "type": "string",
       "maxLength": 128
     },
-    "LoRaWANDevice": {
+    "LoRaWAN": {
       "description": "The combination of Package, Station and Model which represents the version of the LoRaWAN Wireless Device.",
       "$ref": "#/definitions/LoRaWANDevice"
     },
