@@ -86,7 +86,7 @@ public class AbstractTestBase {
             .name(TEST_NAME)
             .description(TEST_DESCRIPTION)
             .destinationName(TEST_DESTINATION_NAME)
-            .loRaWANDevice(TEST_LORA_CREATE)
+            .loRaWAN(TEST_LORA_CREATE)
             .build();
 
     TEST_RESOURCE_MODEL = ResourceModel.builder()

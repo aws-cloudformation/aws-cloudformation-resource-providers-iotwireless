@@ -58,7 +58,7 @@
         "$ref": "#/definitions/Tag"
       }
     },
-    "LoRaWANGateway": {
+    "LoRaWAN": {
       "description": "The combination of Package, Station and Model which represents the version of the LoRaWAN Wireless Gateway.",
       "$ref": "#/definitions/LoRaWANGateway"
     },
