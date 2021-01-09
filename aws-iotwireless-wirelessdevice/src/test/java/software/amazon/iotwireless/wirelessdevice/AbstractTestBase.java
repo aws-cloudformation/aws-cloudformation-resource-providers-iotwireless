@@ -69,7 +69,7 @@ public class AbstractTestBase {
     TEST_LORA_CREATE.setServiceProfileId(TEST_SERVICE_PROFILE_ID);
     TEST_LORA_CREATE.setOtaaV10x(TEST_OTAA);
 
-    TEST_OTAA_1_0_x = software.amazon.awssdk.services.iotwireless.model.OtaaV1_0_x.builder()
+    TEST_OTAA_1_0_X = software.amazon.awssdk.services.iotwireless.model.OtaaV1_0_x.builder()
             .appEui(TEST_APP_EUI)
             .appKey(TEST_APP_KEY)
             .build();
@@ -78,7 +78,7 @@ public class AbstractTestBase {
             .devEui(TEST_DEV_EUI)
             .deviceProfileId(TEST_DEVICE_PROFILE_ID)
             .serviceProfileId(TEST_SERVICE_PROFILE_ID)
-            .otaaV1_0_x(TEST_OTAA_1_0_x)
+            .otaaV1_0_x(TEST_OTAA_1_0_X)
             .build();
 
     TEST_CREATE_RESOURCE_MODEL = ResourceModel.builder()
