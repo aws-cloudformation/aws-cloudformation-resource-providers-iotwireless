@@ -21,4 +21,3 @@ Resources:
       Handler: software.amazon.iotwireless.wirelessgateway.HandlerWrapper::testEntrypoint
       Runtime: java8
       CodeUri: ./target/aws-iotwireless-wirelessgateway-1.0.jar
-
