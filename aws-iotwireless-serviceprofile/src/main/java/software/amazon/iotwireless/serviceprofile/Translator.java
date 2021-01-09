@@ -113,7 +113,7 @@ public class Translator {
                 .arn(model.getArn())
                 .id(model.getId())
                 .name(model.getName())
-                .loRaWANServiceProfile(model.getLoRaWAN())
+                .loRaWAN(model.getLoRaWAN())
                 .tags(model.getTags())
                 .build();
     }
