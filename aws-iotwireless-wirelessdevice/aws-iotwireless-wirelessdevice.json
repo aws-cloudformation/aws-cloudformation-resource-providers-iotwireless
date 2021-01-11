@@ -3,7 +3,7 @@
   "description": "Create and manage wireless gateways, including LoRa gateways.",
   "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
   "definitions": {
-    "OtaaV10X": {
+    "OtaaV10x": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -89,7 +89,7 @@
         "SessionKeys"
       ]
     },
-    "SessionKeysAbpV10X": {
+    "SessionKeysAbpV10x": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -107,7 +107,7 @@
         "AppSKey"
       ]
     },
-    "AbpV10X": {
+    "AbpV10x": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -116,7 +116,7 @@
           "pattern": "[a-fA-F0-9]{8}"
         },
         "SessionKeys": {
-          "$ref": "#/definitions/SessionKeysAbpV10X"
+          "$ref": "#/definitions/SessionKeysAbpV10x"
         }
       },
       "required": [
@@ -143,14 +143,14 @@
         "OtaaV11": {
           "$ref": "#/definitions/OtaaV11"
         },
-        "OtaaV10X": {
-          "$ref": "#/definitions/OtaaV10X"
+        "OtaaV10x": {
+          "$ref": "#/definitions/OtaaV10x"
         },
         "AbpV11": {
           "$ref": "#/definitions/AbpV11"
         },
-        "AbpV10X": {
-          "$ref": "#/definitions/AbpV10X"
+        "AbpV10x": {
+          "$ref": "#/definitions/AbpV10x"
         }
       },
       "oneOf": [
@@ -161,7 +161,7 @@
         },
         {
           "required": [
-            "OtaaV10X"
+            "OtaaV10x"
           ]
         },
         {
@@ -171,7 +171,7 @@
         },
         {
           "required": [
-            "AbpV10X"
+            "AbpV10x"
           ]
         }
       ]
@@ -265,17 +265,22 @@
   "handlers": {
     "create": {
       "permissions": [
-        "iotwireless:CreateWirelessDevice"
+        "iotwireless:CreateWirelessDevice",
+        "iotwireless:TagResource",
+        "iotwireless:ListTagsForResource"
       ]
     },
     "read": {
       "permissions": [
-        "iotwireless:GetWirelessDevice"
+        "iotwireless:GetWirelessDevice",
+        "iotwireless:ListTagsForResource"
       ]
     },
     "update": {
       "permissions": [
-        "iotwireless:UpdateWirelessDevice"
+        "iotwireless:UpdateWirelessDevice",
+        "iotwireless:UntagResource",
+        "iotwireless:ListTagsForResource"
       ]
     },
     "delete": {
@@ -285,7 +290,8 @@
     },
     "list": {
       "permissions": [
-        "iotwireless:ListWirelessDevices"
+        "iotwireless:ListWirelessDevices",
+        "iotwireless:ListTagsForResource"
       ]
     }
   }

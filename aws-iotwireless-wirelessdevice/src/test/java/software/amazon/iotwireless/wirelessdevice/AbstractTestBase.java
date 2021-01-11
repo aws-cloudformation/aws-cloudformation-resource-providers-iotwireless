@@ -29,7 +29,7 @@ public class AbstractTestBase {
   protected static final String TEST_SERVICE_PROFILE_ID;
   protected static final String TEST_APP_KEY;
   protected static final String TEST_APP_EUI;
-  protected static final software.amazon.iotwireless.wirelessdevice.OtaaV10X TEST_OTAA;
+  protected static final software.amazon.iotwireless.wirelessdevice.OtaaV10x TEST_OTAA;
   protected static final software.amazon.awssdk.services.iotwireless.model.OtaaV1_0_x TEST_OTAA_1_0_X;
   protected static final ResourceModel TEST_CREATE_RESOURCE_MODEL;
   protected static final ResourceModel TEST_RESOURCE_MODEL;
@@ -59,7 +59,7 @@ public class AbstractTestBase {
     TEST_APP_EUI = "test app eui";
     TEST_APP_KEY = "test app key";
 
-    TEST_OTAA = new software.amazon.iotwireless.wirelessdevice.OtaaV10X();
+    TEST_OTAA = new software.amazon.iotwireless.wirelessdevice.OtaaV10x();
     TEST_OTAA.setAppEui(TEST_APP_EUI);
     TEST_OTAA.setAppKey(TEST_APP_KEY);
 
@@ -67,7 +67,7 @@ public class AbstractTestBase {
     TEST_LORA_CREATE.setDevEui(TEST_DEV_EUI);
     TEST_LORA_CREATE.setDeviceProfileId(TEST_DEVICE_PROFILE_ID);
     TEST_LORA_CREATE.setServiceProfileId(TEST_SERVICE_PROFILE_ID);
-    TEST_LORA_CREATE.setOtaaV10X(TEST_OTAA);
+    TEST_LORA_CREATE.setOtaaV10x(TEST_OTAA);
 
     TEST_OTAA_1_0_X = software.amazon.awssdk.services.iotwireless.model.OtaaV1_0_x.builder()
             .appEui(TEST_APP_EUI)

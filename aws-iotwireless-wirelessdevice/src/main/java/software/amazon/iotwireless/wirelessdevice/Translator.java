@@ -34,12 +34,12 @@ public class Translator {
 
     //Translate from ResourceModel OtaaV10 to SDK OtaaV1_0_x
     static software.amazon.awssdk.services.iotwireless.model.OtaaV1_0_x
-    translateOtaaV10X(software.amazon.iotwireless.wirelessdevice.LoRaWANDevice model) {
-        if (model.getOtaaV10X() == null) {
+    translateOtaaV10x(software.amazon.iotwireless.wirelessdevice.LoRaWANDevice model) {
+        if (model.getOtaaV10x() == null) {
             return null;
         }
-        software.amazon.iotwireless.wirelessdevice.OtaaV10X Otaa =
-                model.getOtaaV10X();
+        software.amazon.iotwireless.wirelessdevice.OtaaV10x Otaa =
+                model.getOtaaV10x();
         return software.amazon.awssdk.services.iotwireless.model.OtaaV1_0_x.builder()
                 .appKey(Otaa.getAppKey())
                 .appEui(Otaa.getAppEui())
@@ -48,15 +48,15 @@ public class Translator {
 
     //Translate from ResourceModel AbpV10x to SDK AbpV1_0_x
     static software.amazon.awssdk.services.iotwireless.model.AbpV1_0_x
-    translateAbpV10X(final software.amazon.iotwireless.wirelessdevice.LoRaWANDevice model) {
-        if (model.getAbpV10X() == null) {
+    translateAbpV10x(final software.amazon.iotwireless.wirelessdevice.LoRaWANDevice model) {
+        if (model.getAbpV10x() == null) {
             return null;
         }
-        software.amazon.iotwireless.wirelessdevice.AbpV10X abp =
-                model.getAbpV10X();
+        software.amazon.iotwireless.wirelessdevice.AbpV10x abp =
+                model.getAbpV10x();
         return software.amazon.awssdk.services.iotwireless.model.AbpV1_0_x.builder()
                 .devAddr(abp.getDevAddr())
-                .sessionKeys(translateSessionKeysAbpV10X(abp))
+                .sessionKeys(translateSessionKeysAbpV10x(abp))
                 .build();
     }
 
@@ -76,11 +76,11 @@ public class Translator {
 
     //Translate from ResourceModel AbpV10x to SDK AbpV1_0_x
     static software.amazon.awssdk.services.iotwireless.model.SessionKeysAbpV1_0_x
-    translateSessionKeysAbpV10X(software.amazon.iotwireless.wirelessdevice.AbpV10X model) {
+    translateSessionKeysAbpV10x(software.amazon.iotwireless.wirelessdevice.AbpV10x model) {
         if (model.getSessionKeys() == null) {
             return null;
         }
-        software.amazon.iotwireless.wirelessdevice.SessionKeysAbpV10X sessionKeys =
+        software.amazon.iotwireless.wirelessdevice.SessionKeysAbpV10x sessionKeys =
                 model.getSessionKeys();
         return software.amazon.awssdk.services.iotwireless.model.SessionKeysAbpV1_0_x.builder()
                 .nwkSKey(sessionKeys.getNwkSKey())
@@ -111,12 +111,12 @@ public class Translator {
             return null;
         }
         software.amazon.iotwireless.wirelessdevice.LoRaWANDevice device = model.getLoRaWAN();
-        if (device.getOtaaV10X() != null) {
+        if (device.getOtaaV10x() != null) {
             return software.amazon.awssdk.services.iotwireless.model.LoRaWANDevice.builder()
                     .devEui(device.getDevEui())
                     .deviceProfileId(device.getDeviceProfileId())
                     .serviceProfileId(device.getServiceProfileId())
-                    .otaaV1_0_x((translateOtaaV10X(device)))
+                    .otaaV1_0_x((translateOtaaV10x(device)))
                     .build();
         }
         if (device.getOtaaV11() != null) {
@@ -127,12 +127,12 @@ public class Translator {
                     .otaaV1_1((translateOtaaV11(device)))
                     .build();
         }
-        if (device.getAbpV10X() != null) {
+        if (device.getAbpV10x() != null) {
             return software.amazon.awssdk.services.iotwireless.model.LoRaWANDevice.builder()
                     .devEui(device.getDevEui())
                     .deviceProfileId(device.getDeviceProfileId())
                     .serviceProfileId(device.getServiceProfileId())
-                    .abpV1_0_x((translateAbpV10X(device)))
+                    .abpV1_0_x((translateAbpV10x(device)))
                     .build();
         }
         if (device.getAbpV11() != null) {
@@ -162,23 +162,23 @@ public class Translator {
         return newOtaa;
     }
 
-    static software.amazon.iotwireless.wirelessdevice.OtaaV10X
-    translateOtaaV10XSDK(software.amazon.awssdk.services.iotwireless.model.LoRaWANDevice model) {
+    static software.amazon.iotwireless.wirelessdevice.OtaaV10x
+    translateOtaaV10xSDK(software.amazon.awssdk.services.iotwireless.model.LoRaWANDevice model) {
         software.amazon.awssdk.services.iotwireless.model.OtaaV1_0_x Otaa =
                 model.otaaV1_0_x();
-        software.amazon.iotwireless.wirelessdevice.OtaaV10X newOtaa =
-                new software.amazon.iotwireless.wirelessdevice.OtaaV10X();
+        software.amazon.iotwireless.wirelessdevice.OtaaV10x newOtaa =
+                new software.amazon.iotwireless.wirelessdevice.OtaaV10x();
         newOtaa.setAppKey(Otaa.appKey());
         newOtaa.setAppEui(Otaa.appEui());
         return newOtaa;
     }
 
-    static software.amazon.iotwireless.wirelessdevice.SessionKeysAbpV10X
-    translateSessionKeysAbpV10XSDK(software.amazon.awssdk.services.iotwireless.model.AbpV1_0_x model) {
+    static software.amazon.iotwireless.wirelessdevice.SessionKeysAbpV10x
+    translateSessionKeysAbpV10xSDK(software.amazon.awssdk.services.iotwireless.model.AbpV1_0_x model) {
         software.amazon.awssdk.services.iotwireless.model.SessionKeysAbpV1_0_x sessionKeys =
                 model.sessionKeys();
-        software.amazon.iotwireless.wirelessdevice.SessionKeysAbpV10X newSessionKeys =
-                new software.amazon.iotwireless.wirelessdevice.SessionKeysAbpV10X();
+        software.amazon.iotwireless.wirelessdevice.SessionKeysAbpV10x newSessionKeys =
+                new software.amazon.iotwireless.wirelessdevice.SessionKeysAbpV10x();
         newSessionKeys.setNwkSKey(sessionKeys.nwkSKey());
         newSessionKeys.setAppSKey(sessionKeys.appSKey());
         return newSessionKeys;
@@ -197,14 +197,14 @@ public class Translator {
         return newSessionKeys;
     }
 
-    static software.amazon.iotwireless.wirelessdevice.AbpV10X
-    translateAbpV10XSDK(software.amazon.awssdk.services.iotwireless.model.LoRaWANDevice model) {
+    static software.amazon.iotwireless.wirelessdevice.AbpV10x
+    translateAbpV10xSDK(software.amazon.awssdk.services.iotwireless.model.LoRaWANDevice model) {
         software.amazon.awssdk.services.iotwireless.model.AbpV1_0_x abp =
                 model.abpV1_0_x();
-        software.amazon.iotwireless.wirelessdevice.AbpV10X newAbp =
-                new software.amazon.iotwireless.wirelessdevice.AbpV10X();
+        software.amazon.iotwireless.wirelessdevice.AbpV10x newAbp =
+                new software.amazon.iotwireless.wirelessdevice.AbpV10x();
         newAbp.setDevAddr(abp.devAddr());
-        newAbp.setSessionKeys(translateSessionKeysAbpV10XSDK(abp));
+        newAbp.setSessionKeys(translateSessionKeysAbpV10xSDK(abp));
         return newAbp;
     }
 
@@ -227,13 +227,13 @@ public class Translator {
         newDevice.setDeviceProfileId(device.deviceProfileId());
         newDevice.setServiceProfileId(device.serviceProfileId());
         if (device.otaaV1_0_x() != null) {
-            newDevice.setOtaaV10X(translateOtaaV10XSDK(device));
+            newDevice.setOtaaV10x(translateOtaaV10xSDK(device));
         }
         if (device.otaaV1_1() != null) {
             newDevice.setOtaaV11(translateOtaaV11SDK(device));
         }
         if (device.abpV1_0_x() != null) {
-            newDevice.setAbpV10X(translateAbpV10XSDK(device));
+            newDevice.setAbpV10x(translateAbpV10xSDK(device));
         }
         if (device.abpV1_1() != null) {
             newDevice.setAbpV11(translateAbpV11xSDK(device));
