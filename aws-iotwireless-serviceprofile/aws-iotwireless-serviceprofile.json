@@ -130,7 +130,7 @@
   "readOnlyProperties": [
     "/properties/Id",
     "/properties/Arn",
-    "/properties/LoRaWANGetServiceProfileInfo"
+    "/properties/LoRaWANResponse"
   ],
   "primaryIdentifier": [
     "/properties/Id"
