@@ -28,7 +28,7 @@ public class UpdateHandler extends BaseHandlerStd {
                         return proxy.initiate("AWS-IoTWireless-WirelessGateway::AssociateThing", proxyClient, progress.getResourceModel(), progress.getCallbackContext())
                                 .translateToServiceRequest(Translator::associateWirelessGatewayWithThing)
                                 .makeServiceCall(this::associateThing)
-                                .done(describeKeyResponse -> progress);
+                                .progress();
                     }
                     return progress;
                 })
@@ -37,11 +37,11 @@ public class UpdateHandler extends BaseHandlerStd {
                         return proxy.initiate("AWS-IoTWireless-WirelessGateway::Update", proxyClient, progress.getResourceModel(), progress.getCallbackContext())
                                 .translateToServiceRequest(Translator::translateToFirstUpdateRequest)
                                 .makeServiceCall(this::updateResource)
-                                .done(describeKeyResponse -> progress);
+                                .progress();
                     }
                     return progress;
                 })
-                .then(progress -> ProgressEvent.defaultSuccessHandler(Translator.unsetWriteOnly(model)));
+                .then(progress -> ProgressEvent.defaultSuccessHandler(model));
     }
 
     private UpdateWirelessGatewayResponse updateResource(

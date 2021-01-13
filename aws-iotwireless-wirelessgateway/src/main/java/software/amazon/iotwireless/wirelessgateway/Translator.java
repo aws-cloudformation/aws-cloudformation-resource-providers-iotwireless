@@ -111,17 +111,4 @@ public class Translator {
                 .nextToken(token)
                 .build();
     }
-
-    //Returned at the end of Create, Read, Update handlers to make sure they all return the same thing
-    static ResourceModel unsetWriteOnly(final ResourceModel model) {
-        return ResourceModel.builder()
-                .name(model.getName())
-                .id(model.getId())
-                .description(model.getDescription())
-                .loRaWAN(model.getLoRaWAN())
-                .arn(model.getArn())
-                .thingArn(model.getThingArn())
-                .tags(model.getTags())
-                .build();
-    }
 }

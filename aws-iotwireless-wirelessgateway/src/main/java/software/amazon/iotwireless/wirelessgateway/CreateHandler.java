@@ -35,7 +35,7 @@ public class CreateHandler extends BaseHandlerStd {
                                     model.setArn(response.arn());
                                     return progress;
                                 }))
-                .then(progress -> ProgressEvent.defaultSuccessHandler(Translator.unsetWriteOnly(model)));
+                .then(progress -> ProgressEvent.defaultSuccessHandler(model));
     }
 
     private CreateWirelessGatewayResponse createResource(
