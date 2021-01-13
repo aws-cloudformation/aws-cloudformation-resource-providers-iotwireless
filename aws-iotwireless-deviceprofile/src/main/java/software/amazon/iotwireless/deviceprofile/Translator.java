@@ -100,20 +100,9 @@ public class Translator {
                 .build();
     }
 
-    static ListDeviceProfilesRequest translateToListRequest(final ResourceModel model, final String nextToken) {
+    static ListDeviceProfilesRequest translateToListRequest(final String nextToken) {
         return ListDeviceProfilesRequest.builder()
                 .nextToken(nextToken)
-                .build();
-    }
-
-    //Returned at the end of Create, Read, Update handlers to make sure they all return the same thing
-    static ResourceModel unsetWriteOnly(final ResourceModel model) {
-        return ResourceModel.builder()
-                .arn(model.getArn())
-                .id(model.getId())
-                .name(model.getName())
-                .loRaWAN(model.getLoRaWAN())
-                .tags(model.getTags())
                 .build();
     }
 }

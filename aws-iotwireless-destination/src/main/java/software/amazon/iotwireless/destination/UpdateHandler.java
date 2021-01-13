@@ -4,6 +4,8 @@ import software.amazon.awssdk.services.iotwireless.IotWirelessClient;
 import software.amazon.awssdk.services.iotwireless.model.UpdateDestinationRequest;
 import software.amazon.awssdk.services.iotwireless.model.UpdateDestinationResponse;
 import software.amazon.awssdk.services.iotwireless.model.ResourceNotFoundException;
+import software.amazon.cloudformation.exceptions.CfnNotFoundException;
+import software.amazon.cloudformation.exceptions.CfnNotUpdatableException;
 import software.amazon.cloudformation.proxy.AmazonWebServicesClientProxy;
 import software.amazon.cloudformation.proxy.HandlerErrorCode;
 import software.amazon.cloudformation.proxy.Logger;
@@ -21,20 +23,22 @@ public class UpdateHandler extends BaseHandlerStd {
             final Logger logger) {
 
         final ResourceModel model = request.getDesiredResourceState();
+        final ResourceModel previousModel = request.getPreviousResourceState();
+        // Make sure the user isn't trying to change readOnly or createOnly properties
+        if (previousModel != null) {
+            if (!previousModel.getArn().equals(model.getArn()) ||
+                    !previousModel.getName().equals(model.getName())) {
+                throw new CfnNotUpdatableException(ResourceModel.TYPE_NAME, model.getArn());
+            }
+        }
 
         return ProgressEvent.progress(request.getDesiredResourceState(), callbackContext)
                 .then(progress -> proxy.initiate("AWS-IoTWireless-Destination::Update", proxyClient, progress.getResourceModel(), progress.getCallbackContext())
                         .translateToServiceRequest(Translator::translateToFirstUpdateRequest)
                         .makeServiceCall(this::updateResource)
-                        .handleError((deleteDestinationRequest, exception, client, resourceModel, context) -> {
-                            if (exception instanceof ResourceNotFoundException) {
-                                return ProgressEvent.defaultFailureHandler(exception, HandlerErrorCode.NotFound);
-                            }
-                            throw exception;
-                        })
-                        .done(describeKeyResponse -> progress)
+                        .progress()
                 )
-                .then(progress -> ProgressEvent.defaultSuccessHandler(Translator.unsetWriteOnly(model)));
+                .then(progress -> ProgressEvent.defaultSuccessHandler(model));
     }
 
     private UpdateDestinationResponse updateResource(

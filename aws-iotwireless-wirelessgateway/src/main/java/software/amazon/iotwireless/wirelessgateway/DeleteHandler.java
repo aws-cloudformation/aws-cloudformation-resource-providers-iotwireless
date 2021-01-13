@@ -24,23 +24,11 @@ public class DeleteHandler extends BaseHandlerStd {
                 .then(progress -> proxy.initiate("IoTWirelessGateway::DisassociateThing", proxyClient, model, callbackContext)
                         .translateToServiceRequest(Translator::translateToDisassociateRequest)
                         .makeServiceCall(this::disassociateThing)
-                        .handleError((deleteGatewayRequest, exception, client, resourceModel, context) -> {
-                            if (exception instanceof ResourceNotFoundException) {
-                                return ProgressEvent.defaultFailureHandler(exception, HandlerErrorCode.NotFound);
-                            }
-                            throw exception;
-                        })
                         .progress()
                 )
                 .then(progress -> proxy.initiate("IoTWirelessGateway::Delete", proxyClient, model, callbackContext)
                         .translateToServiceRequest(Translator::translateToDeleteRequest)
                         .makeServiceCall(this::deleteResource)
-                        .handleError((deleteGatewayRequest, exception, client, resourceModel, context) -> {
-                            if (exception instanceof ResourceNotFoundException) {
-                                return ProgressEvent.defaultFailureHandler(exception, HandlerErrorCode.NotFound);
-                            }
-                            throw exception;
-                        })
                         .progress()
                 )
                 .then(progress -> ProgressEvent.defaultSuccessHandler(null));

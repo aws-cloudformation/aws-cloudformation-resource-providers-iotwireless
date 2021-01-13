@@ -92,7 +92,7 @@
       "maxLength": 256
     },
     "LoRaWAN": {
-      "description": "LoRaWANDeviceProfile supports all LoRa specific attributes for service profile for CreateServiceProfile operation",
+      "description": "LoRaWANDeviceProfile supports all LoRa specific attributes for service profile for CreateDeviceProfile operation",
       "$ref": "#/definitions/LoRaWANDeviceProfile"
     },
     "Tags": {

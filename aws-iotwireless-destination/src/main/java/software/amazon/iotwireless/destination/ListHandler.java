@@ -29,13 +29,19 @@ public class ListHandler extends BaseHandlerStd {
 
         ResourceModel model = request.getDesiredResourceState();
 
-        final ListDestinationsRequest listDestinationsRequest = Translator.translateToListRequest(model, request.getNextToken());
+        final ListDestinationsRequest listDestinationsRequest = Translator.translateToListRequest(request.getNextToken());
 
         try {
             ListDestinationsResponse listDestinationsResponse = proxy.injectCredentialsAndInvokeV2(listDestinationsRequest, proxyClient.client()::listDestinations);
 
             final List<ResourceModel> models = listDestinationsResponse.destinationList().stream()
-                    .map(key -> ResourceModel.builder().name(key.name()).build())
+                    .map(destination -> ResourceModel.builder()
+                            .name(destination.name())
+                            .arn(destination.arn())
+                            .expressionType(destination.expressionTypeAsString())
+                            .description(destination.description())
+                            .roleArn(destination.roleArn())
+                            .build())
                     .collect(Collectors.toList());
 
             String nextToken = listDestinationsResponse.nextToken();
@@ -44,10 +50,8 @@ public class ListHandler extends BaseHandlerStd {
                     .nextToken(nextToken)
                     .status(OperationStatus.SUCCESS)
                     .build();
-        } catch (final AccessDeniedException e) {
-            throw new CfnAccessDeniedException(ResourceModel.TYPE_NAME, e);
-        } catch (final AwsServiceException e) {
-            throw new CfnGeneralServiceException(ResourceModel.TYPE_NAME, e);
+        } catch (final Exception e) {
+            throw handleException(e, listDestinationsRequest);
         }
     }
 }

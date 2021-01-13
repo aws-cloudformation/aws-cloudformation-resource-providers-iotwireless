@@ -29,32 +29,20 @@ public class UpdateHandler extends BaseHandlerStd {
                         return proxy.initiate("AWS-IoTWireless-WirelessDevice::AssociateThing", proxyClient, progress.getResourceModel(), progress.getCallbackContext())
                                 .translateToServiceRequest(Translator::associateWirelessDeviceWithThing)
                                 .makeServiceCall(this::associateThing)
-                                .handleError((deleteDestinationRequest, exception, client, resourceModel, context) -> {
-                                    if (exception instanceof ResourceNotFoundException) {
-                                        return ProgressEvent.defaultFailureHandler(exception, HandlerErrorCode.NotFound);
-                                    }
-                                    throw exception;
-                                })
                                 .done(describeKeyResponse -> progress);
                     }
                     return progress;
                 })
                 .then(progress -> {
-                    if (model.getName() != null || model.getDescription() != null || model.getId() != null) {
-                        return proxy.initiate("AWS-IoTWireless-WirelessDevice::Update", proxyClient, progress.getResourceModel(), progress.getCallbackContext())
+                    if (model.getName() != null || model.getDescription() != null || model.getId() != null || model.getLoRaWAN() != null) {
+                        return proxy.initiate("AWS-IoTWireless-WirelessGateway::Update", proxyClient, progress.getResourceModel(), progress.getCallbackContext())
                                 .translateToServiceRequest(Translator::translateToFirstUpdateRequest)
                                 .makeServiceCall(this::updateResource)
-                                .handleError((deleteDestinationRequest, exception, client, resourceModel, context) -> {
-                                    if (exception instanceof ResourceNotFoundException) {
-                                        return ProgressEvent.defaultFailureHandler(exception, HandlerErrorCode.NotFound);
-                                    }
-                                    throw exception;
-                                })
-                                .done(describeKeyResponse -> progress);
+                                .progress();
                     }
                     return progress;
                 })
-                .then(progress -> ProgressEvent.defaultSuccessHandler(Translator.unsetWriteOnly(model)));
+                .then(progress -> ProgressEvent.defaultSuccessHandler(model));
     }
 
     private UpdateWirelessDeviceResponse updateResource(

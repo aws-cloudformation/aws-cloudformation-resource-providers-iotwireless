@@ -37,7 +37,7 @@ public class ReadHandler extends BaseHandlerStd {
                         })
                 )
                 .then(progress -> {
-                    return ProgressEvent.defaultSuccessHandler(Translator.unsetWriteOnly(model));
+                    return ProgressEvent.defaultSuccessHandler(model);
                 });
     }
 
