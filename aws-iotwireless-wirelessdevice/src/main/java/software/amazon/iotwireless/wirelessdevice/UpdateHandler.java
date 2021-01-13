@@ -55,7 +55,7 @@ public class UpdateHandler extends BaseHandlerStd {
                                     model.setThingArn(getResponse.thingArn());
                                     model.setThingName(getResponse.thingName());
                                     return ProgressEvent.progress(model, callbackContext);
-                                })
+                                });
                     })
                 .then(progress -> {
                         return ProgressEvent.defaultSuccessHandler(model);
