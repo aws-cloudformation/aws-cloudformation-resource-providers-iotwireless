@@ -26,12 +26,6 @@ public class ReadHandler extends BaseHandlerStd {
                 .then(progress -> proxy.initiate("AWS-IoTWireless-Destination::Read", proxyClient, request.getDesiredResourceState(), callbackContext)
                         .translateToServiceRequest(Translator::translateToReadRequest)
                         .makeServiceCall(this::getResource)
-                        .handleError((deleteDestinationRequest, exception, client, resourceModel, context) -> {
-                            if (exception instanceof ResourceNotFoundException) {
-                                return ProgressEvent.defaultFailureHandler(exception, HandlerErrorCode.NotFound);
-                            }
-                            throw exception;
-                        })
                         .done(response -> {
                             model.setName(response.name());
                             model.setArn(response.arn());
@@ -43,7 +37,7 @@ public class ReadHandler extends BaseHandlerStd {
                         })
                 )
                 .then(progress -> {
-                    return ProgressEvent.defaultSuccessHandler(Translator.unsetWriteOnly(model));
+                    return ProgressEvent.defaultSuccessHandler(model);
                 });
     }
 

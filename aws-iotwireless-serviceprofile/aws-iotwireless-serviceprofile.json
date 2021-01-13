@@ -129,7 +129,8 @@
   "required": [],
   "readOnlyProperties": [
     "/properties/Id",
-    "/properties/Arn"
+    "/properties/Arn",
+    "/properties/LoRaWANGetServiceProfileInfo"
   ],
   "primaryIdentifier": [
     "/properties/Id"

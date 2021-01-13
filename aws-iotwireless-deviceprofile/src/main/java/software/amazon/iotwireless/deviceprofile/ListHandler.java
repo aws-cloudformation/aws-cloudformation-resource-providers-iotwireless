@@ -29,13 +29,17 @@ public class ListHandler extends BaseHandlerStd {
 
         final ResourceModel model = request.getDesiredResourceState();
 
-        final ListDeviceProfilesRequest listDeviceProfilesRequest = Translator.translateToListRequest(model, request.getNextToken());
+        final ListDeviceProfilesRequest listDeviceProfilesRequest = Translator.translateToListRequest(request.getNextToken());
 
         try {
             ListDeviceProfilesResponse listDeviceProfilesResponse = proxy.injectCredentialsAndInvokeV2(listDeviceProfilesRequest, proxyClient.client()::listDeviceProfiles);
 
             final List<ResourceModel> models = listDeviceProfilesResponse.deviceProfileList().stream()
-                    .map(deviceProfile -> ResourceModel.builder().id(deviceProfile.id()).build())
+                    .map(deviceProfile -> ResourceModel.builder()
+                            .id(deviceProfile.id())
+                            .name(deviceProfile.name())
+                            .arn(deviceProfile.arn())
+                            .build())
                     .collect(Collectors.toList());
 
             return ProgressEvent.<ResourceModel, CallbackContext>builder()
@@ -43,10 +47,8 @@ public class ListHandler extends BaseHandlerStd {
                     .nextToken(listDeviceProfilesResponse.nextToken())
                     .status(OperationStatus.SUCCESS)
                     .build();
-        } catch (final AccessDeniedException e) {
-            throw new CfnAccessDeniedException(ResourceModel.TYPE_NAME, e);
-        } catch (final AwsServiceException e) {
-            throw new CfnGeneralServiceException(ResourceModel.TYPE_NAME, e);
+        } catch (final Exception e) {
+            throw handleException(e, listDeviceProfilesRequest);
         }
     }
 }

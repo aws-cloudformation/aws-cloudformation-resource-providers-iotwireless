@@ -1,9 +1,11 @@
-package software.amazon.iotwireless.wirelessdevice;
+package software.amazon.iotwireless.serviceprofile;
 
 import software.amazon.awssdk.services.iotwireless.IotWirelessClient;
-import software.amazon.awssdk.services.iotwireless.model.GetWirelessDeviceRequest;
-import software.amazon.awssdk.services.iotwireless.model.GetWirelessDeviceResponse;
+import software.amazon.awssdk.services.iotwireless.model.GetServiceProfileRequest;
+import software.amazon.awssdk.services.iotwireless.model.GetServiceProfileResponse;
+import software.amazon.awssdk.services.iotwireless.model.ResourceNotFoundException;
 import software.amazon.cloudformation.proxy.AmazonWebServicesClientProxy;
+import software.amazon.cloudformation.proxy.HandlerErrorCode;
 import software.amazon.cloudformation.proxy.Logger;
 import software.amazon.cloudformation.proxy.ProxyClient;
 import software.amazon.cloudformation.proxy.ProgressEvent;
@@ -19,20 +21,16 @@ public class ReadHandler extends BaseHandlerStd {
             final Logger logger) {
 
         final ResourceModel model = request.getDesiredResourceState();
-        return ProgressEvent.progress(request.getDesiredResourceState(), callbackContext)
-                .then(progress -> proxy.initiate("AWS-IoTWireless-WirelessDevice::Read", proxyClient, request.getDesiredResourceState(), callbackContext)
+
+        return ProgressEvent.progress(model, callbackContext)
+                .then(progress -> proxy.initiate("AWS-IoTWireless-ServiceProfile::Read", proxyClient, model, callbackContext)
                         .translateToServiceRequest(Translator::translateToReadRequest)
                         .makeServiceCall(this::getResource)
                         .done(getResponse -> {
                             model.setId(getResponse.id());
                             model.setArn(getResponse.arn());
-                            model.setType(getResponse.typeAsString());
                             model.setName(getResponse.name());
-                            model.setDescription(getResponse.description());
-                            model.setDestinationName(getResponse.destinationName());
-                            model.setLoRaWAN(Translator.translateToLoRaWANDeviceSDK(getResponse.loRaWAN()));
-                            model.setThingArn(getResponse.thingArn());
-                            model.setThingName(getResponse.thingName());
+                            model.setLoRaWANResponse(Translator.translateFromLoRaSDK(getResponse.loRaWAN()));
                             return ProgressEvent.progress(model, callbackContext);
                         })
                 )
@@ -41,12 +39,12 @@ public class ReadHandler extends BaseHandlerStd {
                 });
     }
 
-    private GetWirelessDeviceResponse getResource(
-            GetWirelessDeviceRequest getRequest,
+    private GetServiceProfileResponse getResource(
+            GetServiceProfileRequest getRequest,
             final ProxyClient<IotWirelessClient> proxyClient) {
-        GetWirelessDeviceResponse response;
+        GetServiceProfileResponse response;
         try {
-            response = proxyClient.injectCredentialsAndInvokeV2(getRequest, proxyClient.client()::getWirelessDevice);
+            response = proxyClient.injectCredentialsAndInvokeV2(getRequest, proxyClient.client()::getServiceProfile);
         } catch (final Exception e) {
             throw handleException(e, getRequest);
         }

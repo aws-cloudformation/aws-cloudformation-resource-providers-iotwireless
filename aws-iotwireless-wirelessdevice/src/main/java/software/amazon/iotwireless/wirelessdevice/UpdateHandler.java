@@ -44,17 +44,23 @@ public class UpdateHandler extends BaseHandlerStd {
                         return proxy.initiate("AWS-IoTWireless-WirelessDevice::Update", proxyClient, progress.getResourceModel(), progress.getCallbackContext())
                                 .translateToServiceRequest(Translator::translateToFirstUpdateRequest)
                                 .makeServiceCall(this::updateResource)
-                                .handleError((deleteDestinationRequest, exception, client, resourceModel, context) -> {
-                                    if (exception instanceof ResourceNotFoundException) {
-                                        return ProgressEvent.defaultFailureHandler(exception, HandlerErrorCode.NotFound);
-                                    }
-                                    throw exception;
+                                .done(getResponse -> {
+                                    model.setId(getResponse.id());
+                                    model.setArn(getResponse.arn());
+                                    model.setType(getResponse.typeAsString());
+                                    model.setName(getResponse.name());
+                                    model.setDescription(getResponse.description());
+                                    model.setDestinationName(getResponse.destinationName());
+                                    model.setLoRaWAN(Translator.translateToLoRaWANDeviceSDK(getResponse.loRaWAN()));
+                                    model.setThingArn(getResponse.thingArn());
+                                    model.setThingName(getResponse.thingName());
+                                    return ProgressEvent.progress(model, callbackContext);
                                 })
-                                .done(describeKeyResponse -> progress);
-                    }
-                    return progress;
-                })
-                .then(progress -> ProgressEvent.defaultSuccessHandler(Translator.unsetWriteOnly(model)));
+                    })
+                .then(progress -> {
+                        return ProgressEvent.defaultSuccessHandler(model);
+                    });
+                }
     }
 
     private UpdateWirelessDeviceResponse updateResource(
