@@ -13,6 +13,7 @@ import software.amazon.awssdk.services.iotwireless.model.ThrottlingException;
 import software.amazon.awssdk.services.iotwireless.model.ValidationException;
 import software.amazon.cloudformation.exceptions.CfnAccessDeniedException;
 import software.amazon.cloudformation.exceptions.CfnGeneralServiceException;
+import software.amazon.cloudformation.exceptions.ResourceAlreadyExistsException;
 import software.amazon.cloudformation.exceptions.CfnResourceConflictException;
 import software.amazon.cloudformation.exceptions.CfnInternalFailureException;
 import software.amazon.cloudformation.exceptions.CfnThrottlingException;
@@ -71,7 +72,7 @@ public abstract class BaseHandlerStd extends BaseHandler<CallbackContext> {
         if (error instanceof ResourceNotFoundException) {
             return new CfnNotFoundException(ResourceModel.TYPE_NAME, extractResourceIdFromRequests(request));
         } if (error instanceof ConflictException) {
-            return new CfnResourceConflictException(error);
+            return new ResourceAlreadyExistsException(error);
         } if (error instanceof InternalServerException) {
             return new CfnInternalFailureException(error);
         } if (error instanceof ThrottlingException) {

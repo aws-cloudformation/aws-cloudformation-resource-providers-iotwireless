@@ -17,6 +17,17 @@ import software.amazon.awssdk.services.iotwireless.model.UpdateWirelessDeviceReq
 
 public class Translator {
 
+    //Translate from LoRaWANListDevice to LoRaWAN
+    static software.amazon.iotwireless.wirelessdevice.LoRaWANDevice
+    translateToLoRaWAN(software.amazon.awssdk.services.iotwireless.model.LoRaWANListDevice device) {
+        if (device == null) {
+            return null;
+        }
+        return software.amazon.iotwireless.wirelessdevice.LoRaWANDevice.builder()
+                .devEui(device.devEui())
+                .build();
+    }
+
     //Translate from ResourceModel OtaaV11 to SDK OtaaV1_1
     static software.amazon.awssdk.services.iotwireless.model.OtaaV1_1
     translateOtaaV11(software.amazon.iotwireless.wirelessdevice.LoRaWANDevice model) {
@@ -286,24 +297,9 @@ public class Translator {
                 .build();
     }
 
-    static ListWirelessDevicesRequest translateToListRequest(final ResourceModel model, final String nextToken) {
+    static ListWirelessDevicesRequest translateToListRequest(final String nextToken) {
         return ListWirelessDevicesRequest.builder()
                 .nextToken(nextToken)
                 .build();
     }
-
-    //Returned at the end of Create, Read, Update handlers to make sure they all return the same thing
-    static ResourceModel unsetWriteOnly(final ResourceModel model) {
-        return ResourceModel.builder()
-                .type(model.getType())
-                .name(model.getName())
-                .id(model.getId())
-                .description(model.getDescription())
-                .destinationName(model.getDestinationName())
-                .loRaWAN(model.getLoRaWAN())
-                .arn(model.getArn())
-                .thingArn(model.getThingArn())
-                .build();
-    }
-
 }

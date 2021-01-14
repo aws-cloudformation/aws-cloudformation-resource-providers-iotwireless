@@ -1,0 +1,40 @@
+[2021-01-13T22:23:14Z] DEBUG    - Logging set up successfully
+[2021-01-13T22:23:14Z] DEBUG    - Running test: Namespace(cloudformation_endpoint_url=None, command=<function test at 0x1035cf790>, docker_image=None, endpoint='http://127.0.0.1:3001', enforce_timeout='30', function_name='TypeFunction', passed_to_pytest=[], region='us-east-1', role_arn=None, subparser_name='test', verbose=1, version=False)
+[2021-01-13T22:23:14Z] DEBUG    - Root directory: /Users/moirah/aws-cloudformation-resource-providers-iotwireless
+[2021-01-13T22:23:14Z] DEBUG    - Loading project file '/Users/moirah/aws-cloudformation-resource-providers-iotwireless/.rpdk-config'
+[2021-01-13T22:23:14Z] DEBUG    - Project file not found. Have you run 'init'?
+Traceback (most recent call last):
+  File "/Users/moirah/Library/Python/3.8/lib/python/site-packages/rpdk/core/project.py", line 411, in load
+    self.load_settings()
+  File "/Users/moirah/Library/Python/3.8/lib/python/site-packages/rpdk/core/project.py", line 188, in load_settings
+    with self.settings_path.open("r", encoding="utf-8") as f:
+  File "/usr/local/Cellar/python@3.8/3.8.6_2/Frameworks/Python.framework/Versions/3.8/lib/python3.8/pathlib.py", line 1221, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "/usr/local/Cellar/python@3.8/3.8.6_2/Frameworks/Python.framework/Versions/3.8/lib/python3.8/pathlib.py", line 1077, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/moirah/aws-cloudformation-resource-providers-iotwireless/.rpdk-config'
+[2021-01-13T22:23:14Z] DEBUG    - Caught exit recommendation
+Traceback (most recent call last):
+  File "/Users/moirah/Library/Python/3.8/lib/python/site-packages/rpdk/core/project.py", line 411, in load
+    self.load_settings()
+  File "/Users/moirah/Library/Python/3.8/lib/python/site-packages/rpdk/core/project.py", line 188, in load_settings
+    with self.settings_path.open("r", encoding="utf-8") as f:
+  File "/usr/local/Cellar/python@3.8/3.8.6_2/Frameworks/Python.framework/Versions/3.8/lib/python3.8/pathlib.py", line 1221, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "/usr/local/Cellar/python@3.8/3.8.6_2/Frameworks/Python.framework/Versions/3.8/lib/python3.8/pathlib.py", line 1077, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/moirah/aws-cloudformation-resource-providers-iotwireless/.rpdk-config'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/moirah/Library/Python/3.8/lib/python/site-packages/rpdk/core/cli.py", line 100, in main
+    args.command(args)
+  File "/Users/moirah/Library/Python/3.8/lib/python/site-packages/rpdk/core/test.py", line 181, in test
+    project.load()
+  File "/Users/moirah/Library/Python/3.8/lib/python/site-packages/rpdk/core/project.py", line 413, in load
+    self._raise_invalid_project(
+  File "/Users/moirah/Library/Python/3.8/lib/python/site-packages/rpdk/core/project.py", line 183, in _raise_invalid_project
+    raise InvalidProjectError(msg) from e
+rpdk.core.exceptions.InvalidProjectError: Project file not found. Have you run 'init'?
+[2021-01-13T22:23:14Z] CRITICAL - Project file not found. Have you run 'init'?
