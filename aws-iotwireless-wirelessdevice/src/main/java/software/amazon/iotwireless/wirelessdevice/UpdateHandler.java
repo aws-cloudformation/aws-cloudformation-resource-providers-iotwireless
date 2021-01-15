@@ -29,7 +29,7 @@ public class UpdateHandler extends BaseHandlerStd {
                         return proxy.initiate("AWS-IoTWireless-WirelessDevice::AssociateThing", proxyClient, progress.getResourceModel(), progress.getCallbackContext())
                                 .translateToServiceRequest(Translator::associateWirelessDeviceWithThing)
                                 .makeServiceCall(this::associateThing)
-                                .done(describeKeyResponse -> progress);
+                                .progress();
                     }
                     return progress;
                 })

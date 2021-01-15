@@ -28,13 +28,21 @@ public class ListHandler extends BaseHandlerStd {
             final Logger logger) {
         ResourceModel model = request.getDesiredResourceState();
 
-        final ListWirelessDevicesRequest listWirelessDevicesRequest = Translator.translateToListRequest(model, request.getNextToken());
+        final ListWirelessDevicesRequest listWirelessDevicesRequest = Translator.translateToListRequest(request.getNextToken());
 
         try {
             ListWirelessDevicesResponse listWirelessDevicesResponse = proxy.injectCredentialsAndInvokeV2(listWirelessDevicesRequest, proxyClient.client()::listWirelessDevices);
 
             final List<ResourceModel> models = listWirelessDevicesResponse.wirelessDeviceList().stream()
-                    .map(wirelessDevice -> ResourceModel.builder().id(wirelessDevice.id()).build())
+                    .map(device -> ResourceModel.builder()
+                            .type(device.typeAsString())
+                            .name(device.name())
+                            .id(device.id())
+                            .destinationName(device.destinationName())
+                            .loRaWAN(Translator.translateToLoRaWAN(device.loRaWAN()))
+                            .arn(device.arn())
+                            .lastUplinkReceivedAt(device.lastUplinkReceivedAt())
+                            .build())
                     .collect(Collectors.toList());
 
             return ProgressEvent.<ResourceModel, CallbackContext>builder()
@@ -42,10 +50,8 @@ public class ListHandler extends BaseHandlerStd {
                     .nextToken(listWirelessDevicesResponse.nextToken())
                     .status(OperationStatus.SUCCESS)
                     .build();
-        } catch (final AccessDeniedException e) {
-            throw new CfnAccessDeniedException(ResourceModel.TYPE_NAME, e);
-        } catch (final AwsServiceException e) {
-            throw new CfnGeneralServiceException(ResourceModel.TYPE_NAME, e);
+        } catch (final Exception e) {
+            throw handleException(e, listWirelessDevicesRequest);
         }
     }
 }
