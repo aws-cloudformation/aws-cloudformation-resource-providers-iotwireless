@@ -90,7 +90,7 @@
     "LoRaWAN"
   ],
   "readOnlyProperties": [
-    "/properties/ThingArn",
+    "/properties/ThingName",
     "/properties/Id",
     "/properties/Arn"
   ],

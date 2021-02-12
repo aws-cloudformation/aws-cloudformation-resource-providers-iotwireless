@@ -99,7 +99,7 @@
       "maxLength": 256
     },
     "LoRaWAN": {
-      "description": "LoRaServiceProfile supports all LoRa specific attributes for service profile for CreateServiceProfile operation",
+      "description": "LoRaWAN supports all LoRa specific attributes for service profile for CreateServiceProfile operation",
       "$ref": "#/definitions/LoRaWANServiceProfile"
     },
     "LoRaWANResponse": {
