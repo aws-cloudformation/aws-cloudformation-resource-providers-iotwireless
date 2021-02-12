@@ -106,4 +106,15 @@ public class Translator {
                 .nextToken(nextToken)
                 .build();
     }
+
+    //Returned at the end of Create, Read, Update handlers to make sure they all return the same thing
+    static ResourceModel setModel(final ResourceModel model) {
+        return ResourceModel.builder()
+                .arn(model.getArn())
+                .id(model.getId())
+                .name(model.getName())
+                .loRaWAN(model.getLoRaWAN())
+                .tags(model.getTags())
+                .build();
+    }
 }

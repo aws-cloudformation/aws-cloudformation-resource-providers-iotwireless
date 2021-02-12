@@ -26,9 +26,8 @@ public class UpdateHandler extends BaseHandlerStd {
         final ResourceModel previousModel = request.getPreviousResourceState();
         // Make sure the user isn't trying to change readOnly or createOnly properties
         if (previousModel != null) {
-            if (!previousModel.getArn().equals(model.getArn()) ||
-                    !previousModel.getName().equals(model.getName())) {
-                throw new CfnNotUpdatableException(ResourceModel.TYPE_NAME, model.getArn());
+            if (!previousModel.getName().equals(model.getName())) {
+                throw new CfnNotUpdatableException(ResourceModel.TYPE_NAME, model.getName());
             }
         }
 
@@ -38,7 +37,7 @@ public class UpdateHandler extends BaseHandlerStd {
                         .makeServiceCall(this::updateResource)
                         .progress()
                 )
-                .then(progress -> ProgressEvent.defaultSuccessHandler(model));
+                .then(progress -> ProgressEvent.defaultSuccessHandler(Translator.setModel(model)));
     }
 
     private UpdateDestinationResponse updateResource(
@@ -54,3 +53,4 @@ public class UpdateHandler extends BaseHandlerStd {
 
     }
 }
+

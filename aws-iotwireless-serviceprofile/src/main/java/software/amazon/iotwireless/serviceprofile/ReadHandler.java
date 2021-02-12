@@ -25,14 +25,8 @@ public class ReadHandler extends BaseHandlerStd {
                         proxy.initiate("AWS-IoTWireless-ServiceProfile::Read", proxyClient, model, callbackContext)
                                 .translateToServiceRequest(Translator::translateToReadRequest)
                                 .makeServiceCall(this::getResource)
-                                .done((response) -> {
-                                    model.setId(response.id());
-                                    model.setArn(response.arn());
-                                    model.setName(response.name());
-                                    model.setLoRaWANResponse(Translator.translateFromLoRaSDK(response.loRaWAN()));
-                                    return progress;
-                                }))
-                .then(progress -> ProgressEvent.defaultSuccessHandler(model));
+                                .progress())
+                .then(progress -> ProgressEvent.defaultSuccessHandler(Translator.setModel(model)));
     }
 
     private GetServiceProfileResponse getResource(

@@ -14,7 +14,6 @@ import software.amazon.awssdk.services.iotwireless.model.ValidationException;
 import software.amazon.cloudformation.exceptions.CfnAccessDeniedException;
 import software.amazon.cloudformation.exceptions.CfnGeneralServiceException;
 import software.amazon.cloudformation.exceptions.ResourceAlreadyExistsException;
-import software.amazon.cloudformation.exceptions.CfnResourceConflictException;
 import software.amazon.cloudformation.exceptions.CfnInternalFailureException;
 import software.amazon.cloudformation.exceptions.CfnThrottlingException;
 import software.amazon.cloudformation.exceptions.CfnInvalidRequestException;

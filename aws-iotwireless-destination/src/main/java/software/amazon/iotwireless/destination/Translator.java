@@ -74,4 +74,15 @@ public class Translator {
                 .build();
     }
 
+    //Returned at the end of Create, Read, Update handlers to make sure they all return the same thing
+    static ResourceModel setModel(final ResourceModel model) {
+        return ResourceModel.builder()
+                .name(model.getName())
+                .expressionType(model.getExpressionType())
+                .expression(model.getExpression())
+                .description(model.getDescription())
+                .roleArn(model.getRoleArn())
+                .tags(model.getTags())
+                .build();
+    }
 }
