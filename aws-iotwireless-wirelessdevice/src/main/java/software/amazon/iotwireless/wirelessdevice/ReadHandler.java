@@ -23,9 +23,22 @@ public class ReadHandler extends BaseHandlerStd {
                 .then(progress -> proxy.initiate("AWS-IoTWireless-WirelessDevice::Read", proxyClient, request.getDesiredResourceState(), callbackContext)
                         .translateToServiceRequest(Translator::translateToReadRequest)
                         .makeServiceCall(this::getResource)
-                        .progress()
+                        .done(getResponse -> {
+                            model.setId(getResponse.id());
+                            model.setArn(getResponse.arn());
+                            model.setType(getResponse.typeAsString());
+                            model.setName(getResponse.name());
+                            model.setDescription(getResponse.description());
+                            model.setDestinationName(getResponse.destinationName());
+                            model.setLoRaWAN(Translator.translateToLoRaWANDeviceSDK(getResponse.loRaWAN()));
+                            model.setThingArn(getResponse.thingArn());
+                            model.setThingName(getResponse.thingName());
+                            return ProgressEvent.progress(model, callbackContext);
+                        })
                 )
-                .then(progress -> ProgressEvent.defaultSuccessHandler(Translator.setModel(model)));
+                .then(progress -> {
+                    return ProgressEvent.defaultSuccessHandler(model);
+                });
     }
 
     private GetWirelessDeviceResponse getResource(

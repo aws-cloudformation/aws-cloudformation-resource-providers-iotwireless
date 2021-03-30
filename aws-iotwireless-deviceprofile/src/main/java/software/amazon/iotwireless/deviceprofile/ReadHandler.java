@@ -30,9 +30,11 @@ public class ReadHandler extends BaseHandlerStd {
                                     model.setArn(response.arn());
                                     model.setName(response.name());
                                     model.setLoRaWAN(Translator.translateFromLoRaSDK(response.loRaWAN()));
-                                    return progress;
+                                    return ProgressEvent.progress(model, callbackContext);
                                 }))
-                .then(progress -> ProgressEvent.defaultSuccessHandler(Translator.setModel(model)));
+                .then(progress -> {
+                    return ProgressEvent.defaultSuccessHandler(model);
+                });
     }
 
     private GetDeviceProfileResponse getResource(

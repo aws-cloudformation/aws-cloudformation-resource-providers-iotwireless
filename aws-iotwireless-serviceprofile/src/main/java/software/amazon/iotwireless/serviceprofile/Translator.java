@@ -36,10 +36,10 @@ public class Translator {
     }
 
     //Translate from SDK LoRaWANServiceProfile to ResourceModel LoRaWANServiceProfile
-    static software.amazon.iotwireless.serviceprofile.LoRaWANGetServiceProfileInfo
+    static software.amazon.iotwireless.serviceprofile.LoRaWANServiceProfile
     translateFromLoRaSDK(final software.amazon.awssdk.services.iotwireless.model.LoRaWANGetServiceProfileInfo profile) {
-        software.amazon.iotwireless.serviceprofile.LoRaWANGetServiceProfileInfo newProfile
-                = new software.amazon.iotwireless.serviceprofile.LoRaWANGetServiceProfileInfo();
+        software.amazon.iotwireless.serviceprofile.LoRaWANServiceProfile newProfile
+                = new software.amazon.iotwireless.serviceprofile.LoRaWANServiceProfile();
         newProfile.setUlRate(profile.ulRate());
         newProfile.setUlBucketSize(profile.ulBucketSize());
         newProfile.setUlRatePolicy(profile.ulRatePolicy());
@@ -68,10 +68,10 @@ public class Translator {
         if ( model.getLoRaWAN() == null ) {
             return null;
         }
-        software.amazon.iotwireless.serviceprofile.LoRaWANServiceProfile gateway =
+        software.amazon.iotwireless.serviceprofile.LoRaWANServiceProfile profile =
                 model.getLoRaWAN();
         return software.amazon.awssdk.services.iotwireless.model.LoRaWANServiceProfile.builder()
-                .addGwMetadata(gateway.getAddGwMetadata())
+                .addGwMetadata(profile.getAddGwMetadata())
                 .build();
     }
 
