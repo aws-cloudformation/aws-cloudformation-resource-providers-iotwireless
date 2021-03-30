@@ -36,7 +36,7 @@ public class CreateHandler extends BaseHandlerStd {
                                     model.setArn(response.arn());
                                     return progress;
                                 }))
-                .then(progress -> ProgressEvent.defaultSuccessHandler(model));
+                .then(progress -> ProgressEvent.defaultSuccessHandler(Translator.setModel(model)));
     }
 
     private CreateDestinationResponse createResource(

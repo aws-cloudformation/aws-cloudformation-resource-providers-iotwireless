@@ -3,7 +3,7 @@
   "description": "An example resource schema demonstrating some basic constructs and validation rules.",
   "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
   "definitions": {
-    "LoRaWANGetServiceProfileInfo": {
+    "LoRaWANServiceProfile": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -66,15 +66,6 @@
         }
       }
     },
-    "LoRaWANServiceProfile": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "AddGwMetadata": {
-          "type": "boolean"
-        }
-      }
-    },
     "Tag": {
       "type": "object",
       "properties": {
@@ -99,12 +90,8 @@
       "maxLength": 256
     },
     "LoRaWAN": {
-      "description": "LoRaServiceProfile supports all LoRa specific attributes for service profile for CreateServiceProfile operation",
+      "description": "LoRaWAN supports all LoRa specific attributes for service profile for CreateServiceProfile operation",
       "$ref": "#/definitions/LoRaWANServiceProfile"
-    },
-    "LoRaWANResponse": {
-      "description": "Service Profile returned on Get call, not needed for create",
-      "$ref": "#/definitions/LoRaWANGetServiceProfileInfo"
     },
     "Tags": {
       "description": "A list of key-value pairs that contain metadata for the service profile.",
@@ -130,7 +117,24 @@
   "readOnlyProperties": [
     "/properties/Id",
     "/properties/Arn",
-    "/properties/LoRaWANResponse"
+    "/properties/LoRaWAN/UlRate",
+    "/properties/LoRaWAN/UlBucketSize",
+    "/properties/LoRaWAN/UlRatePolicy",
+    "/properties/LoRaWAN/DlRate",
+    "/properties/LoRaWAN/DlBucketSize",
+    "/properties/LoRaWAN/DlRatePolicy",
+    "/properties/LoRaWAN/DevStatusReqFreq",
+    "/properties/LoRaWAN/ReportDevStatusBattery",
+    "/properties/LoRaWAN/ReportDevStatusMargin",
+    "/properties/LoRaWAN/DrMin",
+    "/properties/LoRaWAN/DrMax",
+    "/properties/LoRaWAN/ChannelMask",
+    "/properties/LoRaWAN/PrAllowed",
+    "/properties/LoRaWAN/HrAllowed",
+    "/properties/LoRaWAN/RaAllowed",
+    "/properties/LoRaWAN/NwkGeoLoc",
+    "/properties/LoRaWAN/TargetPer",
+    "/properties/LoRaWAN/MinGwDiversity"
   ],
   "primaryIdentifier": [
     "/properties/Id"

@@ -29,10 +29,12 @@ public class ReadHandler extends BaseHandlerStd {
                                     model.setId(response.id());
                                     model.setArn(response.arn());
                                     model.setName(response.name());
-                                    model.setLoRaWANResponse(Translator.translateFromLoRaSDK(response.loRaWAN()));
-                                    return progress;
+                                    model.setLoRaWAN(Translator.translateFromLoRaSDK(response.loRaWAN()));
+                                    return ProgressEvent.progress(model, callbackContext);
                                 }))
-                .then(progress -> ProgressEvent.defaultSuccessHandler(model));
+                .then(progress -> {
+                    return ProgressEvent.defaultSuccessHandler(model);
+                });
     }
 
     private GetServiceProfileResponse getResource(

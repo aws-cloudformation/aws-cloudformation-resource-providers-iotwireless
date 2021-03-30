@@ -36,7 +36,7 @@
       "type": "string",
       "enum": [
         "RuleName",
-        "ExpressionType"
+        "MqttTopic"
       ]
     },
     "Description": {

@@ -22,8 +22,22 @@ public class CreateHandler extends BaseHandlerStd {
         ResourceModel model = request.getDesiredResourceState();
         String clientRequestToken = request.getClientRequestToken();
 
-        if ( model.getArn() != null ) {
+        if ( model.getArn() != null || model.getId() != null ) {
             throw new CfnInvalidRequestException("Attempting to set a ReadOnly Property.");
+        }
+
+        if ( model.getLoRaWAN() != null ) {
+            if (model.getLoRaWAN().getUlRate() != null || model.getLoRaWAN().getUlBucketSize() != null ||
+                model.getLoRaWAN().getUlRatePolicy() != null || model.getLoRaWAN().getDlRate() != null ||
+                model.getLoRaWAN().getDlBucketSize() != null || model.getLoRaWAN().getDlRatePolicy() != null ||
+                model.getLoRaWAN().getDevStatusReqFreq() != null || model.getLoRaWAN().getReportDevStatusBattery() != null ||
+                model.getLoRaWAN().getReportDevStatusMargin() != null || model.getLoRaWAN().getDrMin() != null ||
+                model.getLoRaWAN().getDrMax() != null || model.getLoRaWAN().getChannelMask() != null ||
+                model.getLoRaWAN().getPrAllowed() != null || model.getLoRaWAN().getHrAllowed() != null ||
+                model.getLoRaWAN().getRaAllowed() != null || model.getLoRaWAN().getNwkGeoLoc() != null ||
+                model.getLoRaWAN().getTargetPer() != null || model.getLoRaWAN().getMinGwDiversity() != null ) {
+                throw new CfnInvalidRequestException("Attempting to set a ReadOnly Property.");
+            }
         }
 
         return ProgressEvent.progress(model, callbackContext)
@@ -36,7 +50,7 @@ public class CreateHandler extends BaseHandlerStd {
                                     model.setArn(response.arn());
                                     return progress;
                                 }))
-                .then(progress -> ProgressEvent.defaultSuccessHandler(model));
+                .then(progress -> ProgressEvent.defaultSuccessHandler(Translator.setModel(model)));
     }
 
     private CreateServiceProfileResponse createResource(

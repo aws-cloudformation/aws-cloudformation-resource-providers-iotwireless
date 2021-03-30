@@ -260,7 +260,6 @@
   ],
   "readOnlyProperties": [
     "/properties/ThingName",
-    "/properties/ThingArn",
     "/properties/Id",
     "/properties/Arn"
   ],

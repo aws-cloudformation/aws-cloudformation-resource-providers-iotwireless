@@ -39,6 +39,7 @@ public class ReadHandler extends BaseHandlerStd {
                 .then(progress -> {
                     return ProgressEvent.defaultSuccessHandler(model);
                 });
+
     }
 
     private GetDestinationResponse getResource(
