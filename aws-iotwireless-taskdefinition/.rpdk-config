@@ -1,0 +1,19 @@
+{
+    "artifact_type": "RESOURCE",
+    "typeName": "AWS::IoTWireless::TaskDefinition",
+    "language": "java",
+    "runtime": "java8",
+    "entrypoint": "software.amazon.iotwireless.taskdefinition.HandlerWrapper::handleRequest",
+    "testEntrypoint": "software.amazon.iotwireless.taskdefinition.HandlerWrapper::handleRequest",
+    "settings": {
+        "namespace": [
+            "software",
+            "amazon",
+            "iotwireless",
+            "taskdefinition"
+        ],
+        "codegen_template_path": "guided_aws",
+        "protocolVersion": "2.0.0"
+    },
+    "executableEntrypoint": "software.amazon.iotwireless.taskdefinition.HandlerWrapperExecutable"
+}
