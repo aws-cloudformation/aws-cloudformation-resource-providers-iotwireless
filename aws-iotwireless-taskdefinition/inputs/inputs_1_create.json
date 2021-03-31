@@ -1,0 +1,20 @@
+{
+  "AutoCreateTasks": true,
+  "Name": "ContractTestTaskDefinition",
+  "Update": {
+    "UpdateDataSource": "s3://cupsalphagafirmwarebin/station",
+    "UpdateDataRole": "arn:aws:iam::{{ContractTestExecutionAccountId}}:role/S3GatewayFirmwareAccess",
+    "LoRaWAN": {
+      "CurrentVersion": {
+        "PackageVersion": "1.0.0",
+        "Station": "2.0.5",
+        "Model": "linux"
+      },
+      "UpdateVersion": {
+        "PackageVersion": "1.0.1",
+        "Station": "2.0.5",
+        "Model": "minihub"
+      }
+    }
+  }
+}
