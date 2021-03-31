@@ -39,4 +39,3 @@ public class DeleteHandler extends BaseHandlerStd {
         return response;
     }
 }
-

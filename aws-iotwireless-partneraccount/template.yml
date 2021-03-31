@@ -21,4 +21,3 @@ Resources:
       Handler: software.amazon.iotwireless.partneraccount.HandlerWrapper::testEntrypoint
       Runtime: java8
       CodeUri: ./target/aws-iotwireless-partneraccount-1.0.jar
-
