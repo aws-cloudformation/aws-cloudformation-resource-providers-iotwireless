@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project
-    xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>software.amazon.iotwireless.destination</groupId>
-    <artifactId>aws-iotwireless-destination-handler</artifactId>
-    <name>aws-iotwireless-destination-handler</name>
+    <groupId>software.amazon.iotwireless.partneraccount</groupId>
+    <artifactId>aws-iotwireless-partneraccount-handler</artifactId>
+    <name>aws-iotwireless-partneraccount-handler</name>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -209,7 +209,7 @@
             <resource>
                 <directory>${project.basedir}</directory>
                 <includes>
-                    <include>aws-iotwireless-destination.json</include>
+                    <include>aws-iotwireless-partneraccount.json</include>
                 </includes>
             </resource>
         </resources>

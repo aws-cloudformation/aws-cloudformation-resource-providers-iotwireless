@@ -5,9 +5,9 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>software.amazon.iotwireless.destination</groupId>
-    <artifactId>aws-iotwireless-destination-handler</artifactId>
-    <name>aws-iotwireless-destination-handler</name>
+    <groupId>software.amazon.iotwireless.taskdefinition</groupId>
+    <artifactId>aws-iotwireless-taskdefinition-handler</artifactId>
+    <name>aws-iotwireless-taskdefinition-handler</name>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -190,12 +190,12 @@
                                         <limit>
                                             <counter>BRANCH</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.0</minimum>
+                                            <minimum>0.5</minimum>
                                         </limit>
                                         <limit>
                                             <counter>INSTRUCTION</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.0</minimum>
+                                            <minimum>0.5</minimum>
                                         </limit>
                                     </limits>
                                 </rule>
@@ -209,7 +209,7 @@
             <resource>
                 <directory>${project.basedir}</directory>
                 <includes>
-                    <include>aws-iotwireless-destination.json</include>
+                    <include>aws-iotwireless-taskdefinition.json</include>
                 </includes>
             </resource>
         </resources>
