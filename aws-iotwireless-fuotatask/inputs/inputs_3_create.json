@@ -1,0 +1,15 @@
+{
+  "Name": "FuotaTask CFN",
+  "Description": "Description",
+  "LoRaWAN": {
+    "RfRegion": "US915"
+  },
+  "FirmwareUpdateImage": "s3://test-fuota/firmware",
+  "FirmwareUpdateRole": "arn:aws:iam::{{ContractTestExecutionAccountId}}:role/fuota-test",
+  "Tags": [
+    {
+      "Key": "Key",
+      "Value": "Value"
+    }
+  ]
+}
