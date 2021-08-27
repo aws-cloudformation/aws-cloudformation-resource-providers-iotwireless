@@ -28,3 +28,5 @@ phases:
         else
           echo "$CODEBUILD_SRC_DIR is empty"
         fi
+    finally:
+      - cat "$CODEBUILD_SRC_DIR/aws-iotwireless-deviceprofile/rpdk.log"	
