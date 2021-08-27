@@ -31,4 +31,10 @@ phases:
           echo "$CODEBUILD_SRC_DIR is empty"
         fi
     finally:
+      - cat "$CODEBUILD_SRC_DIR/aws-iotwireless-destination/rpdk.log"
       - cat "$CODEBUILD_SRC_DIR/aws-iotwireless-deviceprofile/rpdk.log"
+      - cat "$CODEBUILD_SRC_DIR/aws-iotwireless-partneraccount/rpdk.log"
+      - cat "$CODEBUILD_SRC_DIR/aws-iotwireless-serviceprofile/rpdk.log"
+      - cat "$CODEBUILD_SRC_DIR/aws-iotwireless-taskdefinition/rpdk.log"
+      - cat "$CODEBUILD_SRC_DIR/aws-iotwireless-wirelessdevice/rpdk.log"
+      - cat "$CODEBUILD_SRC_DIR/aws-iotwireless-wirelessgateway/rpdk.log"
