@@ -6,8 +6,7 @@ phases:
       python: 3.7
     commands:
       -  pip install --upgrade 'six==1.15.0'
-      -  pip install 'aws-sam-translator==1.22.0'
-      -  pip install 'docker~=4.0'
+      -  pip install pyyaml --upgrade
       -  pip install pre-commit cloudformation-cli-java-plugin
   build:
     commands:
@@ -31,3 +30,11 @@ phases:
         else
           echo "$CODEBUILD_SRC_DIR is empty"
         fi
+    finally:
+      - cat "$CODEBUILD_SRC_DIR/aws-iotwireless-destination/rpdk.log"
+      - cat "$CODEBUILD_SRC_DIR/aws-iotwireless-deviceprofile/rpdk.log"
+      - cat "$CODEBUILD_SRC_DIR/aws-iotwireless-partneraccount/rpdk.log"
+      - cat "$CODEBUILD_SRC_DIR/aws-iotwireless-serviceprofile/rpdk.log"
+      - cat "$CODEBUILD_SRC_DIR/aws-iotwireless-taskdefinition/rpdk.log"
+      - cat "$CODEBUILD_SRC_DIR/aws-iotwireless-wirelessdevice/rpdk.log"
+      - cat "$CODEBUILD_SRC_DIR/aws-iotwireless-wirelessgateway/rpdk.log"
