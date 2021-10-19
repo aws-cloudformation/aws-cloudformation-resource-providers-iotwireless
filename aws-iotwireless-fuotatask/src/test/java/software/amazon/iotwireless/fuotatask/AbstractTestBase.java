@@ -13,7 +13,9 @@ import software.amazon.cloudformation.proxy.ProxyClient;
 import software.amazon.cloudformation.proxy.ResourceHandlerRequest;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
@@ -28,7 +30,7 @@ public class AbstractTestBase {
     protected static final String TEST_RFREGION;
     protected static final String TEST_FIRMWAREUPDATEIMAGE;
     protected static final String TEST_FIRMWAREUPDATEROLE;
-    protected static final List<Tag> TEST_TAGS;
+    protected static final Set<Tag> TEST_TAGS;
     protected static final Tag TEST_TAG;
     protected static final String TEST_KEY;
     protected static final String TEST_VALUE;
@@ -63,7 +65,7 @@ public class AbstractTestBase {
 
         TEST_KEY = "key";
         TEST_VALUE = "value";
-        TEST_TAGS = new ArrayList<>();
+        TEST_TAGS = new HashSet<>();
         TEST_TAG = new Tag();
         TEST_TAG.setKey(TEST_KEY);
         TEST_TAG.setValue(TEST_VALUE);

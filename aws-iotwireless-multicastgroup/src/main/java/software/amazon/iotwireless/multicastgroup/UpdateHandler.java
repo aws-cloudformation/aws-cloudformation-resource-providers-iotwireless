@@ -9,6 +9,7 @@ import software.amazon.awssdk.services.iotwireless.model.UpdateMulticastGroupReq
 import software.amazon.awssdk.services.iotwireless.model.UpdateMulticastGroupResponse;
 import software.amazon.cloudformation.exceptions.CfnInvalidRequestException;
 import software.amazon.cloudformation.exceptions.CfnNotFoundException;
+import software.amazon.cloudformation.exceptions.BaseHandlerException;
 import software.amazon.cloudformation.exceptions.ResourceAlreadyExistsException;
 import software.amazon.cloudformation.proxy.AmazonWebServicesClientProxy;
 import software.amazon.cloudformation.proxy.Logger;
@@ -27,80 +28,35 @@ public class UpdateHandler extends BaseHandlerStd {
 
         final ResourceModel desiredModel = request.getDesiredResourceState();
 
-        if (request.getRollback() != null && request.getRollback()) {
-            final ResourceModel previousModel = request.getPreviousResourceState();
-
-            return ProgressEvent.progress(desiredModel, callbackContext)
-                    .then(progress -> proxy.initiate("AWS-IoTWireless-MulticastGroup::UpdateRollback", proxyClient, progress.getResourceModel(), progress.getCallbackContext())
-                            .translateToServiceRequest(Translator::translateToUpdateRequest)
-                            .makeServiceCall(this::updateMulticastGroup)
-                            .progress()
-                    )
-                    .then(progress -> {
-                        if (previousModel.getAssociateWirelessDevice() == null) return progress;
-                        return proxy.initiate("AWS-IoTWireless-MulticastGroup::AssociateWirelessDeviceRollback", proxyClient, previousModel, progress.getCallbackContext())
-                                .translateToServiceRequest(model -> DisassociateWirelessDeviceFromMulticastGroupRequest.builder()
-                                        .id(model.getId())
-                                        .wirelessDeviceId(model.getAssociateWirelessDevice())
-                                        .build())
-                                .makeServiceCall((updateRequest, serviceCallProxyClient) -> {
-                                    try {
-                                        return disassociateWirelessDevice(updateRequest, serviceCallProxyClient);
-                                    } catch (final Exception e) {
-                                        if (e instanceof CfnNotFoundException)
-                                            return null; // acceptable because association might have failed or was not called
-                                        throw e;
-                                    }
-                                })
-                                .progress();
-                    })
-                    .then(progress -> {
-                        if (previousModel.getDisassociateWirelessDevice() == null) return progress;
-                        return proxy.initiate("AWS-IoTWireless-MulticastGroup::DisassociateWirelessDeviceRollback", proxyClient, previousModel, progress.getCallbackContext())
-                                .translateToServiceRequest(model -> AssociateWirelessDeviceWithMulticastGroupRequest.builder()
-                                        .id(model.getId())
-                                        .wirelessDeviceId(model.getDisassociateWirelessDevice())
-                                        .build())
-                                .makeServiceCall((updateRequest, serviceCallProxyClient) -> {
-                                    try {
-                                        return associateWirelessDevice(updateRequest, serviceCallProxyClient);
-                                    } catch (final Exception e) {
-                                        if (e instanceof ResourceAlreadyExistsException)
-                                            return null; // acceptable because disassociation might have failed or was not called
-                                        throw e;
-                                    }
-                                })
-                                .progress();
-                    })
-                    .then(progress -> ProgressEvent.defaultSuccessHandler(Translator.setModel(desiredModel)));
-        }
-
         if (desiredModel.getAssociateWirelessDevice() != null
                 && desiredModel.getAssociateWirelessDevice().equals(desiredModel.getDisassociateWirelessDevice())) {
             throw new CfnInvalidRequestException("Cannot associate and disassociate the same wireless device");
         }
-
-        return ProgressEvent.progress(desiredModel, callbackContext)
-                .then(progress -> {
-                    if (desiredModel.getDisassociateWirelessDevice() == null) return progress;
-                    return proxy.initiate("AWS-IoTWireless-MulticastGroup::DisassociateWirelessDevice", proxyClient, progress.getResourceModel(), progress.getCallbackContext())
-                            .translateToServiceRequest(Translator::translateToDisassociateWirelessDeviceRequest)
-                            .makeServiceCall(this::disassociateWirelessDevice)
-                            .progress();
-                })
-                .then(progress -> {
-                    if (desiredModel.getAssociateWirelessDevice() == null) return progress;
-                    return proxy.initiate("AWS-IoTWireless-MulticastGroup::AssociateWirelessDevice", proxyClient, progress.getResourceModel(), progress.getCallbackContext())
-                            .translateToServiceRequest(Translator::translateToAssociateWirelessDeviceRequest)
-                            .makeServiceCall(this::associateWirelessDevice)
-                            .progress();
-                })
-                .then(progress -> proxy.initiate("AWS-IoTWireless-MulticastGroup::Update", proxyClient, progress.getResourceModel(), progress.getCallbackContext())
-                        .translateToServiceRequest(Translator::translateToUpdateRequest)
-                        .makeServiceCall(this::updateMulticastGroup)
-                        .progress()
-                )
-                .then(progress -> ProgressEvent.defaultSuccessHandler(Translator.setModel(desiredModel)));
+        try {
+            return ProgressEvent.progress(desiredModel, callbackContext)
+                    .then(progress -> {
+                        if (desiredModel.getDisassociateWirelessDevice() == null) return progress;
+                        return proxy.initiate("AWS-IoTWireless-MulticastGroup::DisassociateWirelessDevice", proxyClient, progress.getResourceModel(), progress.getCallbackContext())
+                                .translateToServiceRequest(Translator::translateToDisassociateWirelessDeviceRequest)
+                                .makeServiceCall(this::disassociateWirelessDevice)
+                                .progress();
+                    })
+                    .then(progress -> {
+                        if (desiredModel.getAssociateWirelessDevice() == null) return progress;
+                        return proxy.initiate("AWS-IoTWireless-MulticastGroup::AssociateWirelessDevice", proxyClient, progress.getResourceModel(), progress.getCallbackContext())
+                                .translateToServiceRequest(Translator::translateToAssociateWirelessDeviceRequest)
+                                .makeServiceCall(this::associateWirelessDevice)
+                                .progress();
+                    })
+                    .then(progress -> proxy.initiate("AWS-IoTWireless-MulticastGroup::Update", proxyClient, progress.getResourceModel(), progress.getCallbackContext())
+                            .translateToServiceRequest(Translator::translateToUpdateRequest)
+                            .makeServiceCall(this::updateMulticastGroup)
+                            .progress()
+                    )
+                    .then(progress -> ProgressEvent.defaultSuccessHandler(Translator.setModel(desiredModel)));
+        } catch  (final BaseHandlerException e) {
+            return ProgressEvent.failed(desiredModel, callbackContext, e.getErrorCode(), e.getMessage());
+        }
     }
 
     private DisassociateWirelessDeviceFromMulticastGroupResponse disassociateWirelessDevice(DisassociateWirelessDeviceFromMulticastGroupRequest updateRequest, ProxyClient<IotWirelessClient> proxyClient) {

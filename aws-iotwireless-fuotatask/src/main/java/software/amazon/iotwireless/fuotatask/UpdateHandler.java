@@ -13,6 +13,7 @@ import software.amazon.awssdk.services.iotwireless.model.UpdateFuotaTaskRequest;
 import software.amazon.awssdk.services.iotwireless.model.UpdateFuotaTaskResponse;
 import software.amazon.cloudformation.exceptions.CfnInvalidRequestException;
 import software.amazon.cloudformation.exceptions.CfnNotFoundException;
+import software.amazon.cloudformation.exceptions.BaseHandlerException;
 import software.amazon.cloudformation.exceptions.ResourceAlreadyExistsException;
 import software.amazon.cloudformation.proxy.AmazonWebServicesClientProxy;
 import software.amazon.cloudformation.proxy.Logger;
@@ -131,43 +132,47 @@ public class UpdateHandler extends BaseHandlerStd {
             throw new CfnInvalidRequestException("Cannot associate and disassociate the same multicast group");
         }
 
-        return ProgressEvent.progress(desiredModel, callbackContext)
-                .then(progress -> {
-                    if (desiredModel.getDisassociateWirelessDevice() == null) return progress;
-                    return proxy.initiate("AWS-IoTWireless-FuotaTask::DisassociateWirelessDevice", proxyClient, progress.getResourceModel(), progress.getCallbackContext())
-                            .translateToServiceRequest(Translator::translateToDisassociateWirelessDeviceRequest)
-                            .makeServiceCall(this::disassociateWirelessDevice)
-                            .progress();
-                })
-                .then(progress -> {
-                    if (desiredModel.getDisassociateMulticastGroup() == null) return progress;
-                    return proxy.initiate("AWS-IoTWireless-FuotaTask::DisassociateMulticastGroup", proxyClient, progress.getResourceModel(), progress.getCallbackContext())
-                            .translateToServiceRequest(Translator::translateToDisassociateMulticastGroupRequest)
-                            .makeServiceCall(this::disassociateMulticastGroup)
-                            .progress();
+        try {
+            return ProgressEvent.progress(desiredModel, callbackContext)
+                    .then(progress -> {
+                        if (desiredModel.getDisassociateWirelessDevice() == null) return progress;
+                        return proxy.initiate("AWS-IoTWireless-FuotaTask::DisassociateWirelessDevice", proxyClient, progress.getResourceModel(), progress.getCallbackContext())
+                                .translateToServiceRequest(Translator::translateToDisassociateWirelessDeviceRequest)
+                                .makeServiceCall(this::disassociateWirelessDevice)
+                                .progress();
+                    })
+                    .then(progress -> {
+                        if (desiredModel.getDisassociateMulticastGroup() == null) return progress;
+                        return proxy.initiate("AWS-IoTWireless-FuotaTask::DisassociateMulticastGroup", proxyClient, progress.getResourceModel(), progress.getCallbackContext())
+                                .translateToServiceRequest(Translator::translateToDisassociateMulticastGroupRequest)
+                                .makeServiceCall(this::disassociateMulticastGroup)
+                                .progress();
 
-                })
-                .then(progress -> {
-                    if (desiredModel.getAssociateWirelessDevice() == null) return progress;
-                    return proxy.initiate("AWS-IoTWireless-FuotaTask::AssociateWirelessDevice", proxyClient, progress.getResourceModel(), progress.getCallbackContext())
-                            .translateToServiceRequest(Translator::translateToAssociateWirelessDeviceRequest)
-                            .makeServiceCall(this::associateWirelessDevice)
-                            .progress();
-                })
-                .then(progress -> {
-                    if (desiredModel.getAssociateMulticastGroup() == null) return progress;
-                    return proxy.initiate("AWS-IoTWireless-FuotaTask::AssociateMulticastGroup", proxyClient, progress.getResourceModel(), progress.getCallbackContext())
-                            .translateToServiceRequest(Translator::translateToAssociateMulticastGroupRequest)
-                            .makeServiceCall(this::associateMulticastGroup)
-                            .progress();
-                })
-                .then(progress ->
-                        proxy.initiate("AWS-IoTWireless-FuotaTask::Update", proxyClient, progress.getResourceModel(), progress.getCallbackContext())
-                                .translateToServiceRequest(Translator::translateToUpdateRequest)
-                                .makeServiceCall(this::updateFuotaTask)
-                                .progress()
-                )
-                .then(progress -> ProgressEvent.defaultSuccessHandler(Translator.setModel(desiredModel)));
+                    })
+                    .then(progress -> {
+                        if (desiredModel.getAssociateWirelessDevice() == null) return progress;
+                        return proxy.initiate("AWS-IoTWireless-FuotaTask::AssociateWirelessDevice", proxyClient, progress.getResourceModel(), progress.getCallbackContext())
+                                .translateToServiceRequest(Translator::translateToAssociateWirelessDeviceRequest)
+                                .makeServiceCall(this::associateWirelessDevice)
+                                .progress();
+                    })
+                    .then(progress -> {
+                        if (desiredModel.getAssociateMulticastGroup() == null) return progress;
+                        return proxy.initiate("AWS-IoTWireless-FuotaTask::AssociateMulticastGroup", proxyClient, progress.getResourceModel(), progress.getCallbackContext())
+                                .translateToServiceRequest(Translator::translateToAssociateMulticastGroupRequest)
+                                .makeServiceCall(this::associateMulticastGroup)
+                                .progress();
+                    })
+                    .then(progress ->
+                            proxy.initiate("AWS-IoTWireless-FuotaTask::Update", proxyClient, progress.getResourceModel(), progress.getCallbackContext())
+                                    .translateToServiceRequest(Translator::translateToUpdateRequest)
+                                    .makeServiceCall(this::updateFuotaTask)
+                                    .progress()
+                    )
+                    .then(progress -> ProgressEvent.defaultSuccessHandler(Translator.setModel(desiredModel)));
+        } catch (final BaseHandlerException e) {
+            return ProgressEvent.failed(desiredModel, callbackContext, e.getErrorCode(), e.getMessage());
+        }
     }
 
     private DisassociateWirelessDeviceFromFuotaTaskResponse disassociateWirelessDevice(DisassociateWirelessDeviceFromFuotaTaskRequest updateRequest, ProxyClient<IotWirelessClient> proxyClient) {
