@@ -1,0 +1,6 @@
+{
+  "LoRaWAN": {
+    "RfRegion": "US915",
+    "DlClass": "ClassC"
+  }
+}

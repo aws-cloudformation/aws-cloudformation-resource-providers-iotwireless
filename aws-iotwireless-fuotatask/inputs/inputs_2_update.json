@@ -1,0 +1,9 @@
+{
+  "Description": "Description 2",
+  "LoRaWAN": {
+    "RfRegion": "US915"
+  },
+  "FirmwareUpdateImage": "s3://test-fuota/firmware",
+  "FirmwareUpdateRole": "arn:aws:iam::{{ContractTestExecutionAccountId}}:role/fuota-test",
+  "AssociateWirelessDevice": "{{ContractTestWirelessDevice}}"
+}

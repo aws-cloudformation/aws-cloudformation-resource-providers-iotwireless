@@ -1,0 +1,8 @@
+{
+  "Name": "MC CFN test",
+  "Description": "desc 2",
+  "LoRaWAN": {
+    "RfRegion": "US915",
+    "DlClass": "ClassB"
+  }
+}
