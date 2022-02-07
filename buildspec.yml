@@ -38,3 +38,5 @@ phases:
       - cat "$CODEBUILD_SRC_DIR/aws-iotwireless-taskdefinition/rpdk.log"
       - cat "$CODEBUILD_SRC_DIR/aws-iotwireless-wirelessdevice/rpdk.log"
       - cat "$CODEBUILD_SRC_DIR/aws-iotwireless-wirelessgateway/rpdk.log"
+      - cat "$CODEBUILD_SRC_DIR/aws-iotwireless-fuotatask/rpdk.log"
+      - cat "$CODEBUILD_SRC_DIR/aws-iotwireless-multicastgroup/rpdk.log"
