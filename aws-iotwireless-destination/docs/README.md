@@ -125,4 +125,3 @@ For more information about using the `Fn::GetAtt` intrinsic function, see [Fn::G
 #### Arn
 
 Destination arn. Returned after successful create.
-
