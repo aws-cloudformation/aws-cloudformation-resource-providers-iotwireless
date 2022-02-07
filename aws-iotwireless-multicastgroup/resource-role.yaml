@@ -23,16 +23,16 @@ Resources:
             Statement:
               - Effect: Allow
                 Action:
-                  - "iotwireless:AssociateWirelessDeviceWithMulticastGroup"
-                  - "iotwireless:CreateMulticastGroup"
-                  - "iotwireless:DeleteMulticastGroup"
-                  - "iotwireless:DisassociateWirelessDeviceFromMulticastGroup"
-                  - "iotwireless:GetMulticastGroup"
-                  - "iotwireless:ListMulticastGroups"
-                  - "iotwireless:ListTagsForResource"
-                  - "iotwireless:TagResource"
-                  - "iotwireless:UntagResource"
-                  - "iotwireless:UpdateMulticastGroup"
+                - "iotwireless:AssociateWirelessDeviceWithMulticastGroup"
+                - "iotwireless:CreateMulticastGroup"
+                - "iotwireless:DeleteMulticastGroup"
+                - "iotwireless:DisassociateWirelessDeviceFromMulticastGroup"
+                - "iotwireless:GetMulticastGroup"
+                - "iotwireless:ListMulticastGroups"
+                - "iotwireless:ListTagsForResource"
+                - "iotwireless:TagResource"
+                - "iotwireless:UntagResource"
+                - "iotwireless:UpdateMulticastGroup"
                 Resource: "*"
 Outputs:
   ExecutionRoleArn:

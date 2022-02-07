@@ -26,7 +26,10 @@ Resources:
                 - "iotwireless:CreateWirelessGateway"
                 - "iotwireless:DeleteWirelessGateway"
                 - "iotwireless:GetWirelessGateway"
+                - "iotwireless:ListTagsForResource"
                 - "iotwireless:ListWirelessGateways"
+                - "iotwireless:TagResource"
+                - "iotwireless:UntagResource"
                 - "iotwireless:UpdateWirelessGateway"
                 Resource: "*"
 Outputs:

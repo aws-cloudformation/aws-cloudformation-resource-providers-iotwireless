@@ -23,14 +23,12 @@ Resources:
             Statement:
               - Effect: Allow
                 Action:
-                - "iotwireless:AssociateAwsAccountWithPartnerAccount"
-                - "iotwireless:DisassociateAwsAccountFromPartnerAccount"
-                - "iotwireless:GetPartnerAccount"
-                - "iotwireless:ListPartnerAccounts"
+                - "iotwireless:CreateServiceProfile"
+                - "iotwireless:DeleteServiceProfile"
+                - "iotwireless:GetServiceProfile"
+                - "iotwireless:ListServiceProfiles"
                 - "iotwireless:ListTagsForResource"
                 - "iotwireless:TagResource"
-                - "iotwireless:UntagResource"
-                - "iotwireless:UpdatePartnerAccount"
                 Resource: "*"
 Outputs:
   ExecutionRoleArn:
