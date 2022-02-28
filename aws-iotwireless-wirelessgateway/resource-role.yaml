@@ -23,14 +23,14 @@ Resources:
             Statement:
               - Effect: Allow
                 Action:
-                - "iotwireless:CreateWirelessGateway"
-                - "iotwireless:DeleteWirelessGateway"
-                - "iotwireless:GetWirelessGateway"
-                - "iotwireless:ListTagsForResource"
-                - "iotwireless:ListWirelessGateways"
-                - "iotwireless:TagResource"
-                - "iotwireless:UntagResource"
-                - "iotwireless:UpdateWirelessGateway"
+                  - "iotwireless:CreateWirelessGateway"
+                  - "iotwireless:DeleteWirelessGateway"
+                  - "iotwireless:GetWirelessGateway"
+                  - "iotwireless:ListTagsForResource"
+                  - "iotwireless:ListWirelessGateways"
+                  - "iotwireless:TagResource"
+                  - "iotwireless:UntagResource"
+                  - "iotwireless:UpdateWirelessGateway"
                 Resource: "*"
 Outputs:
   ExecutionRoleArn:

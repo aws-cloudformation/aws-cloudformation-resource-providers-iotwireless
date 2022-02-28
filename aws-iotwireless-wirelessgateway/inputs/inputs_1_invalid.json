@@ -1,7 +1,7 @@
 {
   "Id": "Existing Wireless Gateway ID",
   "LoRaWAN": {
-    "GatewayEui": "1111111122222222",
+    "GatewayEui": "FE-FF-FF-00-00-00-00-F4",
     "RfRegion": "US915"
   }
 }

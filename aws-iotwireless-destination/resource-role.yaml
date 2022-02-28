@@ -23,14 +23,14 @@ Resources:
             Statement:
               - Effect: Allow
                 Action:
-                - "iotwireless:CreateDestination"
-                - "iotwireless:DeleteDestination"
-                - "iotwireless:GetDestination"
-                - "iotwireless:ListDestinations"
-                - "iotwireless:ListTagsForResource"
-                - "iotwireless:TagResource"
-                - "iotwireless:UntagResource"
-                - "iotwireless:UpdateDestination"
+                  - "iotwireless:CreateDestination"
+                  - "iotwireless:DeleteDestination"
+                  - "iotwireless:GetDestination"
+                  - "iotwireless:ListDestinations"
+                  - "iotwireless:ListTagsForResource"
+                  - "iotwireless:TagResource"
+                  - "iotwireless:UntagResource"
+                  - "iotwireless:UpdateDestination"
                 Resource: "*"
 Outputs:
   ExecutionRoleArn:

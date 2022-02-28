@@ -23,14 +23,14 @@ Resources:
             Statement:
               - Effect: Allow
                 Action:
-                - "iotwireless:CreateWirelessDevice"
-                - "iotwireless:DeleteWirelessDevice"
-                - "iotwireless:GetWirelessDevice"
-                - "iotwireless:ListTagsForResource"
-                - "iotwireless:ListWirelessDevices"
-                - "iotwireless:TagResource"
-                - "iotwireless:UntagResource"
-                - "iotwireless:UpdateWirelessDevice"
+                  - "iotwireless:CreateWirelessDevice"
+                  - "iotwireless:DeleteWirelessDevice"
+                  - "iotwireless:GetWirelessDevice"
+                  - "iotwireless:ListTagsForResource"
+                  - "iotwireless:ListWirelessDevices"
+                  - "iotwireless:TagResource"
+                  - "iotwireless:UntagResource"
+                  - "iotwireless:UpdateWirelessDevice"
                 Resource: "*"
 Outputs:
   ExecutionRoleArn:

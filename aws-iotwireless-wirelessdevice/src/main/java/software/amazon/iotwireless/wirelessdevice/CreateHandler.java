@@ -26,10 +26,6 @@ public class CreateHandler extends BaseHandlerStd {
             throw new CfnInvalidRequestException("Attempting to set a ReadOnly Property.");
         }
 
-        if (model.getTags() != null) {
-            logger.log(String.format("ERROR: Currently does not support tags, resource not created."));
-            throw new IllegalArgumentException("Currently does not support tags, resource not created.");
-        }
         return ProgressEvent.progress(model, callbackContext)
                 .then(progress ->
                         proxy.initiate("AWS-IoTWireless-WirelessDevice::Create", proxyClient, model, callbackContext)

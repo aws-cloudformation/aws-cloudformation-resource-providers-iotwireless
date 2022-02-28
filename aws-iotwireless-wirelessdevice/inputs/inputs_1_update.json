@@ -1,5 +1,6 @@
 {
   "Name": "OtaaV1_0_x Wireless Device",
   "Type": "LoRaWAN",
-  "DestinationName": "DestinationName"
+  "DestinationName": "DestinationName",
+  "Description": "TestDescription"
 }

@@ -23,12 +23,12 @@ Resources:
             Statement:
               - Effect: Allow
                 Action:
-                - "iotwireless:CreateServiceProfile"
-                - "iotwireless:DeleteServiceProfile"
-                - "iotwireless:GetServiceProfile"
-                - "iotwireless:ListServiceProfiles"
-                - "iotwireless:ListTagsForResource"
-                - "iotwireless:TagResource"
+                  - "iotwireless:CreateServiceProfile"
+                  - "iotwireless:DeleteServiceProfile"
+                  - "iotwireless:GetServiceProfile"
+                  - "iotwireless:ListServiceProfiles"
+                  - "iotwireless:ListTagsForResource"
+                  - "iotwireless:TagResource"
                 Resource: "*"
 Outputs:
   ExecutionRoleArn:

@@ -23,14 +23,14 @@ Resources:
             Statement:
               - Effect: Allow
                 Action:
-                - "iam:GetRole"
-                - "iam:PassRole"
-                - "iotwireless:CreateWirelessGatewayTaskDefinition"
-                - "iotwireless:DeleteWirelessGatewayTaskDefinition"
-                - "iotwireless:GetWirelessGatewayTaskDefinition"
-                - "iotwireless:ListTagsForResource"
-                - "iotwireless:ListWirelessGatewayTaskDefinitions"
-                - "iotwireless:TagResource"
+                  - "iam:GetRole"
+                  - "iam:PassRole"
+                  - "iotwireless:CreateWirelessGatewayTaskDefinition"
+                  - "iotwireless:DeleteWirelessGatewayTaskDefinition"
+                  - "iotwireless:GetWirelessGatewayTaskDefinition"
+                  - "iotwireless:ListTagsForResource"
+                  - "iotwireless:ListWirelessGatewayTaskDefinitions"
+                  - "iotwireless:TagResource"
                 Resource: "*"
 Outputs:
   ExecutionRoleArn:

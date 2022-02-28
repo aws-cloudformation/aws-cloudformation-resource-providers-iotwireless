@@ -23,12 +23,12 @@ Resources:
             Statement:
               - Effect: Allow
                 Action:
-                - "iotwireless:CreateDeviceProfile"
-                - "iotwireless:DeleteDeviceProfile"
-                - "iotwireless:GetDeviceProfile"
-                - "iotwireless:ListDeviceProfiles"
-                - "iotwireless:ListTagsForResource"
-                - "iotwireless:TagResource"
+                  - "iotwireless:CreateDeviceProfile"
+                  - "iotwireless:DeleteDeviceProfile"
+                  - "iotwireless:GetDeviceProfile"
+                  - "iotwireless:ListDeviceProfiles"
+                  - "iotwireless:ListTagsForResource"
+                  - "iotwireless:TagResource"
                 Resource: "*"
 Outputs:
   ExecutionRoleArn:

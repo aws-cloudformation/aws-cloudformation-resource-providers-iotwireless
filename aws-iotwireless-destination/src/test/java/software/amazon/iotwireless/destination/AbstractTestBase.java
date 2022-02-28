@@ -11,6 +11,8 @@ import software.amazon.cloudformation.proxy.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
@@ -22,7 +24,7 @@ public class AbstractTestBase {
     protected static final String TEST_EXPRESSION_TYPE;
     protected static final String TEST_EXPRESSION;
     protected static final String TEST_DESCRIPTION;
-    protected static final List<software.amazon.iotwireless.destination.Tag> TEST_TAGS;
+    protected static final Set<software.amazon.iotwireless.destination.Tag> TEST_TAGS;
     protected static final software.amazon.iotwireless.destination.Tag TEST_TAG;
     protected static final String TEST_KEY;
     protected static final String TEST_VALUE;
@@ -51,7 +53,7 @@ public class AbstractTestBase {
         TEST_TOTAL_COUNT = 1;
         TEST_NEXT_TOKEN = "test next token";
 
-        TEST_TAGS = new ArrayList<software.amazon.iotwireless.destination.Tag>();
+        TEST_TAGS = new HashSet<software.amazon.iotwireless.destination.Tag>();
         TEST_TAG = new software.amazon.iotwireless.destination.Tag();
         TEST_TAG.setKey(TEST_KEY);
         TEST_TAG.setValue(TEST_VALUE);

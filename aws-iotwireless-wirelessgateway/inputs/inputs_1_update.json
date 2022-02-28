@@ -1,6 +1,8 @@
 {
+  "Name": "Wireless Gateway Contract Test",
+  "Description": "description",
   "LoRaWAN": {
-    "GatewayEui": "1111111122222222",
+    "GatewayEui": "0071470000000001",
     "RfRegion": "US915"
   }
 }
