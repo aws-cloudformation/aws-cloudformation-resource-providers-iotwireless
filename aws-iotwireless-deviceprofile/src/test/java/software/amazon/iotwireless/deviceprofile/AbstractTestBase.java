@@ -2,6 +2,8 @@ package software.amazon.iotwireless.deviceprofile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
@@ -20,7 +22,7 @@ public class AbstractTestBase {
   protected static final String TEST_DESTINATION_NAME;
   protected static final String TEST_ARN;
   protected static final String TEST_ID;
-  protected static final List<software.amazon.iotwireless.deviceprofile.Tag> TEST_TAGS;
+  protected static final Set<software.amazon.iotwireless.deviceprofile.Tag> TEST_TAGS;
   protected static final software.amazon.iotwireless.deviceprofile.Tag TEST_TAG;
   protected static final software.amazon.iotwireless.deviceprofile.LoRaWANDeviceProfile TEST_LORA_CREATE;
   protected static final software.amazon.awssdk.services.iotwireless.model.LoRaWANDeviceProfile TEST_LORAWAN;
@@ -59,7 +61,7 @@ public class AbstractTestBase {
     TEST_APP_EUI = "test app eui";
     TEST_APP_KEY = "test app key";
 
-    TEST_TAGS = new ArrayList<software.amazon.iotwireless.deviceprofile.Tag>();
+    TEST_TAGS = new HashSet<software.amazon.iotwireless.deviceprofile.Tag>();
     TEST_TAG = new software.amazon.iotwireless.deviceprofile.Tag();
     TEST_TAG.setKey(TEST_KEY);
     TEST_TAG.setValue(TEST_VALUE);

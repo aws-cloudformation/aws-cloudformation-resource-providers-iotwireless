@@ -1,12 +1,8 @@
 package software.amazon.iotwireless.wirelessdevice;
 
-import software.amazon.awssdk.awscore.exception.AwsServiceException;
 import software.amazon.awssdk.services.iotwireless.IotWirelessClient;
 import software.amazon.awssdk.services.iotwireless.model.ListWirelessDevicesRequest;
 import software.amazon.awssdk.services.iotwireless.model.ListWirelessDevicesResponse;
-import software.amazon.awssdk.services.iotwireless.model.AccessDeniedException;
-import software.amazon.cloudformation.exceptions.CfnAccessDeniedException;
-import software.amazon.cloudformation.exceptions.CfnGeneralServiceException;
 import software.amazon.cloudformation.proxy.AmazonWebServicesClientProxy;
 import software.amazon.cloudformation.proxy.Logger;
 import software.amazon.cloudformation.proxy.OperationStatus;

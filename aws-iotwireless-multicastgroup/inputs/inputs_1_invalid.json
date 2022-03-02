@@ -1,0 +1,8 @@
+{
+  "Name": "MC CFN test",
+  "Description": "desc",
+  "LoRaWAN": {
+    "RfRegion": "US915",
+    "MissingField": "Invalid"
+  }
+}

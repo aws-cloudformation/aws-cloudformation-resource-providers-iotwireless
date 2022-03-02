@@ -8,6 +8,10 @@ import software.amazon.awssdk.services.iotwireless.model.AssociateWirelessDevice
 import software.amazon.awssdk.services.iotwireless.model.ListWirelessDevicesRequest;
 import software.amazon.awssdk.services.iotwireless.model.UpdateWirelessDeviceRequest;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.stream.Collectors;
+
 /**
  * This class is a centralized placeholder for
  * - api request construction
@@ -16,6 +20,24 @@ import software.amazon.awssdk.services.iotwireless.model.UpdateWirelessDeviceReq
  */
 
 public class Translator {
+
+    //Translate from ResourceModel Tag to SDK Tag
+    static Collection<software.amazon.awssdk.services.iotwireless.model.Tag>
+    translateTag(final Collection<software.amazon.iotwireless.wirelessdevice.Tag> tags) {
+        Collection<software.amazon.awssdk.services.iotwireless.model.Tag> newTagCollection =
+                new HashSet<software.amazon.awssdk.services.iotwireless.model.Tag>();
+        if (tags == null) {
+            return newTagCollection;
+        }
+        for (software.amazon.iotwireless.wirelessdevice.Tag tag : tags) {
+            software.amazon.awssdk.services.iotwireless.model.Tag newTag = software.amazon.awssdk.services.iotwireless.model.Tag.builder()
+                    .key(tag.getKey())
+                    .value(tag.getValue())
+                    .build();
+            newTagCollection.add(newTag);
+        }
+        return newTagCollection;
+    }
 
     //Translate from LoRaWANListDevice to LoRaWAN
     static software.amazon.iotwireless.wirelessdevice.LoRaWANDevice
@@ -253,6 +275,11 @@ public class Translator {
     }
 
     static CreateWirelessDeviceRequest translateToCreateRequest(final ResourceModel model, String clientRequestToken) {
+        Collection<software.amazon.iotwireless.wirelessdevice.Tag> tags = null;
+        if (model.getTags() != null) {
+            tags = model.getTags().stream()
+                    .collect(Collectors.toSet());
+        }
         return CreateWirelessDeviceRequest.builder()
                 .type(model.getType())
                 .name(model.getName())
@@ -260,6 +287,7 @@ public class Translator {
                 .destinationName(model.getDestinationName())
                 .clientRequestToken(clientRequestToken)
                 .loRaWAN(translateToLoRaDevice(model))
+                .tags(translateTag(tags))
                 .build();
     }
 
@@ -314,6 +342,7 @@ public class Translator {
                 .loRaWAN(model.getLoRaWAN())
                 .arn(model.getArn())
                 .thingArn(model.getThingArn())
+                .tags(model.getTags())
                 .build();
     }
 
