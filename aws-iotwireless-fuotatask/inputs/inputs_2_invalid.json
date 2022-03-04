@@ -1,0 +1,14 @@
+{
+  "Name": "FuotaTask CFN",
+  "Description": "Description",
+  "LoRaWAN": {},
+  "FirmwareUpdateImage": "s3://test-fuota/firmware",
+  "FirmwareUpdateRole": "arn:aws:iam::{{ContractTestExecutionAccountId}}:role/fuota-test",
+  "Tags": [
+    {
+      "Key": "Key",
+      "Value": "Value"
+    }
+  ],
+  "AssociateWirelessDevice": "123e4567-e89b-12d3-a456-426614174000"
+}
