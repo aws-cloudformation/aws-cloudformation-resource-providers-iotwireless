@@ -15,7 +15,8 @@ def projectsToRelease = [
         "aws-iotwireless-taskdefinition",
         "aws-iotwireless-partneraccount",
         "aws-iotwireless-fuotatask",
-        "aws-iotwireless-multicastgroup"
+        "aws-iotwireless-multicastgroup",
+        "aws-iotwireless-networkanalyzerconfiguration"
 ].collect { project(it) }
 
 // Copy all resource providers to folder `packaging_additional_published_artifacts` for deployment
