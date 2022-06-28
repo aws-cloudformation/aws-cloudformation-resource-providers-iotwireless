@@ -10,7 +10,7 @@ def projectsToRelease = [
         "aws-iotwireless-wirelessgateway",
         "aws-iotwireless-serviceprofile",
         "aws-iotwireless-deviceprofile",
-        "aws-iotwireless-destination",
+//        "aws-iotwireless-destination",
         "aws-iotwireless-wirelessdevice",
         "aws-iotwireless-taskdefinition",
         "aws-iotwireless-partneraccount",
