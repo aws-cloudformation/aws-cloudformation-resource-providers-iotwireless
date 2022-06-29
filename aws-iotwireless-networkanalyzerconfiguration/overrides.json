@@ -1,0 +1,18 @@
+{
+  "CREATE": {
+    "/Description": "Normal description",
+    "/WirelessDevices": [],
+    "/WirelessGateways": [],
+    "/Tags": [
+      {
+        "Key": "purpose",
+        "Value": "contract-testing"
+      }
+    ]
+  },
+  "UPDATE": {
+    "/Description": "normal description for update",
+    "/WirelessDevices": [],
+    "/WirelessGateways": []
+  }
+}
