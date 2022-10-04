@@ -47,6 +47,11 @@ public class Translator {
         newProfile.setSupportsJoin(profile.supportsJoin());
         newProfile.setRfRegion(profile.rfRegion());
         newProfile.setSupports32BitFCnt(profile.supports32BitFCnt());
+        newProfile.setRxDelay1(profile.rxDelay1());
+        newProfile.setRxDrOffset1(profile.rxDrOffset1());
+        newProfile.setRxDataRate2(profile.rxDataRate2());
+        newProfile.setRxFreq2(profile.rxFreq2());
+        newProfile.setFactoryPresetFreqsList(profile.factoryPresetFreqsList());
         return newProfile;
     }
 
@@ -71,6 +76,11 @@ public class Translator {
                 .supportsJoin(gateway.getSupportsJoin())
                 .rfRegion(gateway.getRfRegion())
                 .supports32BitFCnt(gateway.getSupports32BitFCnt())
+                .rxDelay1(gateway.getRxDelay1())
+                .rxDrOffset1(gateway.getRxDrOffset1())
+                .rxFreq2(gateway.getRxFreq2())
+                .rxDataRate2(gateway.getRxDataRate2())
+                .factoryPresetFreqsList(gateway.getFactoryPresetFreqsList())
                 .build();
     }
 
