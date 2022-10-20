@@ -1,6 +1,7 @@
 package software.amazon.iotwireless.deviceprofile;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
@@ -42,6 +43,9 @@ public class AbstractTestBase {
   protected static final CallbackContext TEST_CALLBACK;
   protected static final ResourceHandlerRequest<ResourceModel> TEST_REQUEST;
   protected static final LoggerProxy logger;
+  protected static final String TEST_REG_PARAMS_REVISION;
+  protected static final String TEST_MAC_VERSION;
+  protected static final String TEST_RFREGION;
 
   static {
     MOCK_CREDENTIALS = new Credentials("accessKey", "secretKey", "token");
@@ -60,6 +64,9 @@ public class AbstractTestBase {
     TEST_LAST_UPLINK_RECEIVED_AT = "2020-09-24T00:52:52.802771964Z";
     TEST_APP_EUI = "test app eui";
     TEST_APP_KEY = "test app key";
+    TEST_REG_PARAMS_REVISION = "test reg params revision";
+    TEST_MAC_VERSION= "testversion";
+    TEST_RFREGION = "testrfregion";
 
     TEST_TAGS = new HashSet<software.amazon.iotwireless.deviceprofile.Tag>();
     TEST_TAG = new software.amazon.iotwireless.deviceprofile.Tag();
@@ -70,10 +77,25 @@ public class AbstractTestBase {
     TEST_LORA_CREATE = new software.amazon.iotwireless.deviceprofile.LoRaWANDeviceProfile();
     TEST_LORA_CREATE.setSupportsClassB(true);
 
-    //TODO: include more of the fields
     TEST_LORAWAN = software.amazon.awssdk.services.iotwireless.model.LoRaWANDeviceProfile.builder()
             .supportsClassB(true)
             .classBTimeout(1)
+            .pingSlotPeriod(256)
+            .pingSlotDr(0)
+            .pingSlotFreq(8000000)
+            .supportsClassC(true)
+            .macVersion(TEST_MAC_VERSION)
+            .regParamsRevision(TEST_REG_PARAMS_REVISION)
+            .maxEirp(0)
+            .maxDutyCycle(0)
+            .supportsJoin(true)
+            .rfRegion(TEST_RFREGION)
+            .rxDelay1(0)
+            .rxDrOffset1(0)
+            .rxFreq2(1000000)
+            .rxDataRate2(0)
+            .factoryPresetFreqsList(new ArrayList<Integer>(Arrays.asList(100000,1100000)))
+            .supports32BitFCnt(true)
             .build();
 
     TEST_CREATE_RESOURCE_MODEL = ResourceModel.builder()

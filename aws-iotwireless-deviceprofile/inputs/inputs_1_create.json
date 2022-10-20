@@ -13,6 +13,14 @@
     "MaxDutyCycle": 0,
     "SupportsJoin": true,
     "RfRegion": "US915",
+    "RxDelay1": 0,
+    "RxDrOffset1": 0,
+    "RxFreq2": 1000000,
+    "RxDataRate2": 0,
+    "FactoryPresetFreqsList": [
+      1000000,
+      16700000
+    ],
     "Supports32BitFCnt": true
   },
   "Tags": [
