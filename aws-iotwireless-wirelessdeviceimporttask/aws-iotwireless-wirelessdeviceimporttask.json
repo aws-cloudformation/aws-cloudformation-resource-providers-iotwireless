@@ -84,17 +84,36 @@
       "oneOf": [
         {
           "allOf": [
-            {"required": ["DeviceCreationFile"]},
-            {"required": ["Role"]}
+            {
+              "required": [
+                "DeviceCreationFile"
+              ]
+            },
+            {
+              "required": [
+                "Role"
+              ]
+            }
           ]
         },
-        {"required": ["SidewalkManufacturingSn"]}
+        {
+          "required": [
+            "SidewalkManufacturingSn"
+          ]
+        }
       ]
     },
     "Status": {
       "description": "Status for import task",
       "type": "string",
-      "enum": ["INITIALIZING","INITIALIZED","PENDING","COMPLETE","FAILED","DELETING"]
+      "enum": [
+        "INITIALIZING",
+        "INITIALIZED",
+        "PENDING",
+        "COMPLETE",
+        "FAILED",
+        "DELETING"
+      ]
     },
     "StatusReason": {
       "description": "StatusReason for import task",
