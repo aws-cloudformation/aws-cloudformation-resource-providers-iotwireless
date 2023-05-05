@@ -1,0 +1,22 @@
+{
+  "CreateInputs": {
+    "DestinationName": "ContractTestWirelessDeviceImportTask",
+    "Sidewalk": {
+      "DeviceCreationFile": "s3://ctwirelessdeviceimporttask-{{awsiotwirelesswirelessdeviceimporttaskcto3}}-{{awsiotwirelesswirelessdeviceimporttaskcto1}}/smsn-data-1.csv",
+      "Role": "{{awsiotwirelesswirelessdeviceimporttaskcto2}}"
+    },
+    "Tags": [
+      {
+        "Key": "contract-testing-key",
+        "Value": "contract-testing-value"
+      }
+    ]
+  },
+  "PatchInputs": [
+    {
+      "op": "add",
+      "path": "/Sidewalk/DeviceCreationFile",
+      "value": "s3://ctwirelessdeviceimporttask-{{awsiotwirelesswirelessdeviceimporttaskcto3}}-{{awsiotwirelesswirelessdeviceimporttaskcto1}}/smsn-data-2.csv"
+    }
+  ]
+}
