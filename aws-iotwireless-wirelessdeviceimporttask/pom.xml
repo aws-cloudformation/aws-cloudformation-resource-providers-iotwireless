@@ -64,13 +64,13 @@
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-java-sdk-iotwireless</artifactId>
-            <version>2.20.62</version>
+            <version>1.11.988</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/software.amazon.awssdk/iotwireless -->
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
             <artifactId>iotwireless</artifactId>
-            <version>2.16.31</version>
+            <version>2.20.62</version>
         </dependency>
 
     </dependencies>
