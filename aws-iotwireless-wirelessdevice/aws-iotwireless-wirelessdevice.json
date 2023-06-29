@@ -130,7 +130,7 @@
       "properties": {
         "DevEui": {
           "type": "string",
-          "pattern": "[a-f0-9]{16}"
+          "pattern": "[a-fA-F0-9]{16}"
         },
         "DeviceProfileId": {
           "type": "string",
